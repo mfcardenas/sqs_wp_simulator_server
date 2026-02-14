@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 Laboratorio ISO - Exploración Interactiva de Estándares</title>
+    <meta name="description" content="Herramienta educativa interactiva para explorar los estándares ISO/IEC 25010, ISO/IEC/IEEE 29148 e ISO 9241">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="wizard.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>">
+</head>
+<body>
+    <!-- Tutorial Wizard -->
+    <div id="tutorial-wizard" class="tutorial-wizard">
+        <div class="wizard-backdrop"></div>
+        <div class="wizard-container">
+            <div class="wizard-header">
+                <h1 class="wizard-title">🎯 Laboratorio ISO Interactivo</h1>
+                <p class="wizard-subtitle">Tu herramienta educativa para dominar los estándares de calidad de software</p>
+            </div>
+            
+            <div class="wizard-content">
+                <div class="wizard-step active" data-step="1">
+                    <div class="step-icon">🚀</div>
+                    <h2>¡Bienvenido al Laboratorio ISO!</h2>
+                    <p>Esta aplicación te permitirá explorar y aplicar los principales estándares de calidad de software:</p>
+                    <div class="standards-grid">
+                        <div class="standard-item">
+                            <span class="standard-icon">📊</span>
+                            <div>
+                                <strong>ISO 25010</strong>
+                                <p>Modelo de calidad del producto</p>
+                            </div>
+                        </div>
+                        <div class="standard-item">
+                            <span class="standard-icon">📋</span>
+                            <div>
+                                <strong>ISO 29148</strong>
+                                <p>Ingeniería de requisitos</p>
+                            </div>
+                        </div>
+                        <div class="standard-item">
+                            <span class="standard-icon">🎨</span>
+                            <div>
+                                <strong>ISO 9241</strong>
+                                <p>Principios de usabilidad</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="wizard-step" data-step="2">
+                    <div class="step-icon">🎯</div>
+                    <h2>Escenarios Reales de Desarrollo</h2>
+                    <p>Trabajarás con 4 escenarios basados en proyectos reales:</p>
+                    <ul class="scenario-list">
+                        <li>🛍️ <strong>E-commerce Platform:</strong> Startup tecnológica escalable</li>
+                        <li>🏥 <strong>Sistema Hospitalario:</strong> Aplicación crítica con regulaciones</li>
+                        <li>📊 <strong>Análisis Financiero:</strong> Sistema de trading de alta frecuencia</li>
+                        <li>📱 <strong>App Móvil Social:</strong> Competidor de redes sociales</li>
+                    </ul>
+                </div>
+                
+                <div class="wizard-step" data-step="3">
+                    <div class="step-icon">📊</div>
+                    <h2>Análisis Interactivo</h2>
+                    <p>Cada vista te proporciona herramientas específicas:</p>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <span class="feature-icon">🔄</span>
+                            <div>
+                                <strong>Vista Ciclo:</strong>
+                                <p>Contexto completo del proyecto, desafíos y métricas</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">⭐</span>
+                            <div>
+                                <strong>Vista Calidad:</strong>
+                                <p>Análisis de las 8 características ISO 25010</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">📋</span>
+                            <div>
+                                <strong>Vista Requisitos:</strong>
+                                <p>Ingeniería de requisitos según ISO 29148</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🎨</span>
+                            <div>
+                                <strong>Vista Interacción:</strong>
+                                <p>Principios de usabilidad ISO 9241</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="wizard-step" data-step="4">
+                    <div class="step-icon">⌨️</div>
+                    <h2>Navegación y Atajos</h2>
+                    <p>Navega eficientemente con estos atajos:</p>
+                    <div class="shortcuts-grid">
+                        <div class="shortcut-item">
+                            <kbd>Ctrl + 1</kbd>
+                            <span>Vista Ciclo de Desarrollo</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <kbd>Ctrl + 2</kbd>
+                            <span>Vista Calidad (ISO 25010)</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <kbd>Ctrl + 3</kbd>
+                            <span>Vista Requisitos (ISO 29148)</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <kbd>Ctrl + 4</kbd>
+                            <span>Vista Interacción (ISO 9241)</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <kbd>Ctrl + S</kbd>
+                            <span>Guardar progreso</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <kbd>Ctrl + H</kbd>
+                            <span>Mostrar ayuda</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="wizard-step" data-step="5">
+                    <div class="step-icon">🎓</div>
+                    <h2>¡Listo para Explorar!</h2>
+                    <p>Ahora tienes todas las herramientas para dominar los estándares ISO de calidad de software.</p>
+                    <div class="ready-checklist">
+                        <div class="check-item">
+                            <span class="check-icon">✅</span>
+                            <span>Entiendes los 4 escenarios disponibles</span>
+                        </div>
+                        <div class="check-item">
+                            <span class="check-icon">✅</span>
+                            <span>Conoces las herramientas de cada vista</span>
+                        </div>
+                        <div class="check-item">
+                            <span class="check-icon">✅</span>
+                            <span>Sabes usar los atajos de navegación</span>
+                        </div>
+                    </div>
+                    <p><strong>¡Comienza tu exploración y domina los estándares ISO!</strong></p>
+                </div>
+            </div>
+            
+            <div class="wizard-navigation">
+                <button id="wizard-prev" class="wizard-btn secondary" disabled>⬅️ Anterior</button>
+                <div class="wizard-indicators">
+                    <span class="indicator active"></span>
+                    <span class="indicator"></span>
+                    <span class="indicator"></span>
+                    <span class="indicator"></span>
+                    <span class="indicator"></span>
+                </div>
+                <button id="wizard-next" class="wizard-btn primary">Siguiente ➡️</button>
+                <button id="wizard-start" class="wizard-btn success" style="display: none;">🚀 ¡Comenzar!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Aplicación Principal -->
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="brand">
+                    <h1 class="app-title">🎯 Laboratorio ISO</h1>
+                    <p class="app-description">Herramienta interactiva para estándares de calidad de software</p>
+                </div>
+                <div class="header-actions">
+                    <button class="header-btn" onclick="UIManager.showTutorial()" title="Ver tutorial">
+                        <span class="btn-icon">❓</span>
+                        <span class="btn-text">Ayuda</span>
+                    </button>
+                    <button class="header-btn" onclick="UIManager.showProgress()" title="Ver progreso">
+                        <span class="btn-icon">📊</span>
+                        <span class="btn-text">Progreso</span>
+                    </button>
+                    <button class="header-btn" onclick="UIManager.exportProgress()" title="Exportar progreso">
+                        <span class="btn-icon">💾</span>
+                        <span class="btn-text">Exportar</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Layout Principal -->
+        <div class="app-grid">
+            <!-- Panel de Navegación -->
+            <nav class="nav-panel">
+                <div class="nav-header">
+                    <h1 class="nav-title">🎯 Laboratorio ISO</h1>
+                    <p class="nav-subtitle">Exploración Interactiva</p>
+                    <div class="current-scenario-indicator">
+                        <span class="indicator-label">Escenario:</span>
+                        <span class="indicator-value" id="nav-current-scenario">E-commerce Platform</span>
+                    </div>
+                </div>
+                
+                <div class="nav-content">
+                    <div class="nav-group">
+                        <h3 class="nav-group-title">📚 Estándares ISO</h3>
+                        <div class="nav-items">
+                            <button class="nav-item active" data-view="view-cycle" title="Visión general del ecosistema de desarrollo">
+                                <span class="nav-icon">🔄</span>
+                                <div class="nav-text">
+                                    <span class="nav-label">Ciclo de Desarrollo</span>
+                                    <span class="nav-description">Contexto y métricas</span>
+                                </div>
+                            </button>
+                            
+                            <button class="nav-item" data-view="view-quality" title="ISO/IEC 25010 - Modelo de calidad del software">
+                                <span class="nav-icon">⭐</span>
+                                <div class="nav-text">
+                                    <span class="nav-label">Calidad ISO 25010</span>
+                                    <span class="nav-description">8 características principales</span>
+                                </div>
+                            </button>
+                            
+                            <button class="nav-item" data-view="view-requirements" title="ISO/IEC/IEEE 29148 - Ingeniería de requisitos">
+                                <span class="nav-icon">📋</span>
+                                <div class="nav-text">
+                                    <span class="nav-label">Requisitos ISO 29148</span>
+                                    <span class="nav-description">Ingeniería de requisitos</span>
+                                </div>
+                            </button>
+                            
+                            <button class="nav-item" data-view="view-interaction" title="ISO 9241 - Ergonomía de sistemas interactivos">
+                                <span class="nav-icon">🎨</span>
+                                <div class="nav-text">
+                                    <span class="nav-label">Interacción ISO 9241</span>
+                                    <span class="nav-description">Usabilidad y UX</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="nav-footer">
+                    <div class="nav-actions">
+                        <button class="btn btn-secondary btn-small" onclick="saveCurrentState()" title="Guardar progreso actual (Ctrl+S)">
+                            💾 Guardar
+                        </button>
+                        <button class="btn btn-secondary btn-small btn-reset" title="Reiniciar vista actual (Ctrl+R)">
+                            🔄 Reset
+                        </button>
+                    </div>
+                    <div class="nav-progress">
+                        <div class="progress-label">Progreso de exploración</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 45%"></div>
+                        </div>
+                        <div class="progress-text">45% completado</div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Área de Contenido Principal -->
+            <main class="main-content">
+                <!-- Panel de Contexto -->
+                <aside class="context-panel">
+                    <div class="context-header">
+                        <h2>📊 Contexto del Escenario</h2>
+                        <button class="context-btn" onclick="UIManager.showScenarioComparison()" title="Comparar escenarios">
+                            ⚖️ Comparar
+                        </button>
+                    </div>
+                    <div class="context-content" id="scenario-context">
+                        <!-- El contexto se carga dinámicamente según el escenario actual -->
+                    </div>
+                </aside>
+
+                <!-- Contenido Principal de las Vistas -->
+                <div class="canvas-container">
+                    <!-- Vista: Ciclo de Desarrollo -->
+                    <div id="view-cycle" class="view-content active">
+                        <div class="canvas-header">
+                            <h2 class="canvas-title">🔄 Ciclo de Desarrollo de Software</h2>
+                            <p class="canvas-subtitle">Contexto completo del proyecto y análisis de desarrollo</p>
+                        </div>
+                        
+                        <!-- Contenedor de detalles del escenario -->
+                        <div id="scenario-details" class="scenario-main">
+                            <!-- El contenido se carga dinámicamente aquí -->
+                        </div>
+                    </div>
+
+                    <!-- Vista: Calidad del Software (ISO 25010) -->
+                    <div id="view-quality" class="view-content">
+                        <div class="canvas-header">
+                            <h2 class="canvas-title">⭐ Calidad del Software</h2>
+                            <p class="canvas-subtitle">ISO/IEC 25010 - Modelo de características de calidad</p>
+                        </div>
+
+                        <!-- Contenedor principal de características de calidad -->
+                        <div id="quality-characteristics-grid" class="quality-grid">
+                            <!-- Las características se cargan dinámicamente aquí -->
+                        </div>
+
+                        <!-- Gráfico de calidad -->
+                        <div id="quality-chart" class="chart-container">
+                            <!-- El gráfico se carga dinámicamente aquí -->
+                        </div>
+                    </div>
+
+                    <!-- Vista: Requisitos (ISO 29148) -->
+                    <div id="view-requirements" class="view-content">
+                        <div class="canvas-header">
+                            <h2 class="canvas-title">📋 Ingeniería de Requisitos</h2>
+                            <p class="canvas-subtitle">ISO/IEC/IEEE 29148 - Procesos del ciclo de vida para ingeniería de requisitos</p>
+                        </div>
+
+                        <!-- Contenido dinámico de requisitos -->
+                        <div id="requirements-content" class="requirements-main">
+                            <!-- El contenido se carga dinámicamente aquí -->
+                        </div>
+                    </div>
+
+                    <!-- Vista: Interacción Humano-Computadora (ISO 9241) -->
+                    <div id="view-interaction" class="view-content">
+                        <div class="canvas-header">
+                            <h2 class="canvas-title">🎨 Interacción Humano-Computadora</h2>
+                            <p class="canvas-subtitle">ISO 9241 - Ergonomía de sistemas de interacción humano-sistema</p>
+                        </div>
+
+                        <!-- Contenido dinámico de interacción -->
+                        <div id="interaction-content" class="interaction-main">
+                            <!-- El contenido se carga dinámicamente aquí -->
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

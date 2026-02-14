@@ -1,0 +1,2915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏥 MedCore Hospital System - Interactive ISO Project Simulator</title>
+    <link rel="stylesheet" href="medcore-enhanced-styles-en.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏥</text></svg>">
+</head>
+<body>
+    <!-- Tutorial Interactivo -->
+    <div id="tutorial-overlay" class="tutorial-overlay">
+        <div class="tutorial-container">
+            <div class="tutorial-header">
+                <h1>🎓 Interactive Tutorial</h1>
+                <button class="skip-btn" onclick="skipTutorial()">Skip Tutorial</button>
+            </div>
+            
+            <div class="tutorial-content">
+                <div class="tutorial-step" id="tutorial-step-1">
+                    <h2>Welcome to MedCore Simulator</h2>
+                    <p>This is not a simple click game. Here you will make real software engineering decisions applying ISO standards in a critical hospital environment.</p>
+                    <div class="tutorial-highlight">
+                        <strong>🎯 Your objective:</strong> Lead the development of a complete hospital management system, making well-founded technical decisions and managing limited resources.
+                    </div>
+                    <button class="tutorial-btn" onclick="nextTutorialStep(2)">Continue</button>
+                </div>
+                
+                <div class="tutorial-step" id="tutorial-step-2" style="display: none;">
+                    <h2>Complex Decision System</h2>
+                    <p>Each decision has multiple options with different consequences:</p>
+                    <ul>
+                        <li><strong>Technical impact</strong> - Affects software quality</li>
+                        <li><strong>Costs</strong> - Modifies your available budget</li>
+                        <li><strong>Time</strong> - Influences delivery deadlines</li>
+                        <li><strong>Stakeholders</strong> - Changes key users satisfaction</li>
+                    </ul>
+                    <div class="tutorial-warning">
+                        ⚠️ <strong>Warning:</strong> Wrong decisions can lead to project failure
+                    </div>
+                    <button class="tutorial-btn" onclick="nextTutorialStep(3)">Continue</button>
+                </div>
+                
+                <div class="tutorial-step" id="tutorial-step-3" style="display: none;">
+                    <h2>ISO Standards Application</h2>
+                    <p>You will apply real industry standards:</p>
+                    <div class="standards-preview">
+                        <div class="standard-item">
+                            <h4>📋 ISO 29148</h4>
+                            <p>Systems Requirements Management</p>
+                        </div>
+                        <div class="standard-item">
+                            <h4>⚡ ISO 25010</h4>
+                            <p>Software Quality Characteristics</p>
+                        </div>
+                        <div class="standard-item">
+                            <h4>🔄 ISO 12207</h4>
+                            <p>Software Life Cycle Processes</p>
+                        </div>
+                        <div class="standard-item">
+                            <h4>👥 ISO 9241</h4>
+                            <p>Interactive Systems Ergonomics</p>
+                        </div>
+                    </div>
+                    <button class="tutorial-btn" onclick="startRealGame()">Start Project!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Game Interface -->
+    <div id="game-interface" class="game-interface" style="display: none;">
+        <!-- Project Header -->
+        <header class="project-header">
+            <div class="hospital-info">
+                <div class="hospital-logo">🏥</div>
+                <div class="hospital-details">
+                    <h1>San Rafael Hospital</h1>
+                    <p>MedCore Project - Hospital Management System</p>
+                </div>
+            </div>
+            
+            <div class="project-status">
+                <div class="status-item">
+                    <span class="status-label">Phase</span>
+                    <span class="status-value" id="current-phase">1/4</span>
+                </div>
+                <div class="status-item critical">
+                    <span class="status-label">Budget</span>
+                    <span class="status-value" id="budget-display">€2,500,000</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Time</span>
+                    <span class="status-value" id="time-remaining">18 months</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Metrics Dashboard -->
+        <section class="metrics-dashboard">
+            <div class="dashboard-header">
+                <h2>📊 Project Status</h2>
+                <div class="overall-health" id="project-health">
+                    <span class="health-indicator good"></span>
+                    <span>Healthy Project</span>
+                </div>
+            </div>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-name">Functionality</span>
+                        <span class="metric-score" id="functionality-score">65</span>
+                    </div>
+                    <div class="metric-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="functionality-progress" style="width: 65%"></div>
+                        </div>
+                    </div>
+                    <div class="metric-description">System features completeness</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-name">Usability</span>
+                        <span class="metric-score" id="usability-score">60</span>
+                    </div>
+                    <div class="metric-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="usability-progress" style="width: 60%"></div>
+                        </div>
+                    </div>
+                    <div class="metric-description">Ease of use for medical staff</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-name">Security</span>
+                        <span class="metric-score" id="security-score">70</span>
+                    </div>
+                    <div class="metric-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="security-progress" style="width: 70%"></div>
+                        </div>
+                    </div>
+                    <div class="metric-description">Protection of sensitive medical data</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-name">Performance</span>
+                        <span class="metric-score" id="performance-score">55</span>
+                    </div>
+                    <div class="metric-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="performance-progress" style="width: 55%"></div>
+                        </div>
+                    </div>
+                    <div class="metric-description">System speed and capacity</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stakeholder Satisfaction -->
+        <section class="stakeholders-section">
+            <h2>👥 Stakeholder Satisfaction</h2>
+            <div class="stakeholders-grid">
+                <div class="stakeholder-card">
+                    <div class="stakeholder-avatar">👩‍⚕️</div>
+                    <div class="stakeholder-info">
+                        <h3>Dr. Maria Gonzalez</h3>
+                        <p>Medical Director</p>
+                        <div class="satisfaction-meter">
+                            <div class="satisfaction-fill" id="maria-satisfaction" style="width: 70%"></div>
+                        </div>
+                        <div class="satisfaction-score">70%</div>
+                    </div>
+                    <div class="stakeholder-concerns" id="maria-concerns">
+                        <p>Concerned about integration with existing clinical systems</p>
+                    </div>
+                </div>
+                
+                <div class="stakeholder-card">
+                    <div class="stakeholder-avatar">👨‍💼</div>
+                    <div class="stakeholder-info">
+                        <h3>Eng. Carlos Mendez</h3>
+                        <p>Hospital CTO</p>
+                        <div class="satisfaction-meter">
+                            <div class="satisfaction-fill" id="carlos-satisfaction" style="width: 65%"></div>
+                        </div>
+                        <div class="satisfaction-score">65%</div>
+                    </div>
+                    <div class="stakeholder-concerns" id="carlos-concerns">
+                        <p>Focused on system security and scalability</p>
+                    </div>
+                </div>
+                
+                <div class="stakeholder-card">
+                    <div class="stakeholder-avatar">👩‍💼</div>
+                    <div class="stakeholder-info">
+                        <h3>Lic. Ana Ruiz</h3>
+                        <p>Administrative Director</p>
+                        <div class="satisfaction-meter">
+                            <div class="satisfaction-fill" id="ana-satisfaction" style="width: 60%"></div>
+                        </div>
+                        <div class="satisfaction-score">60%</div>
+                    </div>
+                    <div class="stakeholder-concerns" id="ana-concerns">
+                        <p>Concerned about costs and impact on daily operations</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content Area -->
+        <main class="main-content" id="main-content">
+            <!-- Content loads dynamically here -->
+        </main>
+
+        <!-- Panel de Notificaciones Movible -->
+        <aside class="notifications-panel draggable" id="notifications-panel">
+            <div class="notifications-header" id="notifications-header">
+                <h3>🔔 Project Notifications</h3>
+                <div class="panel-controls">
+                    <button class="help-btn" onclick="showNotificationsHelp()" title="Help about notifications">?</button>
+                    <button class="minimize-btn" onclick="toggleNotificationsPanel()" title="Minimize/Maximize">−</button>
+                    <button class="move-btn" title="Drag to move">⋮⋮</button>
+                </div>
+            </div>
+            <div class="notifications-list" id="notifications-list">
+                <!-- Notifications are added dynamically -->
+            </div>
+        </aside>
+    </div>
+
+    <!-- Modal for Complex Decisions -->
+    <div id="decision-modal" class="modal" style="display: none;">
+        <div class="modal-content decision-modal">
+            <div class="modal-header">
+                <h2 id="decision-title">Make Decision</h2>
+                <button class="close-btn" onclick="closeDecisionModal()">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="decision-context" id="decision-context">
+                    <!-- Decision Context -->
+                </div>
+                
+                <div class="decision-options" id="decision-options">
+                    <!-- Decision options load here -->
+                </div>
+                
+                <div class="decision-analysis" id="decision-analysis">
+                    <h4>📊 Expected Impact Analysis</h4>
+                    <div class="impact-preview" id="impact-preview">
+                        <!-- Impact preview shown here -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn secondary" onclick="closeDecisionModal()">Cancel</button>
+                <button class="btn primary" id="confirm-decision" onclick="executeDecision()" disabled>Confirm Decision</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Requirements Selection -->
+    <div id="requirements-modal" class="modal" style="display: none;">
+        <div class="modal-content requirements-modal">
+            <div class="modal-header">
+                <h2>📋 System Requirements Catalog</h2>
+                <button class="close-btn" onclick="closeRequirementsModal()">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="requirements-instructions">
+                    <p>Select the most important requirements for San Rafael Hospital. <strong>You can only choose 8 out of 15</strong> due to time and budget constraints.</p>
+                    <div class="selection-counter">
+                        Seleccionados: <span id="selected-count">0</span>/8
+                    </div>
+                </div>
+                
+                <div class="requirements-categories">
+                    <div class="category-tab active" data-category="functional" onclick="switchCategory('functional')">
+                        Functional
+                    </div>
+                    <div class="category-tab" data-category="quality" onclick="switchCategory('quality')">
+                        Quality
+                    </div>
+                    <div class="category-tab" data-category="constraints" onclick="switchCategory('constraints')">
+                        Constraints
+                    </div>
+                </div>
+                
+                <div class="requirements-list" id="requirements-list">
+                    <!-- Requirements list loads here -->
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <div class="requirements-summary">
+                    <span>Estimated budget impact: <strong id="budget-impact">€0</strong></span>
+                </div>
+                <button class="btn secondary" onclick="closeRequirementsModal()">Cancel</button>
+                <button class="btn primary" id="confirm-requirements" onclick="confirmRequirements()" disabled>Confirm Selection</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Educational Feedback Modal -->
+    <div id="feedback-modal" class="modal" style="display: none;">
+        <div class="modal-content feedback-modal">
+            <div class="modal-header">
+                <h2 id="feedback-title">📚 Educational Feedback</h2>
+                <button class="close-btn" onclick="closeFeedbackModal()">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="feedback-content" id="feedback-content">
+                    <!-- Educational content loads here -->
+                </div>
+                
+                <div class="iso-standards-applied" id="iso-standards-applied">
+                    <!-- Applied ISO Standards -->
+                </div>
+                
+                <div class="lessons-learned" id="lessons-learned">
+                    <!-- Lessons Learned -->
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn primary" onclick="closeFeedbackModal()">Understood</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // TUTORIAL FUNCTIONS (AVAILABLE IMMEDIATELY)
+        // ==========================================
+        
+        // Function to advance tutorial steps
+        function nextTutorialStep(step) {
+            console.log('nextTutorialStep called with step:', step);
+            try {
+                document.querySelectorAll('.tutorial-step').forEach(s => s.style.display = 'none');
+                const targetStep = document.getElementById(`tutorial-step-${step}`);
+                if (targetStep) {
+                    targetStep.style.display = 'block';
+                    console.log('✅ Mostrando step:', step);
+                } else {
+                    console.error('❌ Tutorial step not found: tutorial-step-' + step);
+                }
+            } catch (error) {
+                console.error('❌ Error in nextTutorialStep:', error);
+            }
+        }
+
+        // Function to skip tutorial
+        function skipTutorial() {
+            console.log('🚀 skipTutorial called');
+            try {
+                document.getElementById('tutorial-overlay').style.display = 'none';
+                document.getElementById('game-interface').style.display = 'block';
+                if (typeof loadPhaseContent === 'function') {
+                    loadPhaseContent();
+                } else {
+                    console.warn('⚠️ loadPhaseContent is not yet defined');
+                }
+            } catch (error) {
+                console.error('❌ Error in skipTutorial:', error);
+            }
+        }
+
+        // Function to start the real game
+        function startRealGame() {
+            console.log('🎮 startRealGame called');
+            try {
+                document.getElementById('tutorial-overlay').style.display = 'none';
+                document.getElementById('game-interface').style.display = 'block';
+                if (typeof addNotification === 'function') {
+                    addNotification('MedCore Project started! Phase 1: Requirements Analysis', 'success');
+                }
+                if (typeof loadPhaseContent === 'function') {
+                    loadPhaseContent();
+                } else {
+                    console.warn('⚠️ loadPhaseContent is not yet defined');
+                }
+            } catch (error) {
+                console.error('❌ Error in startRealGame:', error);
+            }
+        }
+
+        // Make functions globally available
+        window.nextTutorialStep = nextTutorialStep;
+        window.skipTutorial = skipTutorial;
+        window.startRealGame = startRealGame;
+
+        console.log('✅ Tutorial functions loaded');
+
+        // ==========================================
+        // GAME STATE AND CONFIGURATION
+        // ==========================================
+        
+        // Enhanced game state
+        let gameState = {
+            currentPhase: 1,
+            totalPhases: 4,
+            budget: 2500000, // €2.5M
+            timeRemaining: 18, // months
+            metrics: {
+                functionality: 65,
+                usability: 60,
+                security: 70,
+                performance: 55,
+                reliability: 68,
+                efficiency: 62,
+                maintainability: 58,
+                portability: 50
+            },
+            stakeholders: {
+                maria: { satisfaction: 70, concerns: ['integration', 'clinical_workflow'] },
+                carlos: { satisfaction: 65, concerns: ['security', 'scalability'] },
+                ana: { satisfaction: 60, concerns: ['cost', 'operational_impact'] }
+            },
+            selectedRequirements: [],
+            decisionsHistory: [],
+            notifications: [],
+            currentChallenge: null,
+            score: 0,
+            achievements: []
+        };
+
+        // System requirements catalog (expanded with distractors)
+        const requirementsCatalog = {
+            functional: [
+                {
+                    id: 'patient_mgmt',
+                    title: 'Comprehensive Patient Management',
+                    description: 'Complete system for registration, tracking and management of patient records according to ISO 29148',
+                    cost: 150000,
+                    impact: { functionality: 25, usability: 15 },
+                    complexity: 'high',
+                    iso_standard: 'ISO 29148 - Section 6.3 (Requirements Specification)',
+                    iso_benefit: 'Traceable and verifiable requirements for patient management'
+                },
+                {
+                    id: 'clinical_history',
+                    title: 'Advanced Electronic Clinical Record',
+                    description: 'Complete digitization with digital signature and controlled access according to ISO 27001',
+                    cost: 200000,
+                    impact: { functionality: 30, security: 20 },
+                    complexity: 'high',
+                    iso_standard: 'ISO 25010 - Functionality Characteristic',
+                    iso_benefit: 'Functional completeness and functional correctness'
+                },
+                {
+                    id: 'pharmacy_mgmt',
+                    title: 'Robotic Pharmacy System',
+                    description: 'Automated inventory control with dispensing robots',
+                    cost: 120000,
+                    impact: { functionality: 20, reliability: 15 },
+                    complexity: 'medium',
+                    iso_standard: 'ISO 12207 - Implementation Process',
+                    iso_benefit: 'Systematized implementation processes'
+                },
+                {
+                    id: 'lab_integration',
+                    title: 'Total Laboratory Integration',
+                    description: 'Bidirectional connectivity with all laboratory equipment',
+                    cost: 180000,
+                    impact: { functionality: 22, performance: 18 },
+                    complexity: 'high',
+                    iso_standard: 'ISO 12207 - System Integration',
+                    iso_benefit: 'Systematic integration strategies'
+                },
+                {
+                    id: 'appointment_system',
+                    title: 'Intelligent Appointment System',
+                    description: 'AI for automatic optimization of medical schedules',
+                    cost: 80000,
+                    impact: { functionality: 15, usability: 20 },
+                    complexity: 'medium',
+                    iso_standard: 'ISO 9241-11 - Usability in Context',
+                    iso_benefit: 'User effectiveness, efficiency and satisfaction'
+                },
+                {
+                    id: 'blockchain_records',
+                    title: 'Blockchain for Medical Records',
+                    description: 'Distributed system with blockchain for data immutability',
+                    cost: 300000,
+                    impact: { functionality: 10, security: 35 },
+                    complexity: 'high',
+                    iso_standard: 'ISO 27001',
+                    iso_benefit: 'Emerging technology with high security'
+                },
+                {
+                    id: 'vr_surgery_planning',
+                    title: 'Virtual Reality for Surgical Planning',
+                    description: 'Immersive VR environment for complex surgery planning',
+                    cost: 250000,
+                    impact: { functionality: 12, usability: -5 },
+                    complexity: 'high',
+                    iso_standard: 'ISO 9241',
+                    iso_benefit: 'Improves visual experience and medical planning'
+                }
+            ],
+            quality: [
+                {
+                    id: 'data_security',
+                    title: 'Multi-layer Medical Data Security',
+                    description: 'Complete ISO 27001 implementation with AES-256 encryption',
+                    cost: 160000,
+                    impact: { security: 35, reliability: 20 },
+                    complexity: 'high',
+                    iso_standard: 'ISO 27001 - Annex A.9 (Access Control)',
+                    iso_benefit: 'Systematic information security management'
+                },
+                {
+                    id: 'performance_optimization',
+                    title: 'Critical Performance Optimization',
+                    description: 'Response guarantee <1s according to ISO 25010 for emergencies',
+                    cost: 100000,
+                    impact: { performance: 30, usability: 15 },
+                    complexity: 'medium',
+                    iso_standard: 'ISO 25010 - Performance Efficiency',
+                    iso_benefit: 'Temporal behavior and resource utilization'
+                },
+                {
+                    id: 'backup_recovery',
+                    title: 'Geographically Distributed Backup System',
+                    description: 'RPO=0 and RTO<15min with real-time replication',
+                    cost: 90000,
+                    impact: { reliability: 25, security: 15 },
+                    complexity: 'medium',
+                    iso_standard: 'ISO 25010 - Reliability (Disponibilidad)',
+                    iso_benefit: 'Operational availability and recoverability'
+                },
+                {
+                    id: 'user_training',
+                    title: 'ISO 9241 Training Program',
+                    description: 'Training based on user-centered design principles',
+                    cost: 130000,
+                    impact: { usability: 30, efficiency: 20 },
+                    complexity: 'medium',
+                    iso_standard: 'ISO 9241-210 - User-Centered Design',
+                    iso_benefit: 'Iterative design process with user participation'
+                },
+                {
+                    id: 'mobile_access',
+                    title: 'Advanced Biometric Mobile App',
+                    description: 'Native application with facial and fingerprint recognition',
+                    cost: 110000,
+                    impact: { usability: 25, portability: 35 },
+                    complexity: 'medium',
+                    iso_standard: 'ISO 25010 - Portability (Adaptability)',
+                    iso_benefit: 'Ability to adapt to different environments'
+                },
+                {
+                    id: 'ai_predictive_analytics',
+                    title: 'Predictive AI for Diagnostics',
+                    description: 'Machine learning for disease prediction',
+                    cost: 400000,
+                    impact: { functionality: 35, reliability: -10 },
+                    complexity: 'high',
+                    iso_standard: 'ISO 25010',
+                    iso_benefit: 'Improves diagnostic accuracy through AI'
+                },
+                {
+                    id: 'quantum_encryption',
+                    title: 'Experimental Quantum Encryption',
+                    description: 'Theoretically unbreakable quantum security',
+                    cost: 500000,
+                    impact: { security: 50, maintainability: -25 },
+                    complexity: 'high',
+                    iso_standard: 'ISO 27001',
+                    iso_benefit: 'Maximum theoretical security available'
+                },
+                {
+                    id: 'gamification_ui',
+                    title: 'Gamification of Medical Interfaces',
+                    description: 'Game elements to motivate medical staff',
+                    cost: 75000,
+                    impact: { usability: 15, efficiency: -5 },
+                    complexity: 'low',
+                    iso_standard: 'ISO 9241',
+                    iso_benefit: 'Improves system motivation and adoption'
+                }
+            ],
+            constraints: [
+                {
+                    id: 'regulatory_compliance',
+                    title: 'Comprehensive Regulatory Compliance',
+                    description: 'Total adherence to GDPR, LOPD, FDA 21 CFR Part 11 and health regulations',
+                    cost: 140000,
+                    impact: { security: 20, reliability: 15 },
+                    complexity: 'high',
+                    iso_standard: 'ISO 25010 - Compatibility (Conformity)',
+                    iso_benefit: 'Compliance with standards and conventions'
+                },
+                {
+                    id: 'system_integration',
+                    title: 'Integration with Legacy Systems',
+                    description: 'RESTful and FHIR APIs for total connectivity according to ISO 12207',
+                    cost: 170000,
+                    impact: { functionality: 15, maintainability: 25 },
+                    complexity: 'high',
+                    iso_standard: 'ISO 12207 - System Integration Process',
+                    iso_benefit: 'Systematic methodology for component integration'
+                },
+                {
+                    id: 'scalability_planning',
+                    title: 'Horizontally Scalable Architecture',
+                    description: 'Cloud-native design for exponential hospital growth',
+                    cost: 95000,
+                    impact: { performance: 20, maintainability: 20 },
+                    complexity: 'medium',
+                    iso_standard: 'ISO 25010 - Performance Efficiency',
+                    iso_benefit: 'Ability to scale resources according to demand'
+                },
+                {
+                    id: 'disaster_recovery',
+                    title: 'ISO 22301 Business Continuity Plan',
+                    description: 'Disaster recovery with international certification',
+                    cost: 125000,
+                    impact: { reliability: 30, security: 10 },
+                    complexity: 'high',
+                    iso_standard: 'ISO 22301 - Business Continuity Management',
+                    iso_benefit: 'Systematic framework for organizational resilience'
+                },
+                {
+                    id: 'multi_language',
+                    title: 'Complete Multilingual Localization',
+                    description: 'Support for 12 languages with cultural localization',
+                    cost: 70000,
+                    impact: { usability: 15, portability: 20 },
+                    complexity: 'low',
+                    iso_standard: 'ISO 9241-161 - Graphical Interface Elements',
+                    iso_benefit: 'Cultural considerations in interface design'
+                },
+                {
+                    id: 'carbon_neutral',
+                    title: 'Carbon-Neutral Infrastructure',
+                    description: 'Servers powered 100% by renewable energy',
+                    cost: 200000,
+                    impact: { efficiency: 10, maintainability: -5 },
+                    complexity: 'high',
+                    iso_standard: 'ISO 14001',
+                    iso_benefit: 'Environmental standard for sustainability'
+                },
+                {
+                    id: 'social_media_integration',
+                    title: 'Social Media Integration',
+                    description: 'Share medical achievements on hospital social networks',
+                    cost: 45000,
+                    impact: { functionality: 5, security: -15 },
+                    complexity: 'low',
+                    iso_standard: 'ISO 27001',
+                    iso_benefit: 'Framework for information security management'
+                },
+                {
+                    id: 'cryptocurrency_payments',
+                    title: 'Cryptocurrency Payments',
+                    description: 'Accept Bitcoin and Ethereum for medical payments',
+                    cost: 80000,
+                    impact: { portability: 10, security: -20 },
+                    complexity: 'medium',
+                    iso_standard: 'ISO 27001',
+                    iso_benefit: 'Financial security risk management'
+                }
+            ]
+        };
+
+        // Complex decisions by phase
+        const phaseDecisions = {
+            1: [
+                {
+                    id: 'requirements_methodology',
+                    title: 'Requirements Collection Methodology',
+                    context: 'According to ISO 29148, requirements collection must be systematic and verifiable. San Rafael Hospital has complex processes and diverse stakeholders with conflicting needs.',
+                    isoReference: 'ISO 29148:2018 - Section 6.3: Requirements must be necessary, unambiguous, consistent, complete, singular, feasible and verifiable.',
+                    options: [
+                        {
+                            id: 'interviews_focus',
+                            title: 'Structured Interviews + Focus Groups (ISO 29148)',
+                            description: 'Traditional approach with individual interviews and systematic group sessions',
+                            cost: 30000,
+                            time: 2,
+                            impact: {
+                                functionality: 15,
+                                usability: 10,
+                                maria: 15,
+                                ana: 5
+                            },
+                            risks: ['Can be slow', 'Fragmented information'],
+                            benefits: ['High precision according to ISO 29148', 'Conflict detection'],
+                            isoCompliance: 'high'
+                        },
+                        {
+                            id: 'shadowing_observation',
+                            title: 'Job Shadowing + Direct Observation',
+                            description: 'Directly observe real medical workflow processes',
+                            cost: 15000,
+                            time: 3,
+                            impact: {
+                                functionality: 20,
+                                usability: 18,
+                                carlos: -5,
+                                maria: 20
+                            },
+                            risks: ['Disrupts operations', 'Exposed sensitive data'],
+                            benefits: ['Real requirements', 'Detects hidden processes'],
+                            isoCompliance: 'medium'
+                        },
+                        {
+                            id: 'workshops_prototyping',
+                            title: 'Collaborative Workshops + Rapid Prototyping',
+                            description: 'Intensive joint design sessions with validatable prototypes',
+                            cost: 45000,
+                            time: 4,
+                            impact: {
+                                functionality: 12,
+                                usability: 25,
+                                maria: 10,
+                                carlos: 15,
+                                ana: -10
+                            },
+                            risks: ['Alto costo', 'Expectativas no realistas'],
+                            benefits: ['Buy-in stakeholders', 'Early ISO 29148 validation'],
+                            isoCompliance: 'high'
+                        },
+                        {
+                            id: 'ai_requirements_analysis',
+                            title: 'AI Requirements Analysis',
+                            description: 'Use artificial intelligence to extract requirements automatically',
+                            cost: 80000,
+                            time: 1,
+                            impact: {
+                                functionality: 5,
+                                usability: -10,
+                                carlos: -15,
+                                maria: -20
+                            },
+                            risks: ['AI does not understand medical context', 'Incorrect requirements'],
+                            benefits: ['Apparent speed'],
+                            isoCompliance: 'none'
+                        },
+                        {
+                            id: 'crowdsourcing_requirements',
+                            title: 'Crowdsourcing con Personal Externo',
+                            description: 'Obtain requirements from external consultants without hospital experience',
+                            cost: 25000,
+                            time: 1,
+                            impact: {
+                                functionality: -5,
+                                security: -15,
+                                maria: -25,
+                                carlos: -20
+                            },
+                            risks: ['Lacks medical context', 'Irrelevant requirements'],
+                            benefits: ['Low initial cost'],
+                            isoCompliance: 'none'
+                        }
+                    ]
+                },
+                {
+                    id: 'quality_approach',
+                    title: 'Quality Assurance Strategy',
+                    context: 'Hospital systems require maximum quality and reliability. An error can have serious consequences. You must define how to guarantee system quality according to ISO 25010.',
+                    options: [
+                        {
+                            id: 'traditional_testing',
+                            title: 'Traditional Exhaustive Testing',
+                            description: 'Manual and automated testing in separate phases',
+                            cost: 80000,
+                            time: 3,
+                            impact: {
+                                reliability: 25,
+                                security: 15,
+                                carlos: 20,
+                                ana: -15
+                            },
+                            risks: ['Late error detection', 'High correction cost'],
+                            benefits: ['Proven and reliable', 'Complete documentation']
+                        },
+                        {
+                            id: 'continuous_qa',
+                            title: 'Continuous Quality (DevOps)',
+                            description: 'Continuous integration with automated testing',
+                            cost: 60000,
+                            time: 2,
+                            impact: {
+                                reliability: 20,
+                                maintainability: 25,
+                                performance: 15,
+                                carlos: 25,
+                                maria: -5
+                            },
+                            risks: ['Learning curve', 'Tool dependency'],
+                            benefits: ['Early detection', 'Lower correction costs']
+                        },
+                        {
+                            id: 'risk_based_testing',
+                            title: 'Risk-Based Testing',
+                            description: 'Focus on critical areas based on medical risk analysis',
+                            cost: 70000,
+                            time: 2,
+                            impact: {
+                                reliability: 30,
+                                security: 20,
+                                maria: 25,
+                                carlos: 15
+                            },
+                            risks: ['Non-critical areas less tested'],
+                            benefits: ['Resource optimization', "Focus on what's important"]
+                        }
+                    ]
+                }
+            ],
+            2: [
+                {
+                    id: 'architecture_pattern',
+                    title: 'System Architecture Pattern',
+                    context: 'You must decide the fundamental architecture that will support the entire MedCore system. This decision will affect scalability, maintenance and future costs according to ISO 25010.',
+                    isoReference: 'ISO 25010:2011 - Software quality that defines architecture as critical factor for maintainability and scalability.',
+                    options: [
+                        {
+                            id: 'monolithic',
+                            title: 'Monolithic Architecture',
+                            description: 'Single integrated system with centralized database',
+                            cost: 50000,
+                            time: 1,
+                            impact: {
+                                performance: 20,
+                                maintainability: -10,
+                                portability: -15,
+                                carlos: -10,
+                                ana: 15
+                            },
+                            risks: ['Scaling difficulty', 'Single points of failure'],
+                            benefits: ['Initial simplicity', 'Lower operational complexity'],
+                            isoCompliance: 'medium'
+                        },
+                        {
+                            id: 'microservices',
+                            title: 'Arquitectura de Microservicios',
+                            description: 'Independent services with API communication according to ISO 25010',
+                            cost: 120000,
+                            time: 4,
+                            impact: {
+                                scalability: 30,
+                                maintainability: 25,
+                                performance: -5,
+                                carlos: 30,
+                                ana: -20
+                            },
+                            risks: ['Operational complexity', 'Network latency'],
+                            benefits: ['Independent scalability', 'Diverse technologies'],
+                            isoCompliance: 'high'
+                        },
+                        {
+                            id: 'modular_monolith',
+                            title: 'Monolito Modular',
+                            description: 'Modular architecture with possibility of future separation',
+                            cost: 80000,
+                            time: 2,
+                            impact: {
+                                maintainability: 20,
+                                portability: 15,
+                                carlos: 15,
+                                maria: 10,
+                                ana: 5
+                            },
+                            risks: ['Modularization complexity'],
+                            benefits: ['Future flexibility', 'Complexity-benefit balance'],
+                            isoCompliance: 'high'
+                        },
+                        {
+                            id: 'blockchain_architecture',
+                            title: 'Arquitectura Blockchain Distribuida',
+                            description: 'Completely decentralized system with blockchain for each medical transaction',
+                            cost: 500000,
+                            time: 8,
+                            impact: {
+                                performance: -30,
+                                maintainability: -25,
+                                security: 10,
+                                carlos: -40,
+                                maria: -35,
+                                ana: -30
+                            },
+                            risks: ['Extremely slow performance', 'Massive energy consumption', 'Immature technology'],
+                            benefits: ['Buzzword de moda'],
+                            isoCompliance: 'none'
+                        },
+                        {
+                            id: 'serverless_everything',
+                            title: 'Arquitectura 100% Serverless',
+                            description: 'Lambda functions for each operation, no traditional servers',
+                            cost: 200000,
+                            time: 6,
+                            impact: {
+                                performance: -15,
+                                reliability: -20,
+                                carlos: -25,
+                                maria: -30
+                            },
+                            risks: ['Cold starts in emergencies', 'Extreme vendor lock-in', 'Unpredictable costs'],
+                            benefits: ['Automatic scaling'],
+                            isoCompliance: 'none'
+                        }
+                    ]
+                },
+                {
+                    id: 'security_framework',
+                    title: 'Security and Privacy Framework',
+                    context: 'Medical data is extremely sensitive and regulated by GDPR and health regulations. You must establish a robust security framework according to ISO 27001.',
+                    isoReference: 'ISO 27001:2013 + ISO 13485:2016 - Information security for medical devices.',
+                    options: [
+                        {
+                            id: 'role_based_access',
+                            title: 'Control de Acceso Basado en Roles (RBAC)',
+                            description: 'Traditional system with permissions by specific medical roles according to ISO 27001',
+                            cost: 90000,
+                            time: 2,
+                            impact: {
+                                security: 25,
+                                usability: -5,
+                                carlos: 20,
+                                maria: -10
+                            },
+                            risks: ['Rigidity in emergencies', 'Management complexity'],
+                            benefits: ['Granular control', 'Complete audit'],
+                            isoCompliance: 'high'
+                        },
+                        {
+                            id: 'context_aware_security',
+                            title: 'Seguridad Contextual Adaptativa',
+                            description: 'Dynamic permissions based on medical context, location and urgency',
+                            cost: 140000,
+                            time: 4,
+                            impact: {
+                                security: 30,
+                                usability: 20,
+                                carlos: 25,
+                                maria: 20
+                            },
+                            risks: ['High technical complexity', 'False positives/negatives'],
+                            benefits: ['Emergency flexibility', 'Fluid experience'],
+                            isoCompliance: 'high'
+                        },
+                        {
+                            id: 'zero_trust_architecture',
+                            title: 'Arquitectura Zero Trust',
+                            description: 'Continuous verification with end-to-end encryption according to ISO 27001 best practices',
+                            cost: 160000,
+                            time: 5,
+                            impact: {
+                                security: 40,
+                                performance: -10,
+                                carlos: 30,
+                                ana: -20
+                            },
+                            risks: ['Performance impact', 'High cost'],
+                            benefits: ['Maximum security', 'Prepared for future threats'],
+                            isoCompliance: 'high'
+                        },
+                        {
+                            id: 'biometric_everything',
+                            title: 'Total Biometric Authentication',
+                            description: 'DNA, iris, fingerprint, voice and facial recognition for each action',
+                            cost: 800000,
+                            time: 12,
+                            impact: {
+                                security: 20,
+                                usability: -40,
+                                performance: -25,
+                                carlos: -50,
+                                maria: -60,
+                                ana: -30
+                            },
+                            risks: ['Excessive authentication time', 'Emergency failures', 'Prohibitive cost'],
+                            benefits: ['Maximum theoretical security'],
+                            isoCompliance: 'none'
+                        },
+                        {
+                            id: 'public_cloud_only',
+                            title: 'Public Cloud Only Without Encryption',
+                            description: 'Store all medical data in public cloud without additional encryption',
+                            cost: 30000,
+                            time: 1,
+                            impact: {
+                                security: -50,
+                                privacy: -60,
+                                carlos: -40,
+                                maria: -70,
+                                ana: -20
+                            },
+                            risks: ['Massive GDPR violation', 'Exposed medical data', 'Millionaire fines'],
+                            benefits: ['Costo inicial bajo'],
+                            isoCompliance: 'none'
+                        }
+                    ]
+                },
+                {
+                    id: 'development_methodology',
+                    title: 'Medical Software Development Methodology',
+                    context: 'For critical medical software, you must choose a methodology that balances agility with regulatory rigor according to ISO 62304.',
+                    isoReference: 'ISO 62304:2006 - Medical device software lifecycle processes.',
+                    options: [
+                        {
+                            id: 'regulated_agile',
+                            title: 'Agile Regulado ISO 62304',
+                            description: 'Agile methodology adapted to comply with medical regulations and ISO traceability',
+                            cost: 120000,
+                            time: 3,
+                            impact: {
+                                flexibility: 25,
+                                quality: 30,
+                                team_morale: 20,
+                                carlos: 30,
+                                maria: 15
+                            },
+                            risks: ['Learning curve', 'Additional documentation'],
+                            benefits: ['Flexibilidad controlada', 'Compliance ISO 62304'],
+                            isoCompliance: 'high'
+                        },
+                        {
+                            id: 'waterfall_medical',
+                            title: 'Traditional Medical Waterfall',
+                            description: 'Traditional waterfall methodology with all sequential phases according to V-Model',
+                            cost: 100000,
+                            time: 6,
+                            impact: {
+                                predictability: 25,
+                                flexibility: -15,
+                                quality: 20,
+                                ana: 20,
+                                carlos: -10
+                            },
+                            risks: ['Inflexibility to changes', 'Late problem detection'],
+                            benefits: ['Complete documentation', 'Proven process'],
+                            isoCompliance: 'medium'
+                        },
+                        {
+                            id: 'devops_medical',
+                            title: 'Medical DevOps with CI/CD',
+                            description: 'Continuous integration and deployment with automatic ISO 62304 validation',
+                            cost: 150000,
+                            time: 4,
+                            impact: {
+                                speed: 30,
+                                quality: 25,
+                                efficiency: 20,
+                                carlos: 35,
+                                maria: 10
+                            },
+                            risks: ['Automation complexity', 'Necessary cultural changes'],
+                            benefits: ['Fast delivery', 'Automated quality'],
+                            isoCompliance: 'high'
+                        },
+                        {
+                            id: 'extreme_programming',
+                            title: 'Extreme Programming Without Documentation',
+                            description: 'Pure XP without formal documentation, just code and tests',
+                            cost: 80000,
+                            time: 2,
+                            impact: {
+                                speed: 20,
+                                quality: -20,
+                                compliance: -40,
+                                carlos: -10,
+                                maria: -50,
+                                ana: -30
+                            },
+                            risks: ['No traceability', 'Not auditable', 'Regulatory violation'],
+                            benefits: ['Very rapid development'],
+                            isoCompliance: 'none'
+                        },
+                        {
+                            id: 'no_methodology',
+                            title: 'Ad-hoc Development Without Process',
+                            description: 'Each developer works however they want, without defined methodology',
+                            cost: 50000,
+                            time: 1,
+                            impact: {
+                                chaos: 50,
+                                quality: -40,
+                                predictability: -50,
+                                carlos: -60,
+                                maria: -70,
+                                ana: -40
+                            },
+                            risks: ['Caos total', 'Calidad impredecible', 'Imposible de auditar'],
+                            benefits: ['Libertad creativa'],
+                            isoCompliance: 'none'
+                        }
+                    ]
+                }
+            ],
+            3: [
+                {
+                    id: 'integration_strategy',
+                    title: 'Legacy Systems Integration Strategy',
+                    context: 'The hospital has multiple critical systems running 24 hours: laboratory equipment, medical imaging systems, monitoring devices. You must integrate MedCore without interrupting vital operations according to ISO 14155.',
+                    isoReference: 'ISO 14155:2020 - Good clinical practice for research of medical devices in humans.',
+                    options: [
+                        {
+                            id: 'big_bang_migration',
+                            title: 'Big Bang Migration',
+                            description: 'Cambio completo en un fin de semana planificado',
+                            cost: 80000,
+                            time: 1,
+                            impact: {
+                                functionality: 25,
+                                reliability: -15,
+                                maria: -25,
+                                carlos: -15,
+                                ana: 10
+                            },
+                            risks: ['Extreme operational risk', 'No easy rollback'],
+                            benefits: ['Rapid implementation', 'Lower transition costs'],
+                            isoCompliance: 'low'
+                        },
+                        {
+                            id: 'gradual_rollout',
+                            title: 'Gradual Implementation by Departments',
+                            description: 'Department-by-department migration over 6 months according to ISO best practices',
+                            cost: 120000,
+                            time: 6,
+                            impact: {
+                                functionality: 20,
+                                reliability: 25,
+                                maria: 20,
+                                carlos: 15,
+                                ana: -10
+                            },
+                            risks: ['Duplicate data complexity', 'Long transition period'],
+                            benefits: ['Riesgo controlado', 'Aprendizaje iterativo'],
+                            isoCompliance: 'high'
+                        },
+                        {
+                            id: 'parallel_systems',
+                            title: 'Parallel Systems with Synchronization',
+                            description: 'Run both systems in parallel with data synchronization',
+                            cost: 200000,
+                            time: 4,
+                            impact: {
+                                functionality: 15,
+                                reliability: 30,
+                                security: 10,
+                                maria: 25,
+                                carlos: 20,
+                                ana: -25
+                            },
+                            risks: ['High operational cost', 'Synchronization complexity'],
+                            benefits: ['Zero operational risk', 'Immediate rollback'],
+                            isoCompliance: 'high'
+                        },
+                        {
+                            id: 'api_gateway_integration',
+                            title: 'Integration via Unified API Gateway',
+                            description: 'Central gateway that handles all communication between legacy and new systems according to ISO 25010',
+                            cost: 150000,
+                            time: 3,
+                            impact: {
+                                maintainability: 25,
+                                interoperability: 30,
+                                security: 20,
+                                carlos: 25,
+                                maria: 15
+                            },
+                            risks: ['Potential single point of failure', 'Additional latency'],
+                            benefits: ['Standardized integration', 'Centralized monitoring'],
+                            isoCompliance: 'high'
+                        },
+                        {
+                            id: 'replace_everything_immediately',
+                            title: 'Instant Replacement of All Systems',
+                            description: 'Desconectar todos los sistemas legacy inmediatamente y usar solo MedCore',
+                            cost: 50000,
+                            time: 0.5,
+                            impact: {
+                                functionality: -40,
+                                reliability: -50,
+                                patient_safety: -60,
+                                maria: -80,
+                                carlos: -70,
+                                ana: -50
+                            },
+                            risks: ['Hospital catastrophic failure', 'Critical data loss', 'Risk to lives'],
+                            benefits: ['Extreme simplicity'],
+                            isoCompliance: 'none'
+                        },
+                        {
+                            id: 'manual_integration_only',
+                            title: 'Manual Integration Only Without Automation',
+                            description: 'Personal introduce manualmente todos los datos entre sistemas',
+                            cost: 300000,
+                            time: 12,
+                            impact: {
+                                efficiency: -40,
+                                errors: 50,
+                                staff_burnout: 60,
+                                maria: -50,
+                                carlos: -40
+                            },
+                            risks: ['Massive human errors', 'Staff burnout', 'Extreme inefficiency'],
+                            benefits: ['No technical development required'],
+                            isoCompliance: 'none'
+                        }
+                    ]
+                },
+                {
+                    id: 'performance_optimization',
+                    title: 'Performance Optimization Strategy',
+                    context: 'In emergency situations, the system must respond in less than 1 second. During critical surgeries, any delay can be fatal according to ISO 25010.',
+                    isoReference: 'ISO 25010:2011 - Performance efficiency characteristics for critical systems.',
+                    options: [
+                        {
+                            id: 'database_optimization',
+                            title: 'Advanced Database Optimization',
+                            description: 'Specialized indexes, partitioning and intelligent cache according to best practices',
+                            cost: 70000,
+                            time: 2,
+                            impact: {
+                                performance: 30,
+                                maintainability: -5,
+                                carlos: 20,
+                                maria: 15
+                            },
+                            risks: ['Maintenance complexity', 'DBA dependency'],
+                            benefits: ['Consistent improvement', 'Data scalability'],
+                            isoCompliance: 'high'
+                        },
+                        {
+                            id: 'caching_strategy',
+                            title: 'Sistema de Cache Multicapa',
+                            description: 'Redis, application cache and CDN for critical data',
+                            cost: 90000,
+                            time: 3,
+                            impact: {
+                                performance: 35,
+                                reliability: 10,
+                                carlos: 25,
+                                maria: 10
+                            },
+                            risks: ['Data inconsistency', 'Invalidation complexity'],
+                            benefits: ['Ultra-fast response', 'DB load reduction'],
+                            isoCompliance: 'high'
+                        },
+                        {
+                            id: 'microservices_scaling',
+                            title: 'Auto-escalado de Microservicios',
+                            description: 'Automatic scaling based on real-time demand',
+                            cost: 120000,
+                            time: 4,
+                            impact: {
+                                performance: 40,
+                                efficiency: 25,
+                                carlos: 30,
+                                ana: -15
+                            },
+                            risks: ['Unpredictable variable costs', 'Monitoring complexity'],
+                            benefits: ['Infinite scalability', 'Automatic optimization'],
+                            isoCompliance: 'high'
+                        },
+                        {
+                            id: 'edge_computing_medical',
+                            title: 'Edge Computing on Medical Devices',
+                            description: 'Local processing on each device for minimum latency',
+                            cost: 200000,
+                            time: 6,
+                            impact: {
+                                performance: 45,
+                                reliability: 30,
+                                cost_operational: -20,
+                                carlos: 35,
+                                maria: 25
+                            },
+                            risks: ['Distributed management complexity', 'Data synchronization'],
+                            benefits: ['Latencia ultra-baja', 'Funciona sin conectividad'],
+                            isoCompliance: 'high'
+                        },
+                        {
+                            id: 'quantum_computing_optimization',
+                            title: 'Quantum Computing Optimization',
+                            description: 'Use quantum computers to optimize all database queries',
+                            cost: 10000000,
+                            time: 36,
+                            impact: {
+                                performance: -10,
+                                complexity: 100,
+                                practicality: -80,
+                                carlos: -60,
+                                maria: -70,
+                                ana: -50
+                            },
+                            risks: ['Experimental technology', 'Prohibitive cost', 'Not applicable to medical'],
+                            benefits: ['Buzzword impresionante'],
+                            isoCompliance: 'none'
+                        },
+                        {
+                            id: 'no_optimization_needed',
+                            title: 'No Optimization - More Powerful Hardware',
+                            description: 'Just buy more expensive servers without optimizing code',
+                            cost: 500000,
+                            time: 1,
+                            impact: {
+                                performance: 10,
+                                efficiency: -30,
+                                sustainability: -40,
+                                carlos: -20,
+                                maria: -15,
+                                ana: -35
+                            },
+                            risks: ['Resource waste', 'Problems will scale', 'Unsustainable'],
+                            benefits: ['Apparent quick solution'],
+                            isoCompliance: 'low'
+                        }
+                    ]
+                },
+                {
+                    id: 'user_training_approach',
+                    title: 'Medical Staff Training Program',
+                    context: 'You need to train 2,500 employees according to ISO 13485 competencies. Some have resistance to technological change.',
+                    isoReference: 'ISO 13485:2016 - Clause 6.2 Human resources - Competence, training and awareness.',
+                    options: [
+                        {
+                            id: 'traditional_classroom',
+                            title: 'Traditional In-Person Training',
+                            description: 'In-person courses in small groups during non-critical hours',
+                            cost: 150000,
+                            time: 6,
+                            impact: {
+                                usability: 25,
+                                efficiency: -10,
+                                maria: 20,
+                                ana: -20
+                            },
+                            risks: ['Disrupts operations', 'Slow adoption pace'],
+                            benefits: ['Personal interaction', 'Immediate doubt resolution'],
+                            isoCompliance: 'medium'
+                        },
+                        {
+                            id: 'digital_learning_platform',
+                            title: 'Digital Learning Platform',
+                            description: 'Interactive online modules with real system simulations according to ISO 25010 usability',
+                            cost: 100000,
+                            time: 3,
+                            impact: {
+                                usability: 20,
+                                efficiency: 15,
+                                carlos: 25,
+                                maria: 10,
+                                ana: 15
+                            },
+                            risks: ['Lower retention', 'Generational digital gap'],
+                            benefits: ['Schedule flexibility', 'Scalable to entire organization'],
+                            isoCompliance: 'high'
+                        },
+                        {
+                            id: 'peer_champion_network',
+                            title: 'Champions Network by Department',
+                            description: 'Train super-users who teach their colleagues in real context',
+                            cost: 80000,
+                            time: 4,
+                            impact: {
+                                usability: 30,
+                                efficiency: 20,
+                                maria: 30,
+                                carlos: 15,
+                                ana: 10
+                            },
+                            risks: ['Inconsistent quality', 'Dependency on key individuals'],
+                            benefits: ['Organic adoption', 'Contextualized knowledge'],
+                            isoCompliance: 'high'
+                        },
+                        {
+                            id: 'vr_training_immersive',
+                            title: 'Immersive Virtual Reality Training',
+                            description: 'VR environments that perfectly simulate the hospital and real systems',
+                            cost: 300000,
+                            time: 8,
+                            impact: {
+                                engagement: 40,
+                                retention: 35,
+                                usability: 25,
+                                carlos: 30,
+                                maria: 20
+                            },
+                            risks: ['Very high cost', 'Motion sickness', 'Technology learning curve'],
+                            benefits: ['Immersive experience', 'Risk-free training'],
+                            isoCompliance: 'medium'
+                        },
+                        {
+                            id: 'no_training_intuitive',
+                            title: 'No Training - Self-Explanatory System',
+                            description: 'The system is so intuitive that it does not need formal training',
+                            cost: 0,
+                            time: 0,
+                            impact: {
+                                usability: -50,
+                                errors: 80,
+                                compliance: -70,
+                                maria: -70,
+                                carlos: -60,
+                                ana: -40
+                            },
+                            risks: ['Massive incorrect use', 'Medical errors', 'Non-compliance'],
+                            benefits: ['Apparent savings'],
+                            isoCompliance: 'none'
+                        },
+                        {
+                            id: 'external_consultants_only',
+                            title: 'Only External Consultants Without Context',
+                            description: 'Hire external consultants who do not know the hospital for all training',
+                            cost: 400000,
+                            time: 12,
+                            impact: {
+                                relevance: -40,
+                                adoption: -30,
+                                maria: -40,
+                                carlos: -20
+                            },
+                            risks: ['Lack of medical context', 'Generic training', 'Low adoption'],
+                            benefits: ['External expertise'],
+                            isoCompliance: 'low'
+                        }
+                    ]
+                },
+                {
+                    id: 'quality_assurance_final',
+                    title: 'Final Quality Assurance Strategy',
+                    context: 'Before launch, you must implement the final QA system that ensures no errors reach production according to ISO 62304.',
+                    isoReference: 'ISO 62304:2006 - Medical device software process - Verification and validation activities.',
+                    options: [
+                        {
+                            id: 'comprehensive_testing_iso',
+                            title: 'Comprehensive ISO 62304 Testing',
+                            description: 'Complete suite of unit, integration, system and acceptance tests according to standard',
+                            cost: 200000,
+                            time: 4,
+                            impact: {
+                                quality: 40,
+                                reliability: 35,
+                                compliance: 40,
+                                carlos: 30,
+                                maria: 25
+                            },
+                            risks: ['Extended time', 'High cost'],
+                            benefits: ['Maximum quality', 'Full ISO compliance'],
+                            isoCompliance: 'high'
+                        },
+                        {
+                            id: 'risk_based_testing_advanced',
+                            title: 'Medical Risk-Based Testing',
+                            description: 'Focus on critical scenarios where failures can affect human lives',
+                            cost: 150000,
+                            time: 3,
+                            impact: {
+                                safety: 45,
+                                efficiency: 20,
+                                maria: 35,
+                                carlos: 25
+                            },
+                            risks: ['Non-critical areas less tested'],
+                            benefits: ['Focus on patient safety', 'Resource optimization'],
+                            isoCompliance: 'high'
+                        },
+                        {
+                            id: 'automated_testing_ai',
+                            title: 'AI-Powered Automated Testing',
+                            description: 'AI that automatically generates and executes tests based on real usage',
+                            cost: 250000,
+                            time: 5,
+                            impact: {
+                                coverage: 50,
+                                innovation: 30,
+                                carlos: 40,
+                                ana: 20
+                            },
+                            risks: ['AI dependency', 'Tests may be irrelevant'],
+                            benefits: ['Broad coverage', 'Edge case detection'],
+                            isoCompliance: 'medium'
+                        },
+                        {
+                            id: 'crowdsourced_testing',
+                            title: 'Public Crowdsourced Testing',
+                            description: 'Allow anyone on the internet to test the medical system',
+                            cost: 20000,
+                            time: 1,
+                            impact: {
+                                security: -80,
+                                privacy: -90,
+                                compliance: -100,
+                                maria: -100,
+                                carlos: -80
+                            },
+                            risks: ['Medical data exposure', 'Massive GDPR violation', 'Unauthorized access'],
+                            benefits: ['Low cost', 'Many testers'],
+                            isoCompliance: 'none'
+                        },
+                        {
+                            id: 'minimal_testing_speed',
+                            title: 'Minimal Testing for Speed',
+                            description: 'Only test basic functionalities to launch quickly',
+                            cost: 30000,
+                            time: 0.5,
+                            impact: {
+                                speed: 20,
+                                quality: -60,
+                                safety: -70,
+                                maria: -80,
+                                carlos: -50
+                            },
+                            risks: ['Undetected critical errors', 'Production failures', 'Risk to lives'],
+                            benefits: ['Quick launch'],
+                            isoCompliance: 'none'
+                        }
+                    ]
+                },
+                {
+                    id: 'user_training_approach',
+                    title: 'Medical Staff Training Program',
+                    context: 'You need to train 2,500 employees in the new system, from surgeons to administrative staff. Some have resistance to technological change. Training must be effective but cannot interrupt patient care.',
+                    isoReference: 'ISO 13485:2016 - Clause 6.2 Human resources',
+                    options: [
+                        {
+                            id: 'traditional_classroom',
+                            title: 'Traditional In-Person Training',
+                            description: 'In-person courses in small groups during non-critical hours',
+                            cost: 150000,
+                            time: 6,
+                            impact: {
+                                usability: 25,
+                                efficiency: -10,
+                                maria: 20,
+                                ana: -20
+                            },
+                            risks: ['Disrupts operations', 'Slow adoption pace'],
+                            benefits: ['Personal interaction', 'Immediate doubt resolution']
+                        },
+                        {
+                            id: 'digital_learning_platform',
+                            title: 'Digital Learning Platform',
+                            description: 'Interactive online modules with real system simulations',
+                            cost: 100000,
+                            time: 3,
+                            impact: {
+                                usability: 20,
+                                efficiency: 15,
+                                carlos: 25,
+                                maria: 10,
+                                ana: 15
+                            },
+                            risks: ['Lower retention', 'Generational digital gap'],
+                            benefits: ['Schedule flexibility', 'Scalable to entire organization']
+                        },
+                        {
+                            id: 'peer_champion_network',
+                            title: 'Champions Network by Department',
+                            description: 'Train super-users who teach their colleagues in real context',
+                            cost: 80000,
+                            time: 4,
+                            impact: {
+                                usability: 30,
+                                efficiency: 20,
+                                maria: 30,
+                                carlos: 15,
+                                ana: 10
+                            },
+                            risks: ['Inconsistent quality', 'Dependency on key individuals'],
+                            benefits: ['Organic adoption', 'Contextualized knowledge'],
+                            isoCompliance: 'high'
+                        }
+                    ]
+                }
+            ],
+            4: [
+                {
+                    id: 'deployment_strategy',
+                    title: 'Final Deployment Strategy',
+                    context: 'It is the critical moment. After 15 months of development, you must deploy the complete system. An error here could compromise lives and the hospital reputation. You must balance speed, security and operational continuity.',
+                    isoReference: 'ISO 62304:2006 - Medical device software',
+                    options: [
+                        {
+                            id: 'blue_green_deployment',
+                            title: 'Blue-Green Deployment',
+                            description: 'Two identical environments, instant switch with complete rollback',
+                            cost: 100000,
+                            time: 2,
+                            impact: {
+                                reliability: 30,
+                                efficiency: 15,
+                                carlos: 25,
+                                maria: 20
+                            },
+                            risks: ['Expensive dual infrastructure', 'Complex data synchronization'],
+                            benefits: ['Instant rollback', 'Zero downtime']
+                        },
+                        {
+                            id: 'canary_release',
+                            title: 'Canary Release',
+                            description: 'Gradual deployment starting with non-critical departments',
+                            cost: 60000,
+                            time: 4,
+                            impact: {
+                                reliability: 25,
+                                functionality: 10,
+                                maria: 25,
+                                ana: 15
+                            },
+                            risks: ['Late detection of critical problems', 'Inconsistent experience'],
+                            benefits: ['Progressive real validation', 'Distributed risk']
+                        },
+                        {
+                            id: 'feature_toggles',
+                            title: 'Feature Activation',
+                            description: 'Complete deployment but with real-time activatable functionalities',
+                            cost: 80000,
+                            time: 3,
+                            impact: {
+                                reliability: 20,
+                                maintainability: 25,
+                                carlos: 30,
+                                maria: 15
+                            },
+                            risks: ['Configuration complexity', 'Possible inconsistent states'],
+                            benefits: ['Granular control', 'Immediate activation/deactivation']
+                        }
+                    ]
+                },
+                {
+                    id: 'monitoring_alerting',
+                    title: 'Monitoring and Alerts System',
+                    context: 'Once in production, you need to detect problems before they affect patients. The system must monitor from technical performance to clinical quality indicators of care.',
+                    isoReference: 'ISO 25010:2011 - Calidad del software',
+                    options: [
+                        {
+                            id: 'basic_infrastructure_monitoring',
+                            title: 'Basic Infrastructure Monitoring',
+                            description: 'CPU, memory, disk and availability of basic services',
+                            cost: 40000,
+                            time: 1,
+                            impact: {
+                                reliability: 15,
+                                efficiency: 10,
+                                carlos: 15,
+                                ana: 10
+                            },
+                            risks: ['Late problem detection', 'No business context'],
+                            benefits: ['Quick implementation', 'Low cost']
+                        },
+                        {
+                            id: 'application_performance_monitoring',
+                            title: 'Application Performance Monitoring (APM)',
+                            description: 'Transaction traceability, bottleneck and error analysis',
+                            cost: 80000,
+                            time: 2,
+                            impact: {
+                                reliability: 25,
+                                performance: 20,
+                                carlos: 25,
+                                maria: 10
+                            },
+                            risks: ['Performance overhead', 'Configuration complexity'],
+                            benefits: ['Accurate diagnosis', 'Proactive optimization']
+                        },
+                        {
+                            id: 'business_intelligence_monitoring',
+                            title: 'Medical Business Intelligence Monitoring',
+                            description: 'Clinical KPIs, care quality metrics and predictive analytics',
+                            cost: 150000,
+                            time: 4,
+                            impact: {
+                                reliability: 20,
+                                functionality: 30,
+                                efficiency: 25,
+                                maria: 30,
+                                carlos: 20,
+                                ana: 15
+                            },
+                            risks: ['High analytical complexity', 'Requires medical expertise'],
+                            benefits: ['Direct clinical value', 'Data-based continuous improvement']
+                        }
+                    ]
+                },
+                {
+                    id: 'success_metrics',
+                    title: 'Definition of Post-Implementation Success Metrics',
+                    context: 'The project is technically complete, but how will you measure if it has really been successful? You must establish KPIs that demonstrate the real value of the system for the hospital and patients.',
+                    isoReference: 'ISO 25010:2011 - Software quality metrics',
+                    options: [
+                        {
+                            id: 'technical_metrics_focus',
+                            title: 'Focus on Technical Metrics',
+                            description: 'Uptime, response time, throughput and system errors',
+                            cost: 20000,
+                            time: 1,
+                            impact: {
+                                reliability: 15,
+                                carlos: 20,
+                                ana: 15
+                            },
+                            risks: ['Does not measure business value', 'Disconnection with end users'],
+                            benefits: ['Objective measurement', 'Easy to automate']
+                        },
+                        {
+                            id: 'user_experience_metrics',
+                            title: 'User Experience Metrics',
+                            description: 'Staff satisfaction, task time and adoption curve',
+                            cost: 50000,
+                            time: 2,
+                            impact: {
+                                usability: 25,
+                                efficiency: 15,
+                                maria: 25,
+                                ana: 10
+                            },
+                            risks: ['Measurement subjectivity', 'External influences'],
+                            benefits: ['Focus on real value', 'User-centered continuous improvement']
+                        },
+                        {
+                            id: 'patient_outcome_metrics',
+                            title: 'Clinical Results Metrics',
+                            description: 'Care time, prevented medical errors, patient satisfaction',
+                            cost: 100000,
+                            time: 6,
+                            impact: {
+                                functionality: 30,
+                                efficiency: 25,
+                                maria: 35,
+                                carlos: 15,
+                                ana: 20
+                            },
+                            risks: ['Multiple influencing variables', 'Long measurement time'],
+                            benefits: ['Demonstrable ROI', 'Direct impact on health']
+                        }
+                    ]
+                }
+            ]
+        };
+
+        // Function to load phase content
+        function loadPhaseContent() {
+            const mainContent = document.getElementById('main-content');
+            
+            switch(gameState.currentPhase) {
+                case 1:
+                    mainContent.innerHTML = `
+                        <div class="phase-container">
+                            <div class="phase-header">
+                                <h1>🔍 Phase 1: Requirements Analysis and Definition</h1>
+                                <p class="phase-description">
+                                    Define the requirements that will determine the MedCore project's success.
+                                    Your selection will directly impact functionality, costs and stakeholder satisfaction.
+                                </p>
+                            </div>
+
+                            <div class="challenge-section">
+                                <div class="challenge-header">
+                                    <h2>🎯 Main Challenge</h2>
+                                    <div class="difficulty-indicator">
+                                        <span class="difficulty-level">Difficulty: High</span>
+                                        <span class="time-pressure">⏰ Time Pressure</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="challenge-content">
+                                    <p>The hospital operates 24/7 with life-critical processes. You must:</p>
+                                    <ul class="challenge-list">
+                                        <li>Select strategic requirements from catalog</li>
+                                        <li>Balance conflicting stakeholder needs</li>
+                                        <li>Apply ISO 29148 and ISO 25010 standards</li>
+                                        <li>Keep the project within budget</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="challenge-actions">
+                                    <button class="action-btn primary large" onclick="openRequirementsModal()">
+                                        📋 Define System Requirements
+                                    </button>
+                                    <button class="action-btn secondary" onclick="openDecisionModal('requirements_methodology')">
+                                        🤔 Decide Requirements Methodology
+                                    </button>
+                                    <button class="action-btn secondary" onclick="openDecisionModal('quality_approach')">
+                                        🛡️ Quality Strategy
+                                    </button>
+                                    <button class="action-btn info" onclick="advanceToPhase2()">
+                                        ➡️ Advance to Phase 2
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="phase-guidance">
+                                <h3>💡 Technical Guidance</h3>
+                                <div class="guidance-cards">
+                                    <div class="guidance-card">
+                                        <h4>📚 ISO 29148</h4>
+                                        <p>Requirements must be verifiable, unambiguous and traceable to business needs.</p>
+                                    </div>
+                                    <div class="guidance-card">
+                                        <h4>⚡ ISO 25010</h4>
+                                        <p>Consider the 8 quality characteristics: functionality, performance, compatibility, usability, reliability, security, maintainability and portability.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                    
+                case 2:
+                    mainContent.innerHTML = `
+                        <div class="phase-container">
+                            <div class="phase-header">
+                                <h1>🏗️ Phase 2: System Design and Architecture</h1>
+                                <p class="phase-description">
+                                    With requirements defined, you must now design the technical architecture that will support the MedCore system for the next 10+ years. These decisions are irreversible and critical.
+                                </p>
+                            </div>
+
+                            <div class="challenge-section">
+                                <div class="challenge-header">
+                                    <h2>🎯 Critical Architectural Decisions</h2>
+                                    <div class="difficulty-indicator">
+                                        <span class="difficulty-level">Difficulty: Extreme</span>
+                                        <span class="time-pressure">⚡ Long-term Impact</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="challenge-content">
+                                    <p>Architectural decisions will determine long-term success:</p>
+                                    <ul class="challenge-list">
+                                        <li>Choose fundamental architectural pattern of the system</li>
+                                        <li>Define security framework for critical medical data</li>
+                                        <li>Apply ISO 12207 and ISO 27001 standards</li>
+                                        <li>Balance scalability vs operational complexity</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="challenge-actions">
+                                    <button class="action-btn primary large" onclick="openDecisionModal('architecture_pattern')">
+                                        🏛️ Define System Architecture
+                                    </button>
+                                    <button class="action-btn primary" onclick="openDecisionModal('security_framework')">
+                                        🔐 Security and Privacy Framework
+                                    </button>
+                                    <button class="action-btn secondary" onclick="showArchitectureAnalysis()">
+                                        📊 Architecture Analysis
+                                    </button>
+                                    <button class="action-btn info" onclick="advanceToPhase3()">
+                                        ➡️ Advance to Phase 3
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="phase-guidance">
+                                <h3>💡 Technical Guidance - Phase 2</h3>
+                                <div class="guidance-cards">
+                                    <div class="guidance-card">
+                                        <h4>🏗️ ISO 12207</h4>
+                                        <p>Define processes for architectural design, considering interfaces, data and system behavior.</p>
+                                    </div>
+                                    <div class="guidance-card">
+                                        <h4>🔒 ISO 27001</h4>
+                                        <p>Information security management, critical for sensitive medical data.</p>
+                                    </div>
+                                    <div class="guidance-card">
+                                        <h4>⚖️ Critical Considerations</h4>
+                                        <p>Balance performance, scalability, maintainability and operational costs.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+
+                case 3:
+                    mainContent.innerHTML = `
+                        <div class="phase-container">
+                            <div class="phase-header">
+                                <h1>⚙️ Phase 3: Development and Implementation</h1>
+                                <p class="phase-description">
+                                    The most critical and dangerous phase. You must implement the system without interrupting the hospital's vital operations, optimize performance for emergency situations and prepare medical staff.
+                                </p>
+                            </div>
+
+                            <div class="challenge-section">
+                                <div class="challenge-header">
+                                    <h2>🎯 Implementation in Critical Environment</h2>
+                                    <div class="difficulty-indicator">
+                                        <span class="difficulty-level">Difficulty: Critical</span>
+                                        <span class="time-pressure">🚨 Operational Risk</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="challenge-content">
+                                    <p>Implementation in an operating hospital requires:</p>
+                                    <ul class="challenge-list">
+                                        <li>Integration with legacy systems without interruptions</li>
+                                        <li>Performance optimization for medical emergencies</li>
+                                        <li>Training of 2,500 employees without affecting care</li>
+                                        <li>Apply ISO 25010 for production quality</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="challenge-actions">
+                                    <button class="action-btn primary large" onclick="openDecisionModal('integration_strategy')">
+                                        🔗 Integration Strategy
+                                    </button>
+                                    <button class="action-btn primary" onclick="openDecisionModal('performance_optimization')">
+                                        ⚡ Performance Optimization
+                                    </button>
+                                    <button class="action-btn primary" onclick="openDecisionModal('user_training_approach')">
+                                        👥 Training Program
+                                    </button>
+                                    <button class="action-btn secondary" onclick="showImplementationRisks()">
+                                        ⚠️ Risk Analysis
+                                    </button>
+                                    <button class="action-btn info" onclick="advanceToPhase4()">
+                                        ➡️ Advance to Final Phase
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="phase-guidance">
+                                <h3>💡 Technical Guidance - Phase 3</h3>
+                                <div class="guidance-cards">
+                                    <div class="guidance-card">
+                                        <h4>🔄 ISO 25010</h4>
+                                        <p>Ensure quality characteristics in production: performance, reliability and security.</p>
+                                    </div>
+                                    <div class="guidance-card">
+                                        <h4>🏥 Medical Considerations</h4>
+                                        <p>In emergencies, 1 second delay can be critical. The system must be faster than current processes.</p>
+                                    </div>
+                                    <div class="guidance-card">
+                                        <h4>👨‍⚕️ Human Factor</h4>
+                                        <p>Medical staff has resistance to change. Training must be practical and contextual.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+
+                case 4:
+                    mainContent.innerHTML = `
+                        <div class="phase-container">
+                            <div class="phase-header">
+                                <h1>🚀 Phase 4: Deployment and Go-Live</h1>
+                                <p class="phase-description">
+                                    The moment of truth. After 18 months of work, you must put the MedCore system into production. An error here compromises human lives, hospital operation and your professional career.
+                                </p>
+                            </div>
+
+                            <div class="challenge-section">
+                                <div class="challenge-header">
+                                    <h2>🎯 Production Launch</h2>
+                                    <div class="difficulty-indicator">
+                                        <span class="difficulty-level">Difficulty: EXTREME</span>
+                                        <span class="time-pressure">💀 Risk to Lives</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="challenge-content">
+                                    <p><strong>ATTENTION:</strong> This is the most critical moment of the project:</p>
+                                    <ul class="challenge-list">
+                                        <li>Deployment strategy with zero error tolerance</li>
+                                        <li>24/7 monitoring to detect problems before they affect patients</li>
+                                        <li>Success metrics that demonstrate real value to the hospital</li>
+                                        <li>Contingency plan for rollback in critical situations</li>
+                                    </ul>
+                                    
+                                    <div class="critical-warning">
+                                        <strong>⚠️ CRITICAL WARNING:</strong> In the next 72 hours it will be determined whether the 18-month, €2.5M project is a success or a disaster that could cost lives.
+                                    </div>
+                                </div>
+                                
+                                <div class="challenge-actions">
+                                    <button class="action-btn primary large critical" onclick="openDecisionModal('deployment_strategy')">
+                                        🚀 EXECUTE DEPLOYMENT
+                                    </button>
+                                    <button class="action-btn primary" onclick="openDecisionModal('monitoring_alerting')">
+                                        📊 Monitoring System
+                                    </button>
+                                    <button class="action-btn primary" onclick="openDecisionModal('success_metrics')">
+                                        📈 Success Metrics
+                                    </button>
+                                    <button class="action-btn secondary" onclick="showFinalRiskAssessment()">
+                                        🔍 Final Risk Assessment
+                                    </button>
+                                    <button class="action-btn success large" onclick="completeProject()">
+                                        🏆 COMPLETE PROJECT
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="phase-guidance">
+                                <h3>💡 Critical Guidance - Final Phase</h3>
+                                <div class="guidance-cards">
+                                    <div class="guidance-card critical">
+                                        <h4>🎯 Critical Objectives</h4>
+                                        <p>Zero downtime, zero data loss, zero errors affecting patient care.</p>
+                                    </div>
+                                    <div class="guidance-card critical">
+                                        <h4>📊 Survival KPIs</h4>
+                                        <p>Response time < 1 sec, availability > 99.9%, staff satisfaction > 80%.</p>
+                                    </div>
+                                    <div class="guidance-card critical">
+                                        <h4>🚨 Contingency Plan</h4>
+                                        <p>Complete rollback in < 15 minutes if any impact on patient care is detected.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                    
+                default:
+                    showProjectCompleted();
+                    break;
+            }
+            
+            updateDashboard();
+        }
+
+        // Function to open requirements modal
+        function openRequirementsModal() {
+            document.getElementById('requirements-modal').style.display = 'flex';
+            switchCategory('functional');
+            updateRequirementsList();
+        }
+
+        function closeRequirementsModal() {
+            document.getElementById('requirements-modal').style.display = 'none';
+        }
+
+        function switchCategory(category) {
+            // Update tabs
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelector(`[data-category="${category}"]`).classList.add('active');
+            
+            // Load requirements from category
+            const requirementsList = document.getElementById('requirements-list');
+            const requirements = requirementsCatalog[category];
+            
+            requirementsList.innerHTML = requirements.map(req => `
+                <div class="requirement-item ${gameState.selectedRequirements.includes(req.id) ? 'selected' : ''} ${req.isDistractor ? 'distractor' : ''}" 
+                     data-requirement-id="${req.id}" onclick="toggleRequirement('${req.id}')">
+                    <div class="requirement-header">
+                        <div class="requirement-title">
+                            <input type="checkbox" ${gameState.selectedRequirements.includes(req.id) ? 'checked' : ''} 
+                                   onchange="toggleRequirement('${req.id}')">
+                            <h4>${req.title}</h4>
+                            ${req.isDistractor ? '<span class="distractor-warning" title="⚠️ Problematic option">⚠️</span>' : ''}
+                            <button class="help-btn small" onclick="showRequirementHelp('${req.id}')" title="Ayuda ISO para este requisito">?</button>
+                        </div>
+                        <div class="requirement-cost">€${req.cost.toLocaleString()}</div>
+                    </div>
+                    
+                    <p class="requirement-description">${req.description}</p>
+                    
+                    <div class="requirement-details">
+                        <div class="complexity-indicator">
+                            <span class="complexity-label">Complejidad:</span>
+                            <span class="complexity-value ${req.complexity}">${req.complexity.toUpperCase()}</span>
+                        </div>
+                        <div class="iso-standard-detailed">
+                            <strong>📋 ${req.iso_standard}</strong>
+                            <p class="iso-benefit">${req.iso_benefit}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="requirement-impact">
+                        <strong>Impacto esperado:</strong>
+                        ${Object.entries(req.impact).map(([metric, value]) => {
+                            const isNegative = value < 0;
+                            return `<span class="impact-item ${isNegative ? 'negative' : 'positive'}">${metric}: ${isNegative ? '' : '+'}${value}</span>`;
+                        }).join('')}
+                    </div>
+                    
+                    ${req.isDistractor ? `
+                        <div class="distractor-explanation">
+                            <strong>⚠️ Warning:</strong> ${req.distractorReason}
+                        </div>
+                    ` : ''}
+                </div>
+            `).join('');
+        }
+
+        function toggleRequirement(requirementId) {
+            const maxSelections = 8;
+            const currentSelections = gameState.selectedRequirements.length;
+            
+            if (gameState.selectedRequirements.includes(requirementId)) {
+                // Deselect
+                gameState.selectedRequirements = gameState.selectedRequirements.filter(id => id !== requirementId);
+            } else {
+                // Select if limit not reached
+                if (currentSelections < maxSelections) {
+                    gameState.selectedRequirements.push(requirementId);
+                } else {
+                    showFeedbackModal('Limit Reached', 'You have reached the limit of 8 requirements. Deselect others before adding new ones.', 'warning');
+                    return;
+                }
+            }
+            
+            updateRequirementsList();
+            updateRequirementsCounter();
+            calculateBudgetImpact();
+        }
+
+        function updateRequirementsList() {
+            const items = document.querySelectorAll('.requirement-item');
+            items.forEach(item => {
+                const reqId = item.dataset.requirementId;
+                const checkbox = item.querySelector('input[type="checkbox"]');
+                
+                if (gameState.selectedRequirements.includes(reqId)) {
+                    item.classList.add('selected');
+                    checkbox.checked = true;
+                } else {
+                    item.classList.remove('selected');
+                    checkbox.checked = false;
+                }
+            });
+        }
+
+        function updateRequirementsCounter() {
+            document.getElementById('selected-count').textContent = gameState.selectedRequirements.length;
+            
+            const confirmBtn = document.getElementById('confirm-requirements');
+            if (gameState.selectedRequirements.length >= 5) {
+                confirmBtn.disabled = false;
+            } else {
+                confirmBtn.disabled = true;
+            }
+        }
+
+        function calculateBudgetImpact() {
+            let totalCost = 0;
+            
+            gameState.selectedRequirements.forEach(reqId => {
+                Object.values(requirementsCatalog).flat().forEach(req => {
+                    if (req.id === reqId) {
+                        totalCost += req.cost;
+                    }
+                });
+            });
+            
+            document.getElementById('budget-impact').textContent = `€${totalCost.toLocaleString()}`;
+            
+            // Validate budget
+            if (totalCost > gameState.budget * 0.6) { // Maximum 60% of budget for requirements
+                document.getElementById('budget-impact').style.color = 'red';
+            } else {
+                document.getElementById('budget-impact').style.color = 'green';
+            }
+        }
+
+        function confirmRequirements() {
+            if (gameState.selectedRequirements.length < 5) {
+                showFeedbackModal('Insufficient Selection', 'You must select at least 5 requirements for a viable system.', 'warning');
+                return;
+            }
+            
+            // Apply impacts from selected requirements
+            let totalCost = 0;
+            let impacts = {};
+            
+            gameState.selectedRequirements.forEach(reqId => {
+                Object.values(requirementsCatalog).flat().forEach(req => {
+                    if (req.id === reqId) {
+                        totalCost += req.cost;
+                        Object.entries(req.impact).forEach(([metric, value]) => {
+                            if (!impacts[metric]) impacts[metric] = 0;
+                            impacts[metric] += value;
+                        });
+                    }
+                });
+            });
+            
+            // Update game state
+            gameState.budget -= totalCost;
+            Object.entries(impacts).forEach(([metric, value]) => {
+                if (gameState.metrics[metric]) {
+                    gameState.metrics[metric] = Math.min(100, gameState.metrics[metric] + value);
+                }
+            });
+            
+            closeRequirementsModal();
+            
+            // Mostrar feedback educativo
+            showFeedbackModal(
+                'Requirements Defined Successfully',
+                `You have selected ${gameState.selectedRequirements.length} strategic requirements. 
+                This selection impacted the budget by €${totalCost.toLocaleString()} and improved 
+                multiple system quality metrics.`,
+                'success',
+                {
+                    'ISO 29148': 'Requirements defined with verifiable criteria and complete traceability.',
+                    'ISO 25010': 'Quality characteristics were considered in the selection.'
+                }
+            );
+            
+            addNotification(`Requirements defined: ${gameState.selectedRequirements.length} elements selected`, 'success');
+            updateDashboard();
+        }
+
+        // Function to open decision modal
+        function openDecisionModal(decisionId) {
+            const decision = phaseDecisions[gameState.currentPhase].find(d => d.id === decisionId);
+            if (!decision) return;
+            
+            gameState.currentDecision = decision;
+            
+            document.getElementById('decision-title').textContent = decision.title;
+            document.getElementById('decision-context').innerHTML = `
+                <div class="context-description">
+                    <p>${decision.context}</p>
+                </div>
+            `;
+            
+            const optionsHtml = decision.options.map((option, index) => `
+                <div class="decision-option" data-option-id="${option.id}" onclick="selectDecisionOption('${option.id}')">
+                    <div class="option-header">
+                        <input type="radio" name="decision-option" value="${option.id}">
+                        <h4>${option.title}</h4>
+                    </div>
+                    
+                    <p class="option-description">${option.description}</p>
+                    
+                    <div class="option-details">
+                        <div class="option-costs">
+                            <span class="cost-item">💰 €${option.cost.toLocaleString()}</span>
+                            <span class="cost-item">⏱️ ${option.time} months</span>
+                        </div>
+                        
+                        <div class="option-risks">
+                            <strong>Risks:</strong> ${option.risks.join(', ')}
+                        </div>
+                        
+                        <div class="option-benefits">
+                            <strong>Beneficios:</strong> ${option.benefits.join(', ')}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            document.getElementById('decision-options').innerHTML = optionsHtml;
+            document.getElementById('decision-modal').style.display = 'flex';
+        }
+
+        function selectDecisionOption(optionId) {
+            // Clear previous selections
+            document.querySelectorAll('.decision-option').forEach(opt => opt.classList.remove('selected'));
+            document.querySelectorAll('input[name="decision-option"]').forEach(radio => radio.checked = false);
+            
+            // Select new option
+            const selectedOption = document.querySelector(`[data-option-id="${optionId}"]`);
+            selectedOption.classList.add('selected');
+            selectedOption.querySelector('input[type="radio"]').checked = true;
+            
+            gameState.currentSelectedOption = optionId;
+            
+            // Show impact preview
+            const decision = gameState.currentDecision;
+            const option = decision.options.find(opt => opt.id === optionId);
+            
+            document.getElementById('impact-preview').innerHTML = `
+                <div class="impact-summary">
+                    <h5>Cambios Esperados:</h5>
+                    ${Object.entries(option.impact).map(([key, value]) => {
+                        if (typeof value === 'number') {
+                            const isPositive = value > 0;
+                            return `<div class="impact-item ${isPositive ? 'positive' : 'negative'}">
+                                ${key}: ${isPositive ? '+' : ''}${value}
+                            </div>`;
+                        }
+                        return '';
+                    }).join('')}
+                    
+                    <div class="cost-impact">
+                        <strong>Costo:</strong> €${option.cost.toLocaleString()}
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('confirm-decision').disabled = false;
+        }
+
+        function executeDecision() {
+            if (!gameState.currentSelectedOption) return;
+            
+            const decision = gameState.currentDecision;
+            const selectedOption = decision.options.find(opt => opt.id === gameState.currentSelectedOption);
+            
+            // Aplicar impactos
+            gameState.budget -= selectedOption.cost;
+            gameState.timeRemaining -= selectedOption.time;
+            
+            Object.entries(selectedOption.impact).forEach(([key, value]) => {
+                if (gameState.metrics[key]) {
+                    gameState.metrics[key] = Math.min(100, Math.max(0, gameState.metrics[key] + value));
+                } else if (gameState.stakeholders[key]) {
+                    gameState.stakeholders[key].satisfaction = Math.min(100, Math.max(0, gameState.stakeholders[key].satisfaction + value));
+                }
+            });
+            
+            // Save decision in history
+            gameState.decisionsHistory.push({
+                phase: gameState.currentPhase,
+                decision: decision.id,
+                option: gameState.currentSelectedOption,
+                timestamp: new Date(),
+                impact: selectedOption.impact
+            });
+            
+            closeDecisionModal();
+            
+            // Mostrar feedback educativo
+            showFeedbackModal(
+                'Decision Executed',
+                `You have chosen: ${selectedOption.title}. This decision will affect project development and stakeholder satisfaction.`,
+                'info',
+                {
+                    'Decision Analysis': `Benefits include: ${selectedOption.benefits.join(', ')}. Risks to manage are: ${selectedOption.risks.join(', ')}.`
+                }
+            );
+            
+            addNotification(`Decision made: ${selectedOption.title}`, 'info');
+            updateDashboard();
+        }
+
+        function closeDecisionModal() {
+            document.getElementById('decision-modal').style.display = 'none';
+            gameState.currentDecision = null;
+            gameState.currentSelectedOption = null;
+        }
+
+        // Function to show educational feedback
+        function showFeedbackModal(title, content, type = 'info', isoStandards = {}, lessons = []) {
+            document.getElementById('feedback-title').textContent = `${type === 'success' ? '✅' : type === 'warning' ? '⚠️' : '📚'} ${title}`;
+            
+            document.getElementById('feedback-content').innerHTML = `
+                <div class="feedback-text">
+                    <p>${content}</p>
+                </div>
+            `;
+            
+            if (Object.keys(isoStandards).length > 0) {
+                document.getElementById('iso-standards-applied').innerHTML = `
+                    <h4>📋 Applied ISO Standards:</h4>
+                    ${Object.entries(isoStandards).map(([standard, description]) => `
+                        <div class="iso-item">
+                            <strong>${standard}:</strong> ${description}
+                        </div>
+                    `).join('')}
+                `;
+            } else {
+                document.getElementById('iso-standards-applied').innerHTML = '';
+            }
+            
+            if (lessons.length > 0) {
+                document.getElementById('lessons-learned').innerHTML = `
+                    <h4>🎓 Lessons Learned:</h4>
+                    <ul>
+                        ${lessons.map(lesson => `<li>${lesson}</li>`).join('')}
+                    </ul>
+                `;
+            } else {
+                document.getElementById('lessons-learned').innerHTML = '';
+            }
+            
+            document.getElementById('feedback-modal').style.display = 'flex';
+        }
+
+        function closeFeedbackModal() {
+            document.getElementById('feedback-modal').style.display = 'none';
+        }
+
+        // Function to update dashboard
+        function updateDashboard() {
+            // Actualizar estado del proyecto
+            document.getElementById('current-phase').textContent = `${gameState.currentPhase}/${gameState.totalPhases}`;
+            document.getElementById('budget-display').textContent = `€${gameState.budget.toLocaleString()}`;
+            document.getElementById('time-remaining').textContent = `${gameState.timeRemaining} months`;
+            
+            // Update metrics
+            Object.entries(gameState.metrics).forEach(([metric, value]) => {
+                const scoreElement = document.getElementById(`${metric}-score`);
+                const progressElement = document.getElementById(`${metric}-progress`);
+                
+                if (scoreElement) {
+                    scoreElement.textContent = Math.round(value);
+                }
+                if (progressElement) {
+                    progressElement.style.width = `${value}%`;
+                }
+            });
+            
+            // Update stakeholder satisfaction
+            Object.entries(gameState.stakeholders).forEach(([stakeholder, data]) => {
+                const satisfactionElement = document.getElementById(`${stakeholder}-satisfaction`);
+                if (satisfactionElement) {
+                    satisfactionElement.style.width = `${data.satisfaction}%`;
+                    satisfactionElement.parentElement.nextElementSibling.textContent = `${Math.round(data.satisfaction)}%`;
+                }
+            });
+            
+            // Actualizar salud general del proyecto
+            const avgScore = Object.values(gameState.metrics).reduce((a, b) => a + b, 0) / Object.keys(gameState.metrics).length;
+            const healthIndicator = document.querySelector('.health-indicator');
+            const healthText = document.querySelector('.overall-health span:last-child');
+            
+            if (avgScore >= 75) {
+                healthIndicator.className = 'health-indicator excellent';
+                healthText.textContent = 'Excellent Project';
+            } else if (avgScore >= 60) {
+                healthIndicator.className = 'health-indicator good';
+                healthText.textContent = 'Healthy Project';
+            } else if (avgScore >= 40) {
+                healthIndicator.className = 'health-indicator warning';
+                healthText.textContent = 'Project at Risk';
+            } else {
+                healthIndicator.className = 'health-indicator critical';
+                healthText.textContent = 'Critical Project';
+            }
+        }
+
+        // Function to add notifications
+        function addNotification(message, type = 'info') {
+            const notification = {
+                id: Date.now(),
+                message,
+                type,
+                timestamp: new Date()
+            };
+            
+            gameState.notifications.unshift(notification);
+            
+            // Keep only the last 10 notifications
+            if (gameState.notifications.length > 10) {
+                gameState.notifications = gameState.notifications.slice(0, 10);
+            }
+            
+            updateNotificationsDisplay();
+        }
+
+        function updateNotificationsDisplay() {
+            const notificationsList = document.getElementById('notifications-list');
+            
+            notificationsList.innerHTML = gameState.notifications.map(notification => `
+                <div class="notification-item ${notification.type}">
+                    <div class="notification-content">
+                        <span class="notification-icon">${getNotificationIcon(notification.type)}</span>
+                        <span class="notification-message">${notification.message}</span>
+                    </div>
+                    <div class="notification-time">
+                        ${notification.timestamp.toLocaleTimeString()}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getNotificationIcon(type) {
+            const icons = {
+                'success': '✅',
+                'warning': '⚠️',
+                'error': '❌',
+                'info': 'ℹ️'
+            };
+            return icons[type] || 'ℹ️';
+        }
+
+        // Initialize the game when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            updateDashboard();
+            updateNotificationsDisplay();
+            initializeDraggablePanel();
+        });
+
+        // Funciones para panel de notificaciones movible
+        function initializeDraggablePanel() {
+            const panel = document.getElementById('notifications-panel');
+            const header = document.getElementById('notifications-header');
+            let isDragging = false;
+            let currentX;
+            let currentY;
+            let initialX;
+            let initialY;
+            let xOffset = 0;
+            let yOffset = 0;
+
+            header.addEventListener('mousedown', dragStart);
+            document.addEventListener('mousemove', drag);
+            document.addEventListener('mouseup', dragEnd);
+
+            function dragStart(e) {
+                if (e.target.closest('.move-btn')) {
+                    initialX = e.clientX - xOffset;
+                    initialY = e.clientY - yOffset;
+                    isDragging = true;
+                    panel.style.cursor = 'grabbing';
+                }
+            }
+
+            function drag(e) {
+                if (isDragging) {
+                    e.preventDefault();
+                    currentX = e.clientX - initialX;
+                    currentY = e.clientY - initialY;
+                    xOffset = currentX;
+                    yOffset = currentY;
+                    panel.style.transform = `translate(${currentX}px, ${currentY}px)`;
+                }
+            }
+
+            function dragEnd(e) {
+                isDragging = false;
+                panel.style.cursor = 'default';
+            }
+        }
+
+        function toggleNotificationsPanel() {
+            const panel = document.getElementById('notifications-panel');
+            const list = document.getElementById('notifications-list');
+            const minimizeBtn = panel.querySelector('.minimize-btn');
+            
+            if (list.style.display === 'none') {
+                list.style.display = 'block';
+                minimizeBtn.textContent = '−';
+                minimizeBtn.title = 'Minimizar';
+            } else {
+                list.style.display = 'none';
+                minimizeBtn.textContent = '+';
+                minimizeBtn.title = 'Maximizar';
+            }
+        }
+
+        function showNotificationsHelp() {
+            showFeedbackModal(
+                'Help: Notification Panel',
+                'This panel keeps you informed about project progress and decisions made. You can minimize it with the "−" button or move it by dragging from the "⋮⋮" icon.',
+                'info',
+                {
+                    'Functionalities': 'Minimize/maximize, move around screen, action history',
+                    'Tip': 'Recent notifications appear at the top. Use this to review your decision history.'
+                }
+            );
+        }
+
+        function showRequirementHelp(requirementId) {
+            const requirement = Object.values(requirementsCatalog).flat().find(req => req.id === requirementId);
+            if (!requirement) return;
+
+            const helpContent = requirement.isDistractor ? 
+                `<div class="warning-help">⚠️ WARNING: This is a problematic option that can harm your project.</div>
+                 <p><strong>Reason:</strong> ${requirement.distractorReason}</p>
+                 <p><strong>ISO Standard:</strong> ${requirement.iso_standard}</p>` :
+                `<p><strong>ISO Benefit:</strong> ${requirement.iso_benefit}</p>
+                 <p><strong>Applicable Standard:</strong> ${requirement.iso_standard}</p>
+                 <p><strong>Recommendation:</strong> This option is aligned with software engineering best practices.</p>`;
+
+            showFeedbackModal(
+                `ISO Help: ${requirement.title}`,
+                helpContent,
+                requirement.isDistractor ? 'warning' : 'info',
+                {},
+                requirement.isDistractor ? [] : [
+                    'ISO standards provide proven frameworks for project management',
+                    'Each requirement must be evaluated for its alignment with international standards',
+                    'Distractor options may seem attractive but usually have hidden risks'
+                ]
+            );
+        }
+
+        function addISOTip(element, isoInfo, tipText) {
+            const tipButton = document.createElement('button');
+            tipButton.className = 'iso-tip-btn';
+            tipButton.innerHTML = 'ℹ️';
+            tipButton.title = tipText;
+            tipButton.onclick = (e) => {
+                e.stopPropagation();
+                showFeedbackModal(
+                    'ISO Information',
+                    isoInfo,
+                    'info'
+                );
+            };
+            element.appendChild(tipButton);
+        }
+
+        // Specific functions to advance between phases
+        function advanceToPhase2() {
+            if (gameState.selectedRequirements.length < 5) {
+                showFeedbackModal('Incomplete Requirements', 'You must select at least 5 requirements before advancing to the design phase.', 'warning');
+                return;
+            }
+            
+            gameState.currentPhase = 2;
+            gameState.timeRemaining -= 2;
+            addNotification('Advancing to Phase 2: Design and Architecture', 'success');
+            loadPhaseContent();
+        }
+
+        function advanceToPhase3() {
+            if (gameState.decisionsHistory.filter(d => d.phase === 2).length < 2) {
+                showFeedbackModal('Incomplete Architecture', 'You must make at least 2 architectural decisions before proceeding to development.', 'warning');
+                return;
+            }
+            
+            gameState.currentPhase = 3;
+            gameState.timeRemaining -= 3;
+            addNotification('Advancing to Phase 3: Development and Implementation', 'success');
+            loadPhaseContent();
+        }
+
+        function advanceToPhase4() {
+            if (gameState.decisionsHistory.filter(d => d.phase === 3).length < 3) {
+                showFeedbackModal('Incomplete Implementation', 'You must complete the 3 critical implementation decisions before go-live.', 'warning');
+                return;
+            }
+            
+            gameState.currentPhase = 4;
+            gameState.timeRemaining -= 2;
+            addNotification('FINAL PHASE! Preparing for Go-Live...', 'warning');
+            loadPhaseContent();
+        }
+
+        function showArchitectureAnalysis() {
+            showFeedbackModal(
+                'Architecture Analysis',
+                'The analysis shows that the chosen architecture must balance multiple critical factors for the hospital environment.',
+                'info',
+                {
+                    'ISO 12207': 'Defines architectural design process considering interfaces, data and behavior.',
+                    'Critical Considerations': 'Performance in emergencies, scalability for growth, security for medical data.'
+                },
+                [
+                    'Architecture is the most critical decision of the project',
+                    'Post-implementation architectural change costs are extremely high',
+                    'Scalability must consider hospital growth over 10+ years'
+                ]
+            );
+        }
+
+        function showImplementationRisks() {
+            const riskLevel = calculateImplementationRisk();
+            showFeedbackModal(
+                'Implementation Risk Analysis',
+                `Current risk level: <strong>${riskLevel}</strong>. Implementation in an active hospital presents unique risks that must be carefully mitigated.`,
+                riskLevel === 'CRITICAL' ? 'error' : riskLevel === 'HIGH' ? 'warning' : 'info',
+                {
+                    'Identified Risks': 'Interruptions in critical care, medical data loss, staff resistance',
+                    'Required Mitigations': 'Exhaustive testing, rollback plan, intensive training, 24/7 monitoring'
+                }
+            );
+        }
+
+        function calculateImplementationRisk() {
+            const budgetRisk = gameState.budget < 500000 ? 2 : gameState.budget < 1000000 ? 1 : 0;
+            const timeRisk = gameState.timeRemaining < 3 ? 2 : gameState.timeRemaining < 6 ? 1 : 0;
+            const stakeholderRisk = Object.values(gameState.stakeholders).some(s => s.satisfaction < 50) ? 2 : Object.values(gameState.stakeholders).some(s => s.satisfaction < 70) ? 1 : 0;
+            
+            const totalRisk = budgetRisk + timeRisk + stakeholderRisk;
+            
+            if (totalRisk >= 5) return 'CRITICAL';
+            if (totalRisk >= 3) return 'ALTO';
+            if (totalRisk >= 1) return 'MODERADO';
+            return 'BAJO';
+        }
+
+        function showFinalRiskAssessment() {
+            const finalAssessment = generateFinalAssessment();
+            showFeedbackModal(
+                'Final Risk Assessment - Pre-Deployment',
+                finalAssessment.summary,
+                finalAssessment.level === 'CRITICAL' ? 'error' : 'warning',
+                {
+                    'Estado del Proyecto': finalAssessment.projectStatus,
+                    'Recommendation': finalAssessment.recommendation
+                }
+            );
+        }
+
+        function generateFinalAssessment() {
+            const avgMetrics = Object.values(gameState.metrics).reduce((a, b) => a + b, 0) / Object.keys(gameState.metrics).length;
+            const avgSatisfaction = Object.values(gameState.stakeholders).reduce((acc, s) => acc + s.satisfaction, 0) / Object.keys(gameState.stakeholders).length;
+            const decisionsComplete = gameState.decisionsHistory.length;
+            
+            let level, summary, projectStatus, recommendation;
+            
+            if (avgMetrics >= 75 && avgSatisfaction >= 70 && gameState.budget > 200000 && decisionsComplete >= 6) {
+                level = 'OPTIMAL';
+                summary = '🎉 Excellent! The project is in optimal conditions for deployment.';
+                projectStatus = 'All metrics are within acceptable ranges. The team is ready.';
+                recommendation = 'Proceed with deployment as planned.';
+            } else if (avgMetrics >= 60 && avgSatisfaction >= 60 && gameState.budget > 100000) {
+                level = 'ACEPTABLE';
+                summary = '⚠️ The project has moderate risks but is viable for deployment.';
+                projectStatus = 'Acceptable metrics with some areas for improvement identified.';
+                recommendation = 'Proceed with additional caution and intensive monitoring.';
+            } else {
+                level = 'CRITICAL';
+                summary = '🚨 HIGH RISK: The project presents serious deficiencies that could compromise lives.';
+                projectStatus = 'Multiple critical metrics below safety threshold.';
+                recommendation = 'DELAY deployment until critical deficiencies are resolved.';
+            }
+            
+            return { level, summary, projectStatus, recommendation };
+        }
+
+        function completeProject() {
+            const finalAssessment = generateFinalAssessment();
+            
+            if (finalAssessment.level === 'CRITICAL' && !confirm('⚠️ WARNING: The project presents critical risks. Are you sure you want to proceed with deployment? This could have serious consequences.')) {
+                return;
+            }
+            
+            gameState.isCompleted = true;
+            gameState.completionDate = new Date();
+            gameState.finalScore = calculateFinalScore();
+            
+            showProjectCompletionScreen();
+        }
+
+        function calculateFinalScore() {
+            const metricsScore = Object.values(gameState.metrics).reduce((a, b) => a + b, 0) / Object.keys(gameState.metrics).length;
+            const stakeholderScore = Object.values(gameState.stakeholders).reduce((acc, s) => acc + s.satisfaction, 0) / Object.keys(gameState.stakeholders).length;
+            const budgetEfficiency = Math.max(0, (gameState.budget / 2500000) * 100);
+            const timeEfficiency = Math.max(0, (gameState.timeRemaining / 18) * 100);
+            const decisionsBonus = Math.min(20, gameState.decisionsHistory.length * 2);
+            
+            return Math.round((metricsScore * 0.4 + stakeholderScore * 0.3 + budgetEfficiency * 0.15 + timeEfficiency * 0.15) + decisionsBonus);
+        }
+
+        function showProjectCompletionScreen() {
+            const mainContent = document.getElementById('main-content');
+            const finalScore = gameState.finalScore;
+            const assessment = generateFinalAssessment();
+            
+            let gradeEmoji, gradeText, gradeDescription;
+            
+            if (finalScore >= 90) {
+                gradeEmoji = '🏆';
+                gradeText = 'EXCELLENCE';
+                gradeDescription = 'You have demonstrated exceptional mastery in hospital software project management.';
+            } else if (finalScore >= 80) {
+                gradeEmoji = '🥇';
+                gradeText = 'OUTSTANDING';
+                gradeDescription = 'Excellent project management with solid application of ISO standards.';
+            } else if (finalScore >= 70) {
+                gradeEmoji = '🥈';
+                gradeText = 'NOTABLE';
+                gradeDescription = 'Good project management with some areas for improvement.';
+            } else if (finalScore >= 60) {
+                gradeEmoji = '🥉';
+                gradeText = 'PASS';
+                gradeDescription = 'Project successfully completed with opportunities for improvement.';
+            } else {
+                gradeEmoji = '❌';
+                gradeText = 'CRITICAL';
+                gradeDescription = 'The project presents serious problems that compromise its viability.';
+            }
+            
+            mainContent.innerHTML = `
+                <div class="completion-screen">
+                    <div class="completion-header">
+                        <h1>${gradeEmoji} MedCore Project Completed</h1>
+                        <div class="hospital-final">
+                            <h2>🏥 San Rafael Hospital</h2>
+                            <p>MedCore Hospital Management System</p>
+                        </div>
+                    </div>
+                    
+                    <div class="final-assessment">
+                        <div class="score-card">
+                            <div class="score-display">
+                                <span class="score-number">${finalScore}</span>
+                                <span class="score-total">/100</span>
+                            </div>
+                            <div class="grade-info">
+                                <div class="grade-title">${gradeText}</div>
+                                <div class="grade-description">${gradeDescription}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-summary">
+                            <h3>📊 Project Summary</h3>
+                            <div class="summary-grid">
+                                <div class="summary-item">
+                                    <span class="summary-label">Final Budget</span>
+                                    <span class="summary-value">€${gameState.budget.toLocaleString()}</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">Time Remaining</span>
+                                    <span class="summary-value">${gameState.timeRemaining} months</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">Decisions Made</span>
+                                    <span class="summary-value">${gameState.decisionsHistory.length}</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">Selected Requirements</span>
+                                    <span class="summary-value">${gameState.selectedRequirements.length}</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stakeholder-final">
+                            <h3>👥 Final Stakeholder Satisfaction</h3>
+                            <div class="stakeholder-scores">
+                                <div class="stakeholder-final-item">
+                                    <span>👩‍⚕️ Dr. Maria Gonzalez</span>
+                                    <span>${Math.round(gameState.stakeholders.maria.satisfaction)}%</span>
+                                </div>
+                                <div class="stakeholder-final-item">
+                                    <span>👨‍💼 Eng. Carlos Mendez</span>
+                                    <span>${Math.round(gameState.stakeholders.carlos.satisfaction)}%</span>
+                                </div>
+                                <div class="stakeholder-final-item">
+                                    <span>👩‍💼 Lic. Ana Ruiz</span>
+                                    <span>${Math.round(gameState.stakeholders.ana.satisfaction)}%</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="iso-standards-applied-final">
+                            <h3>📚 Applied ISO Standards</h3>
+                            <div class="iso-list">
+                                <span class="iso-badge">ISO 29148 - Requirements Management</span>
+                                <span class="iso-badge">ISO 25010 - Software Quality</span>
+                                <span class="iso-badge">ISO 12207 - Life Cycle Processes</span>
+                                <span class="iso-badge">ISO 9241 - Ergonomics & Interaction</span>
+                            </div>
+                        </div>
+                        
+                        <div class="lessons-learned-final">
+                            <h3>🎓 Key Lessons Learned</h3>
+                            <ul>
+                                <li>Stakeholder management is critical in hospital projects</li>
+                                <li>Architectural decisions have long-term impact</li>
+                                <li>ISO standards provide essential structural framework</li>
+                                <li>The balance between functionality and usability is crucial in medical environments</li>
+                                <li>Risk management is vital when lives are at stake</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="completion-actions">
+                            <button class="action-btn primary large" onclick="downloadProjectReport()">
+                                📄 Download Project Report
+                            </button>
+                            <button class="action-btn secondary" onclick="location.reload()">
+                                🔄 Start New Project
+                            </button>
+                            <button class="action-btn info" onclick="showDetailedAnalysis()">
+                                📊 Detailed Analysis
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function downloadProjectReport() {
+            // Funcionalidad para descargar reporte (simulada)
+            showFeedbackModal(
+                'Report Generated',
+                'The detailed project report has been generated successfully. In a real environment, this document would include all decisions made, final metrics and lessons learned for future reference.',
+                'success'
+            );
+        }
+
+        function showDetailedAnalysis() {
+            showFeedbackModal(
+                'Detailed Project Analysis',
+                `Your project has demonstrated the practical application of software engineering standards in a critical environment like a hospital. The decisions made reflect the real complexity of managing projects where technology must serve vital human objectives.`,
+                'info',
+                {
+                    'Identified Strengths': 'Systematic application of ISO standards, consideration of human factors, balanced resource management.',
+                    'Improvement Areas': 'Cost optimization, improved stakeholder communication, anticipation of technical risks.'
+                },
+                [
+                    'Hospital projects require a multidisciplinary perspective',
+                    'Stakeholder management is as important as technical management',
+                    'ISO standards are practical tools, not bureaucratic obstacles',
+                    'Success is measured both in technical metrics and human impact'
+                ]
+            );
+        }
+
+        // Verificación de carga completa
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🎮 MedCore DOM fully loaded');
+            console.log('🎯 gameState:', gameState);
+            console.log('📋 requirementsCatalog:', Object.keys(requirementsCatalog).length + ' categories');
+            console.log('⚙️ phaseDecisions:', Object.keys(phaseDecisions).length + ' phases');
+            console.log('✅ Tutorial ready to use');
+        });
+
+        // Global error handling
+        window.addEventListener('error', function(event) {
+            console.error('🚨 Global error captured:', event.error);
+            console.error('📍 File:', event.filename, 'LLine:', event.lineno);
+        });
+    </script>
+</body>
+</html>

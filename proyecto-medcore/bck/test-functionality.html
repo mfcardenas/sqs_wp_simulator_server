@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedCore - Prueba de Funcionalidad</title>
+    <link rel="stylesheet" href="medcore-styles.css">
+    <style>
+        .test-container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            font-family: Arial, sans-serif;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .test-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: transform 0.2s;
+        }
+        .test-button:hover {
+            transform: translateY(-2px);
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status-ok { background: #4CAF50; }
+        .status-loading { background: #FF9800; }
+        .status-error { background: #F44336; }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🏥 MedCore - Verificación de Funcionalidad</h1>
+        
+        <div class="test-section">
+            <h2>📊 Estado de Carga de Componentes</h2>
+            <p id="engine-status"><span class="status-indicator status-loading"></span>Motor del Juego: Verificando...</p>
+            <p id="phases-status"><span class="status-indicator status-loading"></span>Sistema de Fases: Verificando...</p>
+            <p id="events-status"><span class="status-indicator status-loading"></span>Eventos Dinámicos: Verificando...</p>
+            <p id="dashboard-status"><span class="status-indicator status-loading"></span>Dashboard: Verificando...</p>
+            <p id="standards-status"><span class="status-indicator status-loading"></span>Estándares ISO: Verificando...</p>
+        </div>
+        
+        <div class="test-section">
+            <h2>🎮 Pruebas de Funcionalidad</h2>
+            <p>Estas pruebas verifican que todas las funciones interactivas estén funcionando:</p>
+            
+            <button class="test-button" onclick="testGameInitialization()">
+                🚀 Probar Inicialización del Juego
+            </button>
+            
+            <button class="test-button" onclick="testDecisionModal()">
+                🎯 Probar Modal de Decisiones
+            </button>
+            
+            <button class="test-button" onclick="testStakeholderConsultation()">
+                👥 Probar Consulta de Stakeholders
+            </button>
+            
+            <button class="test-button" onclick="testDeliverables()">
+                📋 Probar Revisión de Entregables
+            </button>
+            
+            <button class="test-button" onclick="testStandardsGuide()">
+                📚 Probar Guía de Estándares
+            </button>
+            
+            <button class="test-button" onclick="testSessionManagement()">
+                💾 Probar Gestión de Sesiones
+            </button>
+            
+            <div id="test-results" style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                <h3>📝 Resultados de Pruebas</h3>
+                <p id="test-output">Presiona los botones de arriba para ejecutar las pruebas...</p>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>🔧 Acciones del Sistema</h2>
+            <button class="test-button" onclick="resetGameState()">
+                🔄 Reiniciar Estado del Juego
+            </button>
+            
+            <button class="test-button" onclick="loadGameDirectly()">
+                🏥 Cargar Juego MedCore Directamente
+            </button>
+            
+            <button class="test-button" onclick="showSystemInfo()">
+                ℹ️ Mostrar Información del Sistema
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts del juego -->
+    <script src="medcore-engine.js"></script>
+    <script src="medcore-phases.js"></script>
+    <script src="medcore-events.js"></script>
+    <script src="medcore-dashboard.js"></script>
+    <script src="medcore-standards.js"></script>
+
+    <script>
+        let gameEngine = null;
+        let testResults = [];
+        
+        // Verificar carga de componentes
+        function checkComponentStatus() {
+            const components = [
+                { name: 'engine-status', check: () => typeof MedCoreEngine !== 'undefined', label: 'Motor del Juego' },
+                { name: 'phases-status', check: () => window.MedCoreEngine && window.MedCoreEngine.prototype.loadPhaseContent, label: 'Sistema de Fases' },
+                { name: 'events-status', check: () => window.MedCoreEngine && window.MedCoreEngine.prototype.triggerRandomEvent, label: 'Eventos Dinámicos' },
+                { name: 'dashboard-status', check: () => window.MedCoreEngine && window.MedCoreEngine.prototype.updateDashboard, label: 'Dashboard' },
+                { name: 'standards-status', check: () => window.MedCoreEngine && window.MedCoreEngine.prototype.showStandardsGuide, label: 'Estándares ISO' }
+            ];
+            
+            components.forEach(component => {
+                const element = document.getElementById(component.name);
+                const isOk = component.check();
+                const statusClass = isOk ? 'status-ok' : 'status-error';
+                const statusText = isOk ? 'OK' : 'ERROR';
+                
+                element.innerHTML = `<span class="status-indicator ${statusClass}"></span>${component.label}: ${statusText}`;
+            });
+        }
+        
+        // Función para mostrar resultado de prueba
+        function logTest(testName, success, details = '') {
+            const result = {
+                test: testName,
+                success: success,
+                details: details,
+                timestamp: new Date().toLocaleTimeString()
+            };
+            
+            testResults.push(result);
+            
+            const output = document.getElementById('test-output');
+            const statusIcon = success ? '✅' : '❌';
+            output.innerHTML += `<div>${result.timestamp} - ${statusIcon} ${testName}: ${success ? 'ÉXITO' : 'FALLO'} ${details ? '- ' + details : ''}</div>`;
+        }
+        
+        // Pruebas específicas
+        function testGameInitialization() {
+            try {
+                gameEngine = new MedCoreEngine();
+                logTest('Inicialización del Juego', true, 'Motor del juego creado exitosamente');
+            } catch (error) {
+                logTest('Inicialización del Juego', false, error.message);
+            }
+        }
+        
+        function testDecisionModal() {
+            try {
+                if (!gameEngine) {
+                    gameEngine = new MedCoreEngine();
+                }
+                gameEngine.showDecisionModal();
+                logTest('Modal de Decisiones', true, 'Modal abierto correctamente');
+            } catch (error) {
+                logTest('Modal de Decisiones', false, error.message);
+            }
+        }
+        
+        function testStakeholderConsultation() {
+            try {
+                if (!gameEngine) {
+                    gameEngine = new MedCoreEngine();
+                }
+                gameEngine.consultStakeholders();
+                logTest('Consulta de Stakeholders', true, 'Modal de stakeholders abierto');
+            } catch (error) {
+                logTest('Consulta de Stakeholders', false, error.message);
+            }
+        }
+        
+        function testDeliverables() {
+            try {
+                if (!gameEngine) {
+                    gameEngine = new MedCoreEngine();
+                }
+                gameEngine.reviewDeliverables();
+                logTest('Revisión de Entregables', true, 'Modal de entregables abierto');
+            } catch (error) {
+                logTest('Revisión de Entregables', false, error.message);
+            }
+        }
+        
+        function testStandardsGuide() {
+            try {
+                if (!gameEngine) {
+                    gameEngine = new MedCoreEngine();
+                }
+                gameEngine.showStandardsGuide();
+                logTest('Guía de Estándares', true, 'Guía de estándares mostrada');
+            } catch (error) {
+                logTest('Guía de Estándares', false, error.message);
+            }
+        }
+        
+        function testSessionManagement() {
+            try {
+                if (!gameEngine) {
+                    gameEngine = new MedCoreEngine();
+                }
+                
+                // Probar guardado
+                gameEngine.saveToLocalStorage();
+                
+                // Probar carga
+                const sessionId = gameEngine.sessionId;
+                const savedData = localStorage.getItem(`medcore_save_${sessionId}`);
+                
+                if (savedData) {
+                    logTest('Gestión de Sesiones', true, 'Guardado y carga funcionando');
+                } else {
+                    logTest('Gestión de Sesiones', false, 'No se pudo guardar la sesión');
+                }
+            } catch (error) {
+                logTest('Gestión de Sesiones', false, error.message);
+            }
+        }
+        
+        function resetGameState() {
+            try {
+                // Limpiar localStorage
+                Object.keys(localStorage).forEach(key => {
+                    if (key.startsWith('medcore_save_')) {
+                        localStorage.removeItem(key);
+                    }
+                });
+                
+                gameEngine = null;
+                testResults = [];
+                document.getElementById('test-output').innerHTML = 'Estado reiniciado. Ejecuta nuevas pruebas...';
+                
+                logTest('Reinicio del Sistema', true, 'Estado limpiado exitosamente');
+            } catch (error) {
+                logTest('Reinicio del Sistema', false, error.message);
+            }
+        }
+        
+        function loadGameDirectly() {
+            window.location.href = 'medcore-game.html';
+        }
+        
+        function showSystemInfo() {
+            const info = {
+                userAgent: navigator.userAgent,
+                localStorageSize: Object.keys(localStorage).length,
+                medcoreSaves: Object.keys(localStorage).filter(key => key.startsWith('medcore_save_')).length,
+                screenSize: `${window.screen.width}x${window.screen.height}`,
+                gameEngineLoaded: typeof MedCoreEngine !== 'undefined',
+                sessionId: gameEngine ? gameEngine.sessionId : 'No iniciado'
+            };
+            
+            const infoText = Object.entries(info).map(([key, value]) => `${key}: ${value}`).join('\\n');
+            alert('Información del Sistema:\\n\\n' + infoText);
+        }
+        
+        // Verificar estado cuando la página carga
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(checkComponentStatus, 1000);
+        });
+        
+        // Verificar cada 3 segundos si los componentes se han cargado
+        setInterval(checkComponentStatus, 3000);
+    </script>
+</body>
+</html>

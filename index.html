@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 ISO Laboratory - Language Selection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1565c0 0%, #1976d2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .language-selector {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+        }
+
+        .lab-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        .language-options {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .language-option {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            padding: 30px 40px;
+            border-radius: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            min-width: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .language-option:hover {
+            background: rgba(255, 255, 255, 1);
+            border-color: #1565c0;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .flag {
+            font-size: 60px;
+        }
+
+        .language-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .language-desc {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            text-align: center;
+        }
+
+        .info {
+            margin-top: 40px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .language-selector {
+                margin: 20px;
+                padding: 30px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .language-options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .language-option {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="language-selector">
+        <div class="lab-icon">🎯</div>
+        
+        <h1>ISO Laboratory</h1>
+        <p class="subtitle">
+            Real Technical Decisions Simulator for Software Engineering<br>
+            Choose your preferred language / Elige tu idioma preferido
+        </p>
+        
+        <div class="language-options">
+            <a href="iso-real-en.html" class="language-option">
+                <div class="flag">🇺🇸</div>
+                <div class="language-name">English</div>
+                <div class="language-desc">Complete simulator in English<br>(Default language)</div>
+            </a>
+            
+            <a href="iso-real.html" class="language-option">
+                <div class="flag">🇪🇸</div>
+                <div class="language-name">Español</div>
+                <div class="language-desc">Simulador completo en español<br>(Original version)</div>
+            </a>
+        </div>
+        
+        <div class="info">
+            <strong>🎮 About ISO Laboratory:</strong><br>
+            This is a real software engineering simulator where you make technical decisions that impact ISO 25010 quality metrics. 
+            Experience authentic project management with budget constraints, time pressure, and random events just like in real projects.
+            <br><br>
+            
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-title">🏗️ Architecture Decisions</div>
+                    Monolithic, Microservices, or Serverless
+                </div>
+                <div class="feature">
+                    <div class="feature-title">🗄️ Database Strategy</div>
+                    SQL, NoSQL, or Hybrid approaches
+                </div>
+                <div class="feature">
+                    <div class="feature-title">🧪 Testing Strategy</div>
+                    Manual, Automated, or Critical-focused
+                </div>
+                <div class="feature">
+                    <div class="feature-title">🔒 Security Level</div>
+                    Basic, Advanced, or Military-grade
+                </div>
+                <div class="feature">
+                    <div class="feature-title">🎨 UI/UX Design</div>
+                    Functional, Professional, or Innovative
+                </div>
+                <div class="feature">
+                    <div class="feature-title">📊 ISO 25010 Metrics</div>
+                    Real-time quality measurements
+                </div>
+            </div>
+            
+            <br>
+            <strong>📚 Educational Standards:</strong> ISO 25010 (Software Quality), ISO 29148 (Requirements Engineering), ISO 9241 (Human-System Interaction)
+        </div>
+    </div>
+</body>
+</html>

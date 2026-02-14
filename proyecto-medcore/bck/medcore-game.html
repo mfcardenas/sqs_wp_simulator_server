@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏥 MedCore Hospital System - Simulador de Proyecto ISO</title>
+    <meta name="description" content="Lidera el desarrollo del Sistema de Gestión Hospitalaria aplicando estándares ISO en cada fase del proyecto">
+    <link rel="stylesheet" href="medcore-styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏥</text></svg>">
+</head>
+<body>
+    <!-- Tutorial de Introducción al Proyecto -->
+    <div id="project-intro" class="intro-overlay">
+        <div class="intro-container">
+            <div class="hospital-header">
+                <div class="hospital-logo">🏥</div>
+                <div class="hospital-info">
+                    <h1>Hospital San Rafael</h1>
+                    <p class="hospital-subtitle">Centro Médico de Alta Especialidad</p>
+                </div>
+            </div>
+            
+            <div class="project-brief">
+                <div class="brief-header">
+                    <h2>📋 Briefing del Proyecto</h2>
+                    <div class="urgency-badge">🚨 ALTA PRIORIDAD</div>
+                </div>
+                
+                <div class="brief-content">
+                    <div class="project-overview">
+                        <h3>🎯 Proyecto: MedCore Hospital System</h3>
+                        <p class="project-description">
+                            El Hospital San Rafael necesita <strong>modernizar completamente</strong> su sistema de gestión hospitalaria. 
+                            Como <em>Líder Técnico del Proyecto</em>, deberás dirigir el desarrollo de una solución integral que integre:
+                            gestión de pacientes, historiales médicos, farmacia, laboratorio, facturación y recursos humanos.
+                        </p>
+                    </div>
+                    
+                    <div class="project-constraints">
+                        <h3>📊 Restricciones del Proyecto</h3>
+                        <div class="constraints-grid">
+                            <div class="constraint-item">
+                                <div class="constraint-icon">💰</div>
+                                <div class="constraint-info">
+                                    <strong>Presupuesto</strong>
+                                    <span class="constraint-value">€2.5 Millones</span>
+                                </div>
+                            </div>
+                            <div class="constraint-item">
+                                <div class="constraint-icon">⏰</div>
+                                <div class="constraint-info">
+                                    <strong>Plazo</strong>
+                                    <span class="constraint-value">18 Meses</span>
+                                </div>
+                            </div>
+                            <div class="constraint-item">
+                                <div class="constraint-icon">👥</div>
+                                <div class="constraint-info">
+                                    <strong>Usuarios</strong>
+                                    <span class="constraint-value">2,500 empleados</span>
+                                </div>
+                            </div>
+                            <div class="constraint-item">
+                                <div class="constraint-icon">🏥</div>
+                                <div class="constraint-info">
+                                    <strong>Departamentos</strong>
+                                    <span class="constraint-value">15 áreas críticas</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stakeholders-section">
+                        <h3>👥 Stakeholders Principales</h3>
+                        <div class="stakeholders-grid">
+                            <div class="stakeholder-card">
+                                <div class="stakeholder-avatar">👩‍⚕️</div>
+                                <div class="stakeholder-info">
+                                    <h4>Dra. María González</h4>
+                                    <p class="stakeholder-role">Directora Médica</p>
+                                    <div class="stakeholder-priority">Prioridad: Funcionalidad clínica</div>
+                                </div>
+                            </div>
+                            
+                            <div class="stakeholder-card">
+                                <div class="stakeholder-avatar">👨‍💼</div>
+                                <div class="stakeholder-info">
+                                    <h4>Ing. Carlos Méndez</h4>
+                                    <p class="stakeholder-role">CTO Hospital</p>
+                                    <div class="stakeholder-priority">Prioridad: Seguridad y rendimiento</div>
+                                </div>
+                            </div>
+                            
+                            <div class="stakeholder-card">
+                                <div class="stakeholder-avatar">👩‍💼</div>
+                                <div class="stakeholder-info">
+                                    <h4>Lic. Ana Ruiz</h4>
+                                    <p class="stakeholder-role">Directora Administrativa</p>
+                                    <div class="stakeholder-priority">Prioridad: Costos y eficiencia</div>
+                                </div>
+                            </div>
+                            
+                            <div class="stakeholder-card">
+                                <div class="stakeholder-avatar">👨‍⚕️</div>
+                                <div class="stakeholder-info">
+                                    <h4>Dr. Luis Torres</h4>
+                                    <p class="stakeholder-role">Jefe de Emergencias</p>
+                                    <div class="stakeholder-priority">Prioridad: Disponibilidad 24/7</div>
+                                </div>
+                            </div>
+                            
+                            <div class="stakeholder-card">
+                                <div class="stakeholder-avatar">👩‍💻</div>
+                                <div class="stakeholder-info">
+                                    <h4>Ing. Sofia Chen</h4>
+                                    <p class="stakeholder-role">Jefa de Sistemas</p>
+                                    <div class="stakeholder-priority">Prioridad: Integración y mantenimiento</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="challenge-section">
+                        <h3>⚡ El Desafío</h3>
+                        <div class="challenge-content">
+                            <p>
+                                Debes liderar este proyecto aplicando <strong>estándares ISO de calidad de software</strong> 
+                                en cada fase del desarrollo. Tus decisiones afectarán directamente:
+                            </p>
+                            <ul class="challenge-metrics">
+                                <li><strong>Calidad del Software:</strong> ISO 25010 - 8 características de calidad</li>
+                                <li><strong>Satisfacción de Stakeholders:</strong> Equilibrio entre necesidades diversas</li>
+                                <li><strong>Gestión de Recursos:</strong> Presupuesto y tiempo limitados</li>
+                                <li><strong>Cumplimiento Normativo:</strong> Regulaciones médicas y de privacidad</li>
+                            </ul>
+                            
+                            <div class="success-criteria">
+                                <h4>🏆 Criterios de Éxito</h4>
+                                <div class="criteria-list">
+                                    <div class="criteria-item">✅ Sistema funcionando al 100% en el plazo establecido</div>
+                                    <div class="criteria-item">✅ Presupuesto dentro del rango aprobado (±10%)</div>
+                                    <div class="criteria-item">✅ Satisfacción de stakeholders ≥ 85%</div>
+                                    <div class="criteria-item">✅ Cumplimiento total de estándares ISO aplicables</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="intro-actions">
+                    <button id="start-project" class="btn-start-project">
+                        🚀 Comenzar Proyecto MedCore
+                    </button>
+                    <button id="review-standards" class="btn-review-standards">
+                        📚 Revisar Estándares ISO
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interfaz Principal del Proyecto -->
+    <div id="project-interface" class="project-main" style="display: none;">
+        <!-- Header del Proyecto -->
+        <header class="project-header">
+            <div class="project-title">
+                <div class="project-icon">🏥</div>
+                <div class="project-info">
+                    <h1>MedCore Hospital System</h1>
+                    <p class="project-status" id="current-phase">Fase 1: Definición y Análisis</p>
+                </div>
+            </div>
+            
+            <div class="project-metrics">
+                <div class="metric-item">
+                    <div class="metric-label">Presupuesto</div>
+                    <div class="metric-value" id="budget-remaining">€2,500,000</div>
+                    <div class="metric-bar">
+                        <div class="metric-fill" id="budget-bar" style="width: 100%"></div>
+                    </div>
+                </div>
+                
+                <div class="metric-item">
+                    <div class="metric-label">Tiempo</div>
+                    <div class="metric-value" id="time-remaining">18 meses</div>
+                    <div class="metric-bar">
+                        <div class="metric-fill" id="time-bar" style="width: 100%"></div>
+                    </div>
+                </div>
+                
+                <div class="metric-item">
+                    <div class="metric-label">Progreso</div>
+                    <div class="metric-value" id="progress-percentage">0%</div>
+                    <div class="metric-bar">
+                        <div class="metric-fill" id="progress-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Principal -->
+        <div class="dashboard-container">
+            <!-- Panel Izquierdo: Información de la Fase Actual -->
+            <aside class="phase-panel">
+                <div class="phase-header">
+                    <h2 id="phase-title">Fase 1: Definición y Análisis</h2>
+                    <div class="phase-icon" id="phase-icon">🔍</div>
+                </div>
+                
+                <div class="phase-description">
+                    <p id="phase-description">
+                        En esta fase inicial, debes entender completamente las necesidades del Hospital San Rafael 
+                        y definir los requisitos del sistema aplicando el estándar ISO 29148.
+                    </p>
+                </div>
+                
+                <div class="phase-objectives">
+                    <h3>🎯 Objetivos de la Fase</h3>
+                    <ul id="phase-objectives-list">
+                        <li>Entrevistar a todos los stakeholders principales</li>
+                        <li>Documentar requisitos funcionales y no funcionales</li>
+                        <li>Definir la arquitectura general del sistema</li>
+                        <li>Establecer métricas de calidad según ISO 25010</li>
+                    </ul>
+                </div>
+                
+                <div class="iso-standards">
+                    <h3>📋 Estándares ISO Aplicables</h3>
+                    <div class="standards-list" id="current-standards">
+                        <div class="standard-item">
+                            <strong>ISO 29148</strong>
+                            <span>Ingeniería de Requisitos</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Panel Central: Contenido Dinámico -->
+            <main class="content-panel" id="main-content">
+                <!-- El contenido se carga dinámicamente según la fase -->
+                <div class="loading-state">
+                    <div class="loading-spinner">⚙️</div>
+                    <p>Cargando fase del proyecto...</p>
+                </div>
+            </main>
+
+            <!-- Panel Derecho: Dashboard de Métricas -->
+            <aside class="metrics-panel">
+                <div class="metrics-header">
+                    <h2>📊 Dashboard de Calidad</h2>
+                    <div class="metrics-subtitle">ISO 25010 - Características de Calidad</div>
+                </div>
+                
+                <div class="quality-metrics" id="quality-dashboard">
+                    <!-- Las métricas se cargan dinámicamente -->
+                </div>
+                
+                <div class="stakeholder-satisfaction">
+                    <h3>👥 Satisfacción de Stakeholders</h3>
+                    <div class="satisfaction-grid" id="stakeholder-satisfaction">
+                        <!-- La satisfacción se carga dinámicamente -->
+                    </div>
+                </div>
+                
+                <div class="project-alerts">
+                    <h3>🚨 Alertas del Proyecto</h3>
+                    <div class="alerts-list" id="project-alerts">
+                        <div class="alert-item success">
+                            <span class="alert-icon">✅</span>
+                            <span class="alert-text">Proyecto iniciado exitosamente</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Panel de Acciones Rápidas -->
+        <div class="quick-actions">
+            <button class="action-btn" id="save-progress">
+                💾 Guardar Progreso
+            </button>
+            <button class="action-btn" id="view-roadmap">
+                🗺️ Ver Roadmap
+            </button>
+            <button class="action-btn" id="emergency-meeting">
+                🆘 Reunión de Crisis
+            </button>
+            <button class="action-btn" id="quality-review">
+                🔍 Revisión de Calidad
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal de Estándares ISO -->
+    <div id="standards-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2>📚 Estándares ISO Aplicables</h2>
+                <button id="close-standards" class="modal-close">✕</button>
+            </div>
+            <div class="modal-content">
+                <!-- Contenido de estándares se carga dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts del juego -->
+    <script src="medcore-engine.js"></script>
+    <script src="medcore-phases.js"></script>
+    <script src="medcore-events.js"></script>
+    <script src="medcore-dashboard.js"></script>
+    <script src="medcore-standards.js"></script>
+    <script src="validation-script.js"></script>
+    
+    <script>
+        // Estado del juego simplificado
+        let gameState = {
+            currentPhase: 1,
+            totalPhases: 5,
+            progress: 0,
+            budget: 2500000,
+            timeRemaining: 18,
+            decisionsCount: 0,
+            metrics: {
+                functionality: 65,
+                usability: 60,
+                reliability: 70,
+                security: 65,
+                performance: 60
+            }
+        };
+        
+        // Inicialización del juego
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🏥 Inicializando MedCore Hospital System...');
+            
+            // Event listeners básicos
+            document.getElementById('start-project')?.addEventListener('click', startProject);
+            document.getElementById('review-standards')?.addEventListener('click', showStandardsModal);
+            document.getElementById('close-standards')?.addEventListener('click', hideStandardsModal);
+            
+            // Event listeners para acciones rápidas
+            document.getElementById('save-progress')?.addEventListener('click', saveProgress);
+            document.getElementById('view-roadmap')?.addEventListener('click', showRoadmap);
+            document.getElementById('emergency-meeting')?.addEventListener('click', emergencyMeeting);
+            document.getElementById('quality-review')?.addEventListener('click', qualityReview);
+            
+            console.log('✅ Sistema inicializado correctamente');
+        });
+        
+        function startProject() {
+            console.log('🚀 Iniciando proyecto MedCore...');
+            
+            // Ocultar introducción y mostrar interfaz principal
+            document.getElementById('project-intro').style.display = 'none';
+            document.getElementById('project-interface').style.display = 'block';
+            
+            // Cargar contenido de la primera fase
+            loadPhaseContent();
+            updateDashboard();
+            showAlert('¡Proyecto MedCore iniciado exitosamente!', 'success');
+        }
+        
+        function loadPhaseContent() {
+            const mainContent = document.getElementById('main-content');
+            if (!mainContent) return;
+            
+            const phases = {
+                1: {
+                    title: 'Análisis y Definición de Requisitos',
+                    description: 'En esta primera fase, nos enfocamos en comprender las necesidades del Hospital San Rafael y definir los requisitos del sistema.',
+                    objectives: [
+                        'Análisis de procesos hospitalarios actuales',
+                        'Identificación de stakeholders clave',
+                        'Definición de requisitos funcionales y no funcionales',
+                        'Aplicación de estándares ISO 29148 e ISO 25010'
+                    ]
+                },
+                2: {
+                    title: 'Diseño y Arquitectura del Sistema',
+                    description: 'Diseñamos la arquitectura técnica y funcional del sistema MedCore.',
+                    objectives: [
+                        'Diseño de arquitectura del sistema',
+                        'Definición de interfaces de usuario',
+                        'Planificación de integración con sistemas existentes',
+                        'Aplicación de estándares ISO 12207 e ISO 9241'
+                    ]
+                },
+                3: {
+                    title: 'Desarrollo e Implementación',
+                    description: 'Fase de desarrollo activo del sistema siguiendo las especificaciones.',
+                    objectives: [
+                        'Desarrollo de módulos principales',
+                        'Implementación de medidas de seguridad',
+                        'Desarrollo de interfaces de usuario',
+                        'Aplicación de estándares ISO 25010 e ISO 90003'
+                    ]
+                }
+            };
+            
+            const currentPhaseData = phases[gameState.currentPhase] || phases[1];
+            
+            mainContent.innerHTML = `
+                <div class="phase-header">
+                    <h2>🏥 Proyecto MedCore - Fase ${gameState.currentPhase}</h2>
+                    <p class="phase-subtitle">${currentPhaseData.title}</p>
+                    <div class="phase-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${gameState.progress}%"></div>
+                        </div>
+                        <span class="progress-text">${gameState.progress}% Completado</span>
+                    </div>
+                </div>
+                
+                <div class="phase-content">
+                    <div class="content-section">
+                        <h3>📋 Descripción de la Fase</h3>
+                        <p>${currentPhaseData.description}</p>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>🎯 Objetivos Principales</h3>
+                        <ul>
+                            ${currentPhaseData.objectives.map(obj => `<li>${obj}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>🤔 Decisiones Disponibles</h3>
+                        <div class="basic-decisions">
+                            <button class="decision-btn" onclick="makeDecision('requirements')">
+                                📝 Gestión de Requisitos
+                            </button>
+                            <button class="decision-btn" onclick="makeDecision('stakeholders')">
+                                👥 Gestión de Stakeholders
+                            </button>
+                            <button class="decision-btn" onclick="makeDecision('quality')">
+                                📊 Mejora de Calidad
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="phase-actions">
+                        <button class="action-btn primary" onclick="completeTask()">
+                            ✅ Completar Tarea
+                        </button>
+                        <button class="action-btn secondary" onclick="showStandardsModal()">
+                            📖 Ver Estándares ISO
+                        </button>
+                        <button class="action-btn info" onclick="consultTeam()">
+                            👥 Consultar Equipo
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function makeDecision(type) {
+            console.log('🎯 Decisión tomada:', type);
+            
+            let impact = {};
+            let message = '';
+            
+            switch(type) {
+                case 'requirements':
+                    impact = { functionality: 10, budget: -50000, progress: 15 };
+                    message = '📝 Estrategia de requisitos implementada según ISO 29148';
+                    break;
+                case 'stakeholders':
+                    impact = { usability: 15, budget: -20000, progress: 12 };
+                    message = '👥 Plan de comunicación con stakeholders establecido';
+                    break;
+                case 'quality':
+                    impact = { reliability: 12, security: 8, budget: -30000, progress: 18 };
+                    message = '📊 Medidas de calidad implementadas según ISO 25010';
+                    break;
+            }
+            
+            // Aplicar impactos
+            Object.entries(impact).forEach(([key, value]) => {
+                if (key === 'budget') {
+                    gameState.budget += value;
+                } else if (key === 'progress') {
+                    gameState.progress = Math.min(100, gameState.progress + value);
+                } else if (gameState.metrics[key]) {
+                    gameState.metrics[key] = Math.min(100, gameState.metrics[key] + value);
+                }
+            });
+            
+            gameState.decisionsCount++;
+            
+            // Verificar si la fase se completó
+            if (gameState.progress >= 100) {
+                gameState.progress = 100;
+                setTimeout(() => {
+                    advancePhase();
+                }, 2000);
+            }
+            
+            updateDashboard();
+            loadPhaseContent();
+            showAlert(message, 'success');
+        }
+        
+        function completeTask() {
+            gameState.progress = Math.min(100, gameState.progress + 20);
+            gameState.metrics.functionality = Math.min(100, gameState.metrics.functionality + 5);
+            gameState.metrics.usability = Math.min(100, gameState.metrics.usability + 5);
+            
+            if (gameState.progress >= 100) {
+                setTimeout(() => {
+                    advancePhase();
+                }, 2000);
+            }
+            
+            updateDashboard();
+            loadPhaseContent();
+            showAlert('✅ Tarea completada exitosamente', 'success');
+        }
+        
+        function advancePhase() {
+            if (gameState.currentPhase < gameState.totalPhases) {
+                gameState.currentPhase++;
+                gameState.progress = 0;
+                gameState.timeRemaining -= 3; // Reducir tiempo
+                
+                loadPhaseContent();
+                updateDashboard();
+                showAlert(`🎉 ¡Fase ${gameState.currentPhase-1} completada! Avanzando a la Fase ${gameState.currentPhase}`, 'success');
+            } else {
+                showProjectCompleted();
+            }
+        }
+        
+        function showProjectCompleted() {
+            const finalScore = Math.round(Object.values(gameState.metrics).reduce((a, b) => a + b, 0) / Object.keys(gameState.metrics).length);
+            
+            const mainContent = document.getElementById('main-content');
+            if (mainContent) {
+                mainContent.innerHTML = `
+                    <div class="completion-screen">
+                        <h1>🏆 ¡Proyecto MedCore Completado!</h1>
+                        <h2>Hospital San Rafael</h2>
+                        <div class="final-stats">
+                            <p><strong>Puntuación Final:</strong> ${finalScore}/100</p>
+                            <p><strong>Presupuesto Final:</strong> €${gameState.budget.toLocaleString()}</p>
+                            <p><strong>Decisiones Tomadas:</strong> ${gameState.decisionsCount}</p>
+                            <p><strong>Evaluación:</strong> ${finalScore >= 85 ? 'Excelente 🏆' : finalScore >= 70 ? 'Bueno 👍' : 'Aceptable ✅'}</p>
+                        </div>
+                        <button class="action-btn primary" onclick="location.reload()">🔄 Nuevo Proyecto</button>
+                    </div>
+                `;
+            }
+        }
+        
+        function updateDashboard() {
+            // Actualizar métricas de calidad
+            const qualityDashboard = document.getElementById('quality-dashboard');
+            if (qualityDashboard) {
+                qualityDashboard.innerHTML = Object.entries(gameState.metrics).map(([key, value]) => `
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span class="metric-name">${key.charAt(0).toUpperCase() + key.slice(1)}</span>
+                            <span class="metric-score">${Math.round(value)}</span>
+                        </div>
+                        <div class="metric-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${Math.min(value, 100)}%"></div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            // Actualizar información del proyecto
+            const projectInfo = document.getElementById('project-info');
+            if (projectInfo) {
+                projectInfo.innerHTML = `
+                    <div class="info-item">
+                        <span class="info-label">Fase:</span>
+                        <span class="info-value">${gameState.currentPhase} de ${gameState.totalPhases}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Presupuesto:</span>
+                        <span class="info-value">€${gameState.budget.toLocaleString()}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Tiempo:</span>
+                        <span class="info-value">${gameState.timeRemaining} meses</span>
+                    </div>
+                `;
+            }
+        }
+        
+        function showStandardsModal() {
+            const modal = document.getElementById('standards-modal');
+            if (modal) {
+                modal.style.display = 'flex';
+                loadStandardsContent();
+            }
+        }
+        
+        function hideStandardsModal() {
+            const modal = document.getElementById('standards-modal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+        
+        function loadStandardsContent() {
+            const modalContent = document.querySelector('#standards-modal .modal-content');
+            if (modalContent) {
+                modalContent.innerHTML = `
+                    <h3>📚 Estándares ISO Aplicables</h3>
+                    <div class="standards-list">
+                        <div class="standard-item">
+                            <h4>ISO 29148 - Ingeniería de Requisitos</h4>
+                            <p>Define procesos para el manejo de requisitos a lo largo del ciclo de vida del desarrollo.</p>
+                        </div>
+                        <div class="standard-item">
+                            <h4>ISO 25010 - Características de Calidad</h4>
+                            <p>Especifica 8 características de calidad para sistemas y software.</p>
+                        </div>
+                        <div class="standard-item">
+                            <h4>ISO 12207 - Procesos del Ciclo de Vida</h4>
+                            <p>Establece un marco común para los procesos del ciclo de vida del software.</p>
+                        </div>
+                        <div class="standard-item">
+                            <h4>ISO 9241 - Ergonomía de la Interacción</h4>
+                            <p>Principios y directrices para el diseño de interfaces de usuario ergonómicas.</p>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+        
+        function consultTeam() {
+            showAlert('👥 Consultando con el equipo médico y técnico del hospital', 'info');
+        }
+        
+        function saveProgress() {
+            localStorage.setItem('medcore_game_state', JSON.stringify(gameState));
+            showAlert('💾 Progreso guardado exitosamente', 'success');
+        }
+        
+        function showRoadmap() {
+            showAlert('🗺️ Revisando roadmap del proyecto y próximos hitos', 'info');
+        }
+        
+        function emergencyMeeting() {
+            showAlert('🚨 Convocando reunión de emergencia con stakeholders clave', 'info');
+        }
+        
+        function qualityReview() {
+            showAlert('🔍 Iniciando revisión de calidad según estándares ISO', 'info');
+        }
+        
+        function showAlert(message, type = 'info') {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = 'game-alert';
+            alertDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 15px 20px;
+                border-radius: 8px;
+                color: white;
+                font-weight: 500;
+                z-index: 1000;
+                max-width: 350px;
+                animation: slideInAlert 0.3s ease;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            `;
+            
+            if (type === 'success') {
+                alertDiv.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+            } else if (type === 'error') {
+                alertDiv.style.background = 'linear-gradient(135deg, #dc3545, #c82333)';
+            } else {
+                alertDiv.style.background = 'linear-gradient(135deg, #17a2b8, #138496)';
+            }
+            
+            alertDiv.textContent = message;
+            document.body.appendChild(alertDiv);
+            
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 4000);
+        }
+        
+        // Cargar progreso guardado
+        window.addEventListener('load', () => {
+            const saved = localStorage.getItem('medcore_game_state');
+            if (saved) {
+                try {
+                    const savedState = JSON.parse(saved);
+                    gameState = { ...gameState, ...savedState };
+                    console.log('💾 Progreso anterior cargado');
+                } catch (error) {
+                    console.warn('⚠️ Error cargando progreso guardado');
+                }
+            }
+        });
+        
+        console.log('✅ MedCore Hospital System cargado correctamente');
+        
+        function showStandardsModal() {
+            document.getElementById('standards-modal').style.display = 'flex';
+            // Cargar contenido de estándares
+            loadStandardsContent();
+        }
+        
+        function hideStandardsModal() {
+            document.getElementById('standards-modal').style.display = 'none';
+        }
+
+        function loadStandardsContent() {
+            const standardsContent = document.getElementById('standards-content');
+            if (standardsContent) {
+                standardsContent.innerHTML = `
+                    <h3>📚 Estándares ISO Aplicables</h3>
+                    <div class="standard-item">
+                        <h4>ISO 29148 - Ingeniería de Requisitos</h4>
+                        <p>Principios y procesos para la gestión de requisitos del sistema.</p>
+                    </div>
+                    <div class="standard-item">
+                        <h4>ISO 25010 - Calidad del Software</h4>
+                        <p>Modelo de calidad que define 8 características principales.</p>
+                    </div>
+                    <div class="standard-item">
+                        <h4>ISO 12207 - Procesos de Ciclo de Vida</h4>
+                        <p>Procesos estándar para el desarrollo de sistemas de software.</p>
+                    </div>
+                    <div class="standard-item">
+                        <h4>ISO 9241 - Ergonomía e Interacción</h4>
+                        <p>Principios de diseño centrado en el usuario y usabilidad.</p>
+                    </div>
+                `;
+            }
+        }
+
+        function consultTeam() {
+            showAlert('👥 Consultando con el equipo médico especializado', 'info');
+        }
+
+        function saveProgress() {
+            localStorage.setItem('medcore_game_state', JSON.stringify(gameState));
+            showAlert('💾 Progreso guardado exitosamente', 'success');
+        }
+
+        function showRoadmap() {
+            showAlert('🗺️ Mostrando roadmap del proyecto MedCore', 'info');
+        }
+
+        function emergencyMeeting() {
+            showAlert('🚨 Convocando reunión de emergencia con stakeholders clave', 'info');
+        }
+        
+        function qualityReview() {
+            showAlert('🔍 Iniciando revisión de calidad según estándares ISO', 'info');
+        }
+
+        // Cargar progreso guardado
+        window.addEventListener('load', () => {
+            const saved = localStorage.getItem('medcore_game_state');
+            if (saved) {
+                try {
+                    const savedState = JSON.parse(saved);
+                    gameState = { ...gameState, ...savedState };
+                    console.log('💾 Progreso anterior cargado');
+                } catch (error) {
+                    console.warn('⚠️ Error cargando progreso guardado');
+                }
+            }
+        });
+
+        console.log('✅ MedCore Hospital System cargado correctamente');
+    </script>
+</body>
+</html>

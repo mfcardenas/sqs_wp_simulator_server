@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Laboratorio ISO Game</title>
+    <link rel="stylesheet" href="game-styles.css">
+</head>
+<body>
+    <div class="game-main-container">
+        <div class="player-hud">
+            <div class="player-stats">
+                <div class="stat-item">
+                    <span class="stat-icon">⭐</span>
+                    <div>
+                        <div class="stat-label">Puntuación</div>
+                        <div class="stat-value">150</div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">🎯</span>
+                    <div>
+                        <div class="stat-label">Nivel</div>
+                        <div class="stat-value">2</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scenario-selection">
+            <h2>Selecciona tu Escenario</h2>
+            <div class="scenarios-grid">
+                <div class="scenario-card">
+                    <div class="scenario-header">
+                        <span class="scenario-icon">🛍️</span>
+                        <h3>E-commerce Platform</h3>
+                        <span class="difficulty fácil">Fácil</span>
+                    </div>
+                    <p class="scenario-desc">Desarrolla una plataforma de comercio electrónico escalable aplicando estándares ISO.</p>
+                    <button class="scenario-btn">Comenzar Escenario</button>
+                </div>
+                
+                <div class="scenario-card selected">
+                    <div class="scenario-header">
+                        <span class="scenario-icon">🏥</span>
+                        <h3>Sistema Hospitalario</h3>
+                        <span class="difficulty intermedio">Intermedio</span>
+                    </div>
+                    <p class="scenario-desc">Gestiona el desarrollo de un sistema crítico con estrictos requisitos de calidad.</p>
+                    <button class="scenario-btn">Comenzar Escenario</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="challenges-section">
+            <h2>Desafíos Disponibles</h2>
+            <div class="challenges-grid">
+                <div class="challenge-card">
+                    <h3>Quiz ISO 25010</h3>
+                    <p>Responde preguntas sobre las características de calidad del software.</p>
+                    <div class="challenge-meta">
+                        <span class="challenge-type">Quiz</span>
+                        <span class="time-limit">⏱️ 2 min</span>
+                    </div>
+                    <button class="challenge-btn">Comenzar Desafío</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

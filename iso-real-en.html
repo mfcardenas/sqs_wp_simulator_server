@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 ISO Laboratory - Technical Decisions Simulator</title>
+    <meta name="description"
+        content="Real educational simulator where technical decisions impact ISO 25010 software quality metrics">
+    <link rel="stylesheet" href="iso-real-styles-en.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f0f2f5;
+            min-height: 100vh;
+        }
+
+        /* Main container */
+        .game-container {
+            min-height: 100vh;
+            padding: 1rem;
+        }
+
+        /* Quick tutorial */
+        .tutorial-banner {
+            background: linear-gradient(135deg, #1565c0, #1976d2);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .tutorial-banner h1 {
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+        }
+
+        .tutorial-banner p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .tutorial-highlight {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .tutorial-highlight h2 {
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .tutorial-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .tutorial-point {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.75rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .tutorial-point strong {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Loading message */
+        .loading-message {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+
+        .loading-message h2 {
+            color: #1565c0;
+            margin-bottom: 1rem;
+        }
+
+        /* Game Interface will be populated by JavaScript */
+        #game-interface {
+            background: white;
+            border-radius: 12px;
+            min-height: 400px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="game-container">
+        <!-- Introduction Banner -->
+        <div class="tutorial-banner">
+            <h1>🎯 ISO Laboratory - Technical Decisions Simulator</h1>
+            <p>Make real architecture and development decisions that impact ISO 25010 software quality metrics</p>
+
+            <div class="tutorial-highlight">
+                <h2>🎮 Real Software Engineering Game</h2>
+                <div class="tutorial-points">
+                    <div class="tutorial-point">
+                        <strong>🏗️ Technical Decisions</strong>
+                        Architecture, Database, Testing, Security, UI/UX
+                    </div>
+                    <div class="tutorial-point">
+                        <strong>📊 ISO 25010 Metrics</strong>
+                        8 measurable quality characteristics in real-time
+                    </div>
+                    <div class="tutorial-point">
+                        <strong>💰 Resource Management</strong>
+                        Limited budget and time like in real projects
+                    </div>
+                    <div class="tutorial-point">
+                        <strong>⚡ Random Events</strong>
+                        Requirement changes, vulnerabilities, staff turnover
+                    </div>
+                    <div class="tutorial-point">
+                        <strong>🎯 Specific Objectives</strong>
+                        Each project has concrete ISO goals to meet
+                    </div>
+                    <div class="tutorial-point">
+                        <strong>🏆 Real Assessment</strong>
+                        Success/failure based on ISO standards compliance
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Game Area -->
+        <div id="game-interface">
+            <div class="loading-message">
+                <h2>🔄 Initializing ISO Simulator...</h2>
+                <p>Loading technical decisions engine and quality metrics</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Scripts -->
+    <script src="persistence.js"></script>
+    <script src="iso-real-game-en.js"></script>
+    <script src="iso-quiz-module-en.js"></script>
+    <script>
+        // Game initialization when page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('🎯 Starting ISO Laboratory - Real Simulator');
+
+            // Check if game engine is available
+            if (typeof isoGame !== 'undefined') {
+                // Small pause to show loading message
+                setTimeout(() => {
+                    const gameInterface = document.getElementById('game-interface');
+                    if (gameInterface) {
+                        // Load project selection menu
+                        gameInterface.innerHTML = isoGame.createProjectMenu();
+                        console.log('✅ Game loaded successfully');
+
+                        // Show success message in console
+                        console.log('🎮 ISO LABORATORY - SIMULATOR ACTIVE');
+                        console.log('📚 Implemented standards: ISO 25010, ISO 29148, ISO 9241');
+                        console.log('🔧 Decision engine: Operational');
+                        console.log('📊 Metrics system: Functional');
+                        console.log('🎯 Ready to simulate real projects!');
+                    }
+                }, 1000);
+            } else {
+                // Loading error - show alternative message
+                const gameInterface = document.getElementById('game-interface');
+                if (gameInterface) {
+                    gameInterface.innerHTML = `
+                        <div style="text-align: center; padding: 3rem; color: #d32f2f;">
+                            <h2>❌ Loading Error</h2>
+                            <p>Could not load game engine. Please reload the page.</p>
+                            <button onclick="location.reload()" style="
+                                background: #1565c0; 
+                                color: white; 
+                                border: none; 
+                                padding: 1rem 2rem; 
+                                border-radius: 6px; 
+                                font-size: 1rem; 
+                                cursor: pointer; 
+                                margin-top: 1rem;
+                            ">🔄 Reload Page</button>
+                        </div>
+                    `;
+                }
+                console.error('❌ Error: Game engine not available');
+            }
+        });
+
+        // Helper function for debugging
+        window.debugGame = function () {
+            if (window.isoGame) {
+                console.log('🔍 Game state:', window.isoGame.gameState);
+                console.log('📊 Current metrics:', window.isoGame.gameState.metrics);
+                console.log('💰 Available resources:', window.isoGame.gameState.recursos);
+                console.log('📋 Decisions made:', window.isoGame.gameState.decisiones);
+            } else {
+                console.log('❌ Game not initialized');
+            }
+        };
+
+        // Welcome message for developers
+        console.log(`
+🎯 ISO LABORATORY - TECHNICAL DECISIONS SIMULATOR
+=================================================
+
+📚 EDUCATIONAL FEATURES:
+• Real ISO 25010 metrics implemented
+• Technical decisions with quantifiable impact  
+• Realistic resource management and constraints
+• Random events like in real projects
+• Objective evaluation based on ISO standards
+
+🔧 FOR DEVELOPERS:
+• Run debugGame() in console to see state
+• All decisions impact specific metrics
+• Objectives are based on real ISO standards
+• Scoring system evaluates regulatory compliance
+
+🎮 Experience how real technical decisions 
+   affect software quality according to ISO 25010!
+`);
+    </script>
+</body>
+
+</html>

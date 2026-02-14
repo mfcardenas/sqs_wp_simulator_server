@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 Laboratorio ISO - Juego Educativo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .tutorial-wizard {
+            background: white;
+            border-radius: 20px;
+            max-width: 800px;
+            width: 90%;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        
+        .wizard-title {
+            color: #1a365d;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .wizard-subtitle {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem;
+            display: inline-block;
+            width: 200px;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .start-btn {
+            background: #1a365d;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+        
+        .start-btn:hover {
+            background: #2b77ad;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .game-container {
+            display: none;
+            background: white;
+            border-radius: 20px;
+            max-width: 1200px;
+            width: 95%;
+            min-height: 600px;
+            padding: 2rem;
+        }
+        
+        .game-header {
+            background: #1a365d;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .hud-stats {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .scenario-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .scenario-card {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 16px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .scenario-card:hover {
+            border-color: #1a365d;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .scenario-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .scenario-icon {
+            font-size: 2rem;
+        }
+        
+        .scenario-title {
+            font-size: 1.3rem;
+            color: #1a365d;
+            margin: 0;
+        }
+        
+        .difficulty {
+            background: #28a745;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: auto;
+        }
+        
+        .difficulty.intermedio {
+            background: #ffc107;
+            color: #000;
+        }
+        
+        .difficulty.avanzado {
+            background: #dc3545;
+        }
+        
+        .scenario-desc {
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        
+        .play-btn {
+            width: 100%;
+            background: #1a365d;
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .play-btn:hover {
+            background: #2b77ad;
+        }
+        
+        .back-btn {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <!-- Tutorial -->
+    <div id="tutorial" class="tutorial-wizard">
+        <h1 class="wizard-title">🎯 Laboratorio ISO</h1>
+        <p class="wizard-subtitle">Aprende estándares ISO jugando</p>
+        
+        <div>
+            <div class="feature-card">
+                <div class="feature-icon">🎮</div>
+                <h3>Juego Interactivo</h3>
+                <p>Aprende jugando con decisiones reales</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🏆</div>
+                <h3>Sistema de Puntos</h3>
+                <p>Gana puntos y sube de nivel</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3>Estándares ISO</h3>
+                <p>25010, 29148, y 9241</p>
+            </div>
+        </div>
+        
+        <button class="start-btn" onclick="startGame()">🚀 Comenzar Juego</button>
+    </div>
+    
+    <!-- Juego Principal -->
+    <div id="game" class="game-container">
+        <div class="game-header">
+            <h1>🎯 Laboratorio ISO</h1>
+            <div class="hud-stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="score">0</div>
+                    <div class="stat-label">Puntos</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="level">1</div>
+                    <div class="stat-label">Nivel</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="achievements">0</div>
+                    <div class="stat-label">Logros</div>
+                </div>
+            </div>
+            <button class="back-btn" onclick="showTutorial()">← Volver</button>
+        </div>
+        
+        <h2 style="text-align: center; color: #1a365d; margin-bottom: 2rem;">Selecciona tu Escenario</h2>
+        
+        <div class="scenario-grid">
+            <div class="scenario-card" onclick="playScenario('ecommerce')">
+                <div class="scenario-header">
+                    <span class="scenario-icon">🛍️</span>
+                    <h3 class="scenario-title">E-commerce Platform</h3>
+                    <span class="difficulty fácil">Fácil</span>
+                </div>
+                <p class="scenario-desc">Desarrolla una plataforma de comercio electrónico escalable aplicando estándares ISO de usabilidad y calidad.</p>
+                <button class="play-btn">Jugar Ahora</button>
+            </div>
+            
+            <div class="scenario-card" onclick="playScenario('hospital')">
+                <div class="scenario-header">
+                    <span class="scenario-icon">🏥</span>
+                    <h3 class="scenario-title">Sistema Hospitalario</h3>
+                    <span class="difficulty intermedio">Intermedio</span>
+                </div>
+                <p class="scenario-desc">Gestiona el desarrollo de un sistema médico crítico con estrictos requisitos de seguridad y confiabilidad.</p>
+                <button class="play-btn">Jugar Ahora</button>
+            </div>
+            
+            <div class="scenario-card" onclick="playScenario('finance')">
+                <div class="scenario-header">
+                    <span class="scenario-icon">📊</span>
+                    <h3 class="scenario-title">Análisis Financiero</h3>
+                    <span class="difficulty avanzado">Avanzado</span>
+                </div>
+                <p class="scenario-desc">Desarrolla un sistema de trading de alta frecuencia con requisitos extremos de performance y precisión.</p>
+                <button class="play-btn">Jugar Ahora</button>
+            </div>
+            
+            <div class="scenario-card" onclick="playScenario('social')">
+                <div class="scenario-header">
+                    <span class="scenario-icon">📱</span>
+                    <h3 class="scenario-title">App Móvil Social</h3>
+                    <span class="difficulty intermedio">Intermedio</span>
+                </div>
+                <p class="scenario-desc">Crea una aplicación social competitiva con enfoque en experiencia de usuario y escalabilidad masiva.</p>
+                <button class="play-btn">Jugar Ahora</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Estado del jugador
+        let playerData = {
+            score: 0,
+            level: 1,
+            achievements: 0,
+            completedScenarios: []
+        };
+
+        // Función para iniciar el juego
+        function startGame() {
+            document.getElementById('tutorial').style.display = 'none';
+            document.getElementById('game').style.display = 'block';
+            updateHUD();
+        }
+
+        // Función para volver al tutorial
+        function showTutorial() {
+            document.getElementById('game').style.display = 'none';
+            document.getElementById('tutorial').style.display = 'flex';
+        }
+
+        // Función para jugar un escenario
+        function playScenario(scenarioId) {
+            // Simular ganancia de puntos
+            playerData.score += 50;
+            playerData.achievements++;
+            
+            if (playerData.score >= playerData.level * 100) {
+                playerData.level++;
+                showLevelUpNotification();
+            }
+            
+            updateHUD();
+            
+            // Simular completación
+            alert(`¡Excelente! Has completado el escenario ${scenarioId}. +50 puntos ganados!`);
+        }
+
+        // Actualizar HUD
+        function updateHUD() {
+            document.getElementById('score').textContent = playerData.score;
+            document.getElementById('level').textContent = playerData.level;
+            document.getElementById('achievements').textContent = playerData.achievements;
+        }
+
+        // Notificación de subida de nivel
+        function showLevelUpNotification() {
+            setTimeout(() => {
+                alert(`🎉 ¡Felicidades! Has subido al nivel ${playerData.level}!`);
+            }, 500);
+        }
+
+        // Cargar datos guardados
+        function loadGame() {
+            const saved = localStorage.getItem('iso-lab-progress');
+            if (saved) {
+                playerData = JSON.parse(saved);
+                updateHUD();
+            }
+        }
+
+        // Guardar progreso
+        function saveGame() {
+            localStorage.setItem('iso-lab-progress', JSON.stringify(playerData));
+        }
+
+        // Auto-guardar cada 30 segundos
+        setInterval(saveGame, 30000);
+
+        // Cargar juego al iniciar
+        window.addEventListener('load', loadGame);
+        
+        // Mensaje de bienvenida
+        console.log('🎯 Laboratorio ISO cargado correctamente!');
+        console.log('Sistema de juego: ✅ Activo');
+        console.log('Estándares ISO: ✅ 25010, 29148, 9241');
+        console.log('¡Disfruta aprendiendo!');
+    </script>
+</body>
+</html>

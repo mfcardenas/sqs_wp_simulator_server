@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 Laboratorio ISO - Exploración Interactiva de Estándares</title>
+    <meta name="description" content="Herramienta educativa interactiva para explorar los estándares ISO/IEC 25010, ISO/IEC/IEEE 29148 e ISO 9241">
+    <meta name="keywords" content="ISO 25010, ISO 29148, ISO 9241, calidad software, usabilidad, requisitos">
+    <meta name="author" content="Laboratorio ISO">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="wizard.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>">
+</head>
+<body>
+    <!-- Tutorial Wizard -->
+    <div id="tutorial-wizard" class="tutorial-wizard">
+        <div class="wizard-backdrop"></div>
+        <div class="wizard-container">
+            <div class="wizard-header">
+                <h1 class="wizard-title">🎯 Laboratorio ISO Interactivo</h1>
+                <p class="wizard-subtitle">Tu herramienta educativa para dominar los estándares de calidad de software</p>
+            </div>
+            
+            <div class="wizard-content">
+                <div class="wizard-step active" data-step="1">
+                    <div class="step-icon">🚀</div>
+                    <h2>¡Bienvenido al Laboratorio ISO!</h2>
+                    <p>Esta aplicación te permitirá explorar y aplicar los principales estándares de calidad de software:</p>
+                    <div class="standards-grid">
+                        <div class="standard-item">
+                            <span class="standard-icon">📊</span>
+                            <div>
+                                <strong>ISO 25010</strong>
+                                <p>Modelo de calidad del producto</p>
+                            </div>
+                        </div>
+                        <div class="standard-item">
+                            <span class="standard-icon">📋</span>
+                            <div>
+                                <strong>ISO 29148</strong>
+                                <p>Ingeniería de requisitos</p>
+                            </div>
+                        </div>
+                        <div class="standard-item">
+                            <span class="standard-icon">🎨</span>
+                            <div>
+                                <strong>ISO 9241</strong>
+                                <p>Principios de usabilidad</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wizard-step" data-step="2">
+                    <div class="step-icon">🎮</div>
+                    <h2>¿Cómo Funciona?</h2>
+                    <p>La aplicación simula escenarios reales de desarrollo de software donde deberás:</p>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <span class="feature-icon">🔍</span>
+                            <div>
+                                <strong>Analizar Escenarios</strong>
+                                <p>Explora casos de estudio de proyectos reales con diferentes niveles de complejidad</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">⚖️</span>
+                            <div>
+                                <strong>Evaluar Calidad</strong>
+                                <p>Ajusta características de calidad y observa su impacto en métricas del proyecto</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🔧</span>
+                            <div>
+                                <strong>Construir Requisitos</strong>
+                                <p>Usa componentes drag-and-drop para crear requisitos bien formados</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">👥</span>
+                            <div>
+                                <strong>Aplicar Principios UX</strong>
+                                <p>Implementa heurísticas de Nielsen en interfaces interactivas</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wizard-step" data-step="3">
+                    <div class="step-icon">🗺️</div>
+                    <h2>Navegación de la Aplicación</h2>
+                    <div class="navigation-guide">
+                        <div class="nav-section">
+                            <div class="nav-item-demo ecosistema">
+                                <span class="nav-icon">🌐</span>
+                                <span class="nav-text">Ecosistema</span>
+                            </div>
+                            <p>Explora escenarios de desarrollo con stakeholders, tecnologías y métricas dinámicas</p>
+                        </div>
+                        <div class="nav-section">
+                            <div class="nav-item-demo calidad">
+                                <span class="nav-icon">📊</span>
+                                <span class="nav-text">Calidad</span>
+                            </div>
+                            <p>Ajusta características de ISO 25010 y visualiza impactos en radar charts interactivos</p>
+                        </div>
+                        <div class="nav-section">
+                            <div class="nav-item-demo requisitos">
+                                <span class="nav-icon">📋</span>
+                                <span class="nav-text">Requisitos</span>
+                            </div>
+                            <p>Construye y analiza requisitos usando técnicas de ISO 29148</p>
+                        </div>
+                        <div class="nav-section">
+                            <div class="nav-item-demo usabilidad">
+                                <span class="nav-icon">🎨</span>
+                                <span class="nav-text">Usabilidad</span>
+                            </div>
+                            <p>Practica principios de Nielsen con simuladores de interfaz interactivos</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wizard-step" data-step="4">
+                    <div class="step-icon">⌨️</div>
+                    <h2>Atajos y Funcionalidades</h2>
+                    <div class="shortcuts-grid">
+                        <div class="shortcut-category">
+                            <h4>🔥 Atajos de Teclado</h4>
+                            <div class="shortcut-list">
+                                <div><kbd>Ctrl</kbd> + <kbd>1-4</kbd> <span>Cambiar entre secciones</span></div>
+                                <div><kbd>Ctrl</kbd> + <kbd>S</kbd> <span>Guardar progreso</span></div>
+                                <div><kbd>Ctrl</kbd> + <kbd>R</kbd> <span>Reiniciar vista actual</span></div>
+                                <div><kbd>ESC</kbd> <span>Cerrar modales</span></div>
+                            </div>
+                        </div>
+                        <div class="shortcut-category">
+                            <h4>💡 Funciones Interactivas</h4>
+                            <div class="feature-list">
+                                <div>🖱️ <span>Click en métricas para detalles</span></div>
+                                <div>👥 <span>Click en stakeholders para info</span></div>
+                                <div>🛠️ <span>Click en tecnologías para specs</span></div>
+                                <div>📊 <span>Arrastra sliders para ajustes</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wizard-step" data-step="5">
+                    <div class="step-icon">🎯</div>
+                    <h2>Objetivos de Aprendizaje</h2>
+                    <div class="learning-objectives">
+                        <div class="objective-item">
+                            <span class="objective-number">1</span>
+                            <div>
+                                <strong>Comprender los Estándares ISO</strong>
+                                <p>Familiarizarte con los conceptos clave de calidad, requisitos y usabilidad</p>
+                            </div>
+                        </div>
+                        <div class="objective-item">
+                            <span class="objective-number">2</span>
+                            <div>
+                                <strong>Aplicar Conocimientos Prácticos</strong>
+                                <p>Usar herramientas interactivas para tomar decisiones de diseño informadas</p>
+                            </div>
+                        </div>
+                        <div class="objective-item">
+                            <span class="objective-number">3</span>
+                            <div>
+                                <strong>Evaluar Trade-offs</strong>
+                                <p>Entender cómo las decisiones técnicas impactan la calidad del software</p>
+                            </div>
+                        </div>
+                        <div class="objective-item">
+                            <span class="objective-number">4</span>
+                            <div>
+                                <strong>Desarrollar Criterio Técnico</strong>
+                                <p>Formar juicio para evaluar calidad en proyectos reales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wizard-navigation">
+                <button id="wizard-prev" class="wizard-btn secondary" disabled>⬅️ Anterior</button>
+                <div class="wizard-progress">
+                    <div class="progress-dots">
+                        <div class="dot active" data-step="1"></div>
+                        <div class="dot" data-step="2"></div>
+                        <div class="dot" data-step="3"></div>
+                        <div class="dot" data-step="4"></div>
+                        <div class="dot" data-step="5"></div>
+                    </div>
+                </div>
+                <button id="wizard-next" class="wizard-btn primary">Siguiente ➡️</button>
+                <button id="wizard-start" class="wizard-btn success" style="display: none;">🚀 ¡Comenzar!</button>
+            </div>
+
+            <div class="wizard-footer">
+                <label class="checkbox-container">
+                    <input type="checkbox" id="dont-show-again">
+                    <span class="checkmark"></span>
+                    No mostrar este tutorial nuevamente
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header con información contextual -->
+    <header class="app-header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1 class="app-title">
+                    <span class="title-icon">🎯</span>
+                    Laboratorio ISO
+                    <span class="title-version">v2.0</span>
+                </h1>
+                <p class="app-description">Herramienta interactiva para estándares de calidad de software</p>
+            </div>
+            <div class="header-actions">
+                <button class="header-btn" onclick="UIManager.showTutorial()" title="Ver tutorial">
+                    <span class="btn-icon">❓</span>
+                    <span class="btn-text">Ayuda</span>
+                </button>
+                <button class="header-btn" onclick="UIManager.showProgress()" title="Ver progreso">
+                    <span class="btn-icon">📊</span>
+                    <span class="btn-text">Progreso</span>
+                </button>
+                <button class="header-btn" onclick="UIManager.exportProgress()" title="Exportar progreso">
+                    <span class="btn-icon">💾</span>
+                    <span class="btn-text">Exportar</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-grid">
+        <!-- Panel de Navegación -->
+        <nav class="nav-panel">
+            <div class="nav-header">
+                <h1 class="nav-title">🎯 Laboratorio ISO</h1>
+                <p class="nav-subtitle">Exploración Interactiva de Estándares</p>
+                <div class="current-scenario-indicator">
+                    <span class="indicator-label">Escenario:</span>
+                    <span class="indicator-value" id="nav-current-scenario">E-commerce Platform</span>
+                </div>
+            </div>
+            
+            <div class="nav-list">
+                <button class="nav-item active" data-view="view-cycle" title="Visión general del ecosistema de desarrollo">
+                    <span class="nav-item-icon">🌐</span>
+                    <div class="nav-item-content">
+                        <span class="nav-item-title">Ecosistema de Desarrollo</span>
+                        <small class="nav-item-desc">Stakeholders, tecnologías y métricas</small>
+                    </div>
+                </button>
+                
+                <button class="nav-item" data-view="view-quality" title="ISO/IEC 25010 - Modelo de calidad del software">
+                    <span class="nav-item-icon">⭐</span>
+                    <div class="nav-item-content">
+                        <span class="nav-item-title">Calidad del Software</span>
+                        <small class="nav-item-desc">ISO 25010 - Características de calidad</small>
+                    </div>
+                </button>
+                
+                <button class="nav-item" data-view="view-requirements" title="ISO/IEC/IEEE 29148 - Ingeniería de requisitos">
+                    <span class="nav-item-icon">📋</span>
+                    <div class="nav-item-content">
+                        <span class="nav-item-title">Ingeniería de Requisitos</span>
+                        <small class="nav-item-desc">ISO 29148 - Constructor de requisitos</small>
+                    </div>
+                </button>
+                
+                <button class="nav-item" data-view="view-interaction" title="ISO 9241 - Ergonomía de sistemas interactivos">
+                    <span class="nav-item-icon">🎨</span>
+                    <div class="nav-item-content">
+                        <span class="nav-item-title">Usabilidad e Interacción</span>
+                        <small class="nav-item-desc">ISO 9241 - Heurísticas de Nielsen</small>
+                    </div>
+                </button>
+            </div>
+
+            <div class="nav-footer">
+                <div class="nav-stats">
+                    <div class="stat-item">
+                        <span class="stat-icon">📊</span>
+                        <div class="stat-info">
+                            <span class="stat-label">Progreso</span>
+                            <span class="stat-value" id="overall-progress">25%</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">⏱️</span>
+                        <div class="stat-info">
+                            <span class="stat-label">Tiempo</span>
+                            <span class="stat-value" id="session-time">5 min</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-actions">
+                    <button class="btn btn-secondary btn-small" onclick="saveCurrentState()" title="Guardar progreso actual (Ctrl+S)">
+                        💾 Guardar
+                    </button>
+                    </button>
+                    <button class="btn btn-secondary btn-small btn-reset" title="Reiniciar vista actual (Ctrl+R)">
+                        🔄 Reset
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Canvas Principal -->
+        <main class="main-canvas">
+            <!-- Barra de contexto dinámico -->
+            <div class="context-bar">
+                <div class="context-info">
+                    <span class="context-icon" id="current-context-icon">🌐</span>
+                    <div class="context-text">
+                        <span class="context-title" id="current-context-title">Ecosistema de Desarrollo</span>
+                        <span class="context-description" id="current-context-desc">Explora escenarios reales con stakeholders y tecnologías</span>
+                    </div>
+                </div>
+                <div class="context-actions">
+                    <div class="scenario-selector">
+                        <label for="scenario-select">Escenario actual:</label>
+                        <select id="scenario-select" onchange="UIManager.changeScenario(this.value)">
+                            <option value="0">🛒 E-commerce Platform</option>
+                            <option value="1">🏥 Sistema Hospitalario</option>
+                            <option value="2">💰 Análisis Financiero</option>
+                            <option value="3">📱 App Móvil Social</option>
+                        </select>
+                    </div>
+                    <button class="context-btn" onclick="UIManager.showScenarioComparison()" title="Comparar escenarios">
+                        <span>⚖️</span>
+                    </button>
+                </div>
+            </div>
+            <!-- Vista: Ecosistema de Desarrollo -->
+            <div id="view-cycle" class="view-content active">
+                <div class="canvas-header">
+                    <div>
+                        <h2 class="canvas-title">🔄 Ecosistema de Desarrollo</h2>
+                        <p class="canvas-subtitle">Explora diferentes contextos y escenarios de desarrollo de software</p>
+                    </div>
+                </div>
+
+                <div class="scenario-grid" id="scenarios-container">
+                    <!-- Escenarios se cargan dinámicamente -->
+                </div>
+
+                <div class="timeline-section">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">⏱️ Timeline del Proyecto</h3>
+                            <p class="card-subtitle">Fases típicas del desarrollo</p>
+                        </div>
+                        <div class="timeline-container">
+                            <div class="timeline-phase">
+                                <div class="phase-icon">🔍</div>
+                                <div class="phase-name">Análisis</div>
+                                <div class="phase-duration">2-4 sem</div>
+                            </div>
+                            <div class="timeline-phase">
+                                <div class="phase-icon">🎨</div>
+                                <div class="phase-name">Diseño</div>
+                                <div class="phase-duration">3-6 sem</div>
+                            </div>
+                            <div class="timeline-phase">
+                                <div class="phase-icon">⚡</div>
+                                <div class="phase-name">Desarrollo</div>
+                                <div class="phase-duration">8-16 sem</div>
+                            </div>
+                            <div class="timeline-phase">
+                                <div class="phase-icon">🧪</div>
+                                <div class="phase-name">Testing</div>
+                                <div class="phase-duration">2-4 sem</div>
+                            </div>
+                            <div class="timeline-phase">
+                                <div class="phase-icon">🚀</div>
+                                <div class="phase-name">Deploy</div>
+                                <div class="phase-duration">1-2 sem</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vista: Calidad del Software (ISO 25010) -->
+            <div id="view-quality" class="view-content">
+                <div class="canvas-header">
+                    <div>
+                        <h2 class="canvas-title">⭐ Calidad del Software</h2>
+                        <p class="canvas-subtitle">ISO/IEC 25010 - Modelo de características de calidad</p>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn btn-secondary" onclick="ViewManager.showQualityStandardInfo()">
+                            📖 Sobre ISO 25010
+                        </button>
+                        <button class="btn btn-secondary" onclick="ViewManager.resetQualityView()">
+                            🔄 Reiniciar
+                        </button>
+                    </div>
+                </div>
+
+                <div class="quality-overview">
+                    <div class="quality-intro">
+                        <h3>🎯 Objetivo de esta Sección</h3>
+                        <p>
+                            Explora las <strong>8 características principales</strong> de calidad de software según ISO 25010.
+                            Ajusta los valores y observa cómo impactan el perfil de calidad del proyecto actual.
+                        </p>
+                        <div class="quality-tips">
+                            <div class="tip-item">
+                                <span class="tip-icon">💡</span>
+                                <span>Mueve los sliders para ajustar características</span>
+                            </div>
+                            <div class="tip-item">
+                                <span class="tip-icon">📊</span>
+                                <span>El radar chart muestra el perfil de calidad</span>
+                            </div>
+                            <div class="tip-item">
+                                <span class="tip-icon">🔍</span>
+                                <span>Compara diferentes configuraciones</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quality-workspace">
+                    <div class="quality-controls-section">
+                        <h3>🎛️ Configuración de Características</h3>
+                        <div class="quality-controls" id="quality-controls">
+                            <!-- Controles de calidad se cargan dinámicamente -->
+                        </div>
+                    </div>
+
+                    <div class="quality-visualization">
+                        <div class="radar-canvas-container">
+                            <h3>📊 Perfil de Calidad del Escenario</h3>
+                            <canvas id="radarCanvas"></canvas>
+                            <div class="chart-legend">
+                                <div class="legend-item">
+                                    <div class="legend-color" style="background: rgba(54, 162, 235, 0.8);"></div>
+                                    <span>Perfil Actual</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color" style="background: rgba(255, 99, 132, 0.8);"></div>
+                                    <span>Perfil Ideal (Referencia)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quality-insights">
+                    <div class="insights-panel" id="quality-insights">
+                        <!-- Insights se cargan dinámicamente -->
+                    </div>
+                </div>
+
+                <div id="comparison-panel">
+                    <!-- Panel de comparación se carga dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Vista: Ingeniería de Requisitos (ISO 29148) -->
+            <div id="view-requirements" class="view-content">
+                <div class="canvas-header">
+                    <div>
+                        <h2 class="canvas-title">📋 Ingeniería de Requisitos</h2>
+                        <p class="canvas-subtitle">ISO/IEC/IEEE 29148 - Procesos del ciclo de vida para ingeniería de requisitos</p>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn btn-secondary" onclick="ViewManager.showRequirementsStandardInfo()">
+                            📖 Sobre ISO 29148
+                        </button>
+                        <button class="btn btn-primary" onclick="ViewManager.showRequirementsHelper()">
+                            🚀 Guía de Uso
+                        </button>
+                    </div>
+                </div>
+
+                <div class="requirements-overview">
+                    <div class="requirements-intro">
+                        <h3>🎯 Objetivo de esta Sección</h3>
+                        <p>
+                            Aprende a <strong>construir requisitos de calidad</strong> utilizando componentes predefinidos.
+                            Arrastra elementos, combínalos y analiza la calidad del requisito resultante.
+                        </p>
+                        <div class="requirements-workflow">
+                            <div class="workflow-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <strong>Explora</strong>
+                                    <p>Revisa ejemplos en la galería</p>
+                                </div>
+                            </div>
+                            <div class="workflow-arrow">➡️</div>
+                            <div class="workflow-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <strong>Construye</strong>
+                                    <p>Arrastra componentes al constructor</p>
+                                </div>
+                            </div>
+                            <div class="workflow-arrow">➡️</div>
+                            <div class="workflow-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <strong>Analiza</strong>
+                                    <p>Evalúa la calidad del requisito</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="requirements-workspace">
+                    <div class="requirements-section">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">📚 Galería de Requisitos</h3>
+                                <p class="card-subtitle">Ejemplos reales clasificados por tipo y calidad</p>
+                            </div>
+                            <div class="gallery-filters">
+                                <button class="filter-btn active" data-filter="all">Todos</button>
+                                <button class="filter-btn" data-filter="functional">Funcionales</button>
+                                <button class="filter-btn" data-filter="nonFunctional">No Funcionales</button>
+                                <button class="filter-btn" data-filter="user">Usuario</button>
+                            </div>
+                            <div class="requirements-gallery" id="requirements-gallery">
+                                <!-- Galería se carga dinámicamente -->
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div id="requirements-constructor">
+                    <!-- Constructor se carga dinámicamente -->
+                </div>
+
+                <div id="requirement-analysis">
+                    <!-- Análisis se muestra dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Vista: Usabilidad e Interacción (ISO 9241) -->
+            <div id="view-interaction" class="view-content">
+                <div class="canvas-header">
+                    <div>
+                        <h2 class="canvas-title">🎨 Usabilidad e Interacción</h2>
+                        <p class="canvas-subtitle">ISO 9241 & Heurísticas de Nielsen - Principios de diseño de interfaz</p>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn btn-secondary" onclick="ViewManager.showUsabilityStandardInfo()">
+                            📖 Sobre ISO 9241
+                        </button>
+                        <button class="btn btn-primary" onclick="ViewManager.startUsabilitySimulator()">
+                            🎮 Simulador Interactivo
+                        </button>
+                    </div>
+                </div>
+
+                <div class="usability-overview">
+                    <div class="usability-intro">
+                        <h3>🎯 Objetivo de esta Sección</h3>
+                        <p>
+                            Aplica las <strong>10 heurísticas de Nielsen</strong> evaluando interfaces reales.
+                            Identifica problemas de usabilidad y propón mejoras fundamentadas.
+                        </p>
+                        <div class="usability-workflow">
+                            <div class="workflow-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <strong>Estudia</strong>
+                                    <p>Aprende las 10 heurísticas</p>
+                                </div>
+                            </div>
+                            <div class="workflow-arrow">➡️</div>
+                            <div class="workflow-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <strong>Evalúa</strong>
+                                    <p>Analiza interfaces interactivas</p>
+                                </div>
+                            </div>
+                            <div class="workflow-arrow">➡️</div>
+                            <div class="workflow-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <strong>Mejora</strong>
+                                    <p>Propón soluciones de diseño</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="usability-workspace">
+                    <div class="heuristics-section">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">📏 Las 10 Heurísticas de Nielsen</h3>
+                                <p class="card-subtitle">Principios fundamentales para evaluar usabilidad</p>
+                            </div>
+                            <div class="heuristics-grid" id="heuristics-grid">
+                                <!-- Heurísticas se cargan dinámicamente -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="interface-simulator-section">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">🖥️ Simulador de Interfaces</h3>
+                                <p class="card-subtitle">Evalúa interfaces reales aplicando heurísticas</p>
+                            </div>
+                            <div class="simulator-controls">
+                                <div class="interface-selector">
+                                    <label for="interface-select">Selecciona interfaz:</label>
+                                    <select id="interface-select" onchange="ViewManager.loadInterface(this.value)">
+                                        <option value="ecommerce">🛒 Tienda Online</option>
+                                        <option value="banking">🏦 Banca Digital</option>
+                                        <option value="social">👥 Red Social</option>
+                                        <option value="dashboard">📊 Dashboard Analytics</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-primary" onclick="ViewManager.startHeuristicEvaluation()">
+                                    🔍 Iniciar Evaluación
+                                </button>
+                            </div>
+                            <div class="interface-frame" id="interface-frame">
+                                <!-- Interfaz simulada se carga dinámicamente -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="evaluation-results">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">📝 Resultados de Evaluación</h3>
+                                <p class="card-subtitle">Problemas identificados y recomendaciones</p>
+                            </div>
+                            <div class="evaluation-content" id="evaluation-results">
+                                <!-- Resultados se muestran dinámicamente -->
+                            </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Panel de Detalles -->
+        <aside class="details-panel">
+            <div class="details-header">
+                <h3>📊 Información Detallada</h3>
+            </div>
+            
+            <div class="details-content">
+                <!-- Vista Ecosistema: Detalles del escenario -->
+                <div id="scenario-details">
+                    <!-- Detalles se cargan dinámicamente -->
+                </div>
+
+                <!-- Vista Calidad: Métricas y comparaciones -->
+                <div id="quality-details">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">📈 Métricas de Calidad</h4>
+                        </div>
+                        <div class="metrics-summary">
+                            <div class="metric-item">
+                                <span class="metric-name">Puntuación Media</span>
+                                <span class="metric-value" id="average-quality">--</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-name">Característica Mayor</span>
+                                <span class="metric-value" id="highest-quality">--</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-name">Área de Mejora</span>
+                                <span class="metric-value" id="lowest-quality">--</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vista Requisitos: Análisis y recomendaciones -->
+                <div id="requirements-details">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">🔍 Análisis de Requisitos</h4>
+                        </div>
+                        <div class="requirements-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Funcionales</span>
+                                <span class="stat-value">3</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">No Funcionales</span>
+                                <span class="stat-value">3</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Usuario</span>
+                                <span class="stat-value">2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vista Usabilidad: Principios y scores -->
+                <div id="usability-details">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">🎯 Principios de Nielsen</h4>
+                        </div>
+                        <div class="principles-overview">
+                            <p>Selecciona una interfaz para ver el análisis detallado de usabilidad basado en los 10 principios heurísticos de Jakob Nielsen.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Información general sobre estándares -->
+                <div class="standards-info">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">📖 Sobre los Estándares</h4>
+                        </div>
+                        <div class="standards-content">
+                            <div class="standard-item">
+                                <h5>🌟 ISO/IEC 25010</h5>
+                                <p>Define un modelo de calidad del software y sistemas con 8 características principales.</p>
+                            </div>
+                            <div class="standard-item">
+                                <h5>📝 ISO/IEC/IEEE 29148</h5>
+                                <p>Establece procesos para ingeniería de requisitos durante el ciclo de vida del software.</p>
+                            </div>
+                            <div class="standard-item">
+                                <h5>🖱️ ISO 9241</h5>
+                                <p>Proporciona principios y guías para el diseño ergonómico de interfaces usuario-sistema.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

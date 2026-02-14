@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏥 MedCore Hospital System - TEST</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-card {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        .intro-screen {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+        .game-screen {
+            display: none;
+        }
+        .progress-bar {
+            background: #e9ecef;
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #28a745, #20c997);
+            height: 100%;
+            transition: width 0.5s ease;
+        }
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .metric-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .decisions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .decision-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            transition: transform 0.2s;
+        }
+        .decision-btn:hover {
+            transform: translateY(-2px);
+        }
+        .alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Pantalla de introducción -->
+    <div id="intro" class="intro-screen">
+        <h1>🏥 MedCore Hospital System</h1>
+        <h2>Hospital San Rafael</h2>
+        <p>Proyecto de Sistema de Gestión Hospitalaria</p>
+        <p>Presupuesto: €2.5M | Duración: 18 meses | 5 Fases</p>
+        <button class="btn" onclick="startGame()">🚀 Iniciar Proyecto</button>
+        <button class="btn" onclick="showInfo()">📚 Ver Información</button>
+    </div>
+
+    <!-- Pantalla del juego -->
+    <div id="game" class="game-screen">
+        <div class="test-card">
+            <h2 id="phase-title">Fase 1: Análisis y Definición de Requisitos</h2>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+            </div>
+            <p id="progress-text">Progreso: 0%</p>
+        </div>
+
+        <div class="test-card">
+            <h3>📊 Métricas de Calidad ISO 25010</h3>
+            <div class="metrics">
+                <div class="metric-card">
+                    <h4>Funcionalidad</h4>
+                    <div class="progress-bar">
+                        <div id="functionality-bar" class="progress-fill" style="width: 65%"></div>
+                    </div>
+                    <span id="functionality-score">65%</span>
+                </div>
+                <div class="metric-card">
+                    <h4>Usabilidad</h4>
+                    <div class="progress-bar">
+                        <div id="usability-bar" class="progress-fill" style="width: 60%"></div>
+                    </div>
+                    <span id="usability-score">60%</span>
+                </div>
+                <div class="metric-card">
+                    <h4>Confiabilidad</h4>
+                    <div class="progress-bar">
+                        <div id="reliability-bar" class="progress-fill" style="width: 70%"></div>
+                    </div>
+                    <span id="reliability-score">70%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-card">
+            <h3>🤔 Decisiones Estratégicas</h3>
+            <div class="decisions">
+                <button class="decision-btn" onclick="makeDecision('requirements')">
+                    📝 Definir Estrategia de Requisitos<br>
+                    <small>Aplicar ISO 29148 para gestión de requisitos</small>
+                </button>
+                <button class="decision-btn" onclick="makeDecision('stakeholders')">
+                    👥 Gestionar Stakeholders<br>
+                    <small>Establecer comunicación con equipo médico</small>
+                </button>
+                <button class="decision-btn" onclick="makeDecision('architecture')">
+                    🏗️ Definir Arquitectura<br>
+                    <small>Seleccionar tecnología para el sistema</small>
+                </button>
+            </div>
+        </div>
+
+        <div class="test-card">
+            <h3>🎯 Acciones del Proyecto</h3>
+            <button class="btn" onclick="completeTask()">✅ Completar Tarea</button>
+            <button class="btn" onclick="reviewStandards()">📚 Revisar Estándares ISO</button>
+            <button class="btn" onclick="consultTeam()">👥 Consultar Equipo</button>
+            <button class="btn" onclick="saveProgress()">💾 Guardar Progreso</button>
+        </div>
+
+        <div class="test-card">
+            <h3>📋 Información del Proyecto</h3>
+            <p><strong>Fase actual:</strong> <span id="current-phase">1 de 5</span></p>
+            <p><strong>Presupuesto restante:</strong> €<span id="budget">2,500,000</span></p>
+            <p><strong>Tiempo restante:</strong> <span id="time">18 meses</span></p>
+            <p><strong>Decisiones tomadas:</strong> <span id="decisions-count">0</span></p>
+        </div>
+    </div>
+
+    <script>
+        // Estado del juego
+        let gameState = {
+            currentPhase: 1,
+            totalPhases: 5,
+            progress: 0,
+            budget: 2500000,
+            timeRemaining: 18,
+            decisionsCount: 0,
+            metrics: {
+                functionality: 65,
+                usability: 60,
+                reliability: 70
+            }
+        };
+
+        function startGame() {
+            console.log('🚀 Iniciando MedCore...');
+            document.getElementById('intro').style.display = 'none';
+            document.getElementById('game').style.display = 'block';
+            showAlert('¡Proyecto MedCore iniciado! Comienza con la Fase 1.', 'success');
+            updateDisplay();
+        }
+
+        function makeDecision(type) {
+            console.log('🎯 Decisión:', type);
+            
+            let impact = {};
+            let message = '';
+            
+            switch(type) {
+                case 'requirements':
+                    impact = { functionality: 10, budget: -50000, time: 1 };
+                    message = '📝 Estrategia de requisitos implementada según ISO 29148';
+                    break;
+                case 'stakeholders':
+                    impact = { usability: 15, budget: -20000, time: 0.5 };
+                    message = '👥 Plan de comunicación con stakeholders establecido';
+                    break;
+                case 'architecture':
+                    impact = { reliability: 12, functionality: 8, budget: -100000, time: 2 };
+                    message = '🏗️ Arquitectura del sistema definida exitosamente';
+                    break;
+            }
+            
+            // Aplicar impactos
+            Object.entries(impact).forEach(([key, value]) => {
+                if (key === 'budget') {
+                    gameState.budget += value;
+                } else if (key === 'time') {
+                    gameState.timeRemaining -= value;
+                } else if (gameState.metrics[key]) {
+                    gameState.metrics[key] = Math.min(100, gameState.metrics[key] + value);
+                }
+            });
+            
+            gameState.decisionsCount++;
+            gameState.progress += 20;
+            
+            if (gameState.progress >= 100) {
+                gameState.progress = 100;
+                setTimeout(() => {
+                    advancePhase();
+                }, 1500);
+            }
+            
+            updateDisplay();
+            showAlert(message, 'success');
+        }
+
+        function completeTask() {
+            gameState.progress += 15;
+            gameState.metrics.functionality += 5;
+            gameState.metrics.usability += 5;
+            
+            if (gameState.progress >= 100) {
+                gameState.progress = 100;
+                setTimeout(() => {
+                    advancePhase();
+                }, 1500);
+            }
+            
+            updateDisplay();
+            showAlert('✅ Tarea completada exitosamente', 'success');
+        }
+
+        function advancePhase() {
+            if (gameState.currentPhase < gameState.totalPhases) {
+                gameState.currentPhase++;
+                gameState.progress = 0;
+                
+                const phases = [
+                    '', // índice 0 vacío
+                    'Fase 1: Análisis y Definición de Requisitos',
+                    'Fase 2: Diseño y Arquitectura del Sistema', 
+                    'Fase 3: Desarrollo e Implementación',
+                    'Fase 4: Pruebas y Validación',
+                    'Fase 5: Despliegue y Puesta en Marcha'
+                ];
+                
+                document.getElementById('phase-title').textContent = phases[gameState.currentPhase];
+                showAlert(`🎉 ¡Fase ${gameState.currentPhase-1} completada! Avanzando a ${phases[gameState.currentPhase]}`, 'success');
+                updateDisplay();
+            } else {
+                showProjectCompleted();
+            }
+        }
+
+        function showProjectCompleted() {
+            const finalScore = Math.round((gameState.metrics.functionality + gameState.metrics.usability + gameState.metrics.reliability) / 3);
+            
+            document.getElementById('game').innerHTML = `
+                <div class="intro-screen">
+                    <h1>🏆 ¡Proyecto Completado!</h1>
+                    <h2>Hospital San Rafael - Sistema MedCore</h2>
+                    <p><strong>Puntuación Final:</strong> ${finalScore}/100</p>
+                    <p><strong>Presupuesto Final:</strong> €${gameState.budget.toLocaleString()}</p>
+                    <p><strong>Decisiones Tomadas:</strong> ${gameState.decisionsCount}</p>
+                    <p><strong>Grado:</strong> ${finalScore >= 85 ? 'Excelente' : finalScore >= 70 ? 'Bueno' : 'Aceptable'}</p>
+                    <button class="btn" onclick="location.reload()">🔄 Nuevo Proyecto</button>
+                </div>
+            `;
+        }
+
+        function updateDisplay() {
+            document.getElementById('progress-fill').style.width = gameState.progress + '%';
+            document.getElementById('progress-text').textContent = 'Progreso: ' + gameState.progress + '%';
+            document.getElementById('current-phase').textContent = gameState.currentPhase + ' de ' + gameState.totalPhases;
+            document.getElementById('budget').textContent = gameState.budget.toLocaleString();
+            document.getElementById('time').textContent = gameState.timeRemaining + ' meses';
+            document.getElementById('decisions-count').textContent = gameState.decisionsCount;
+            
+            // Actualizar métricas
+            Object.entries(gameState.metrics).forEach(([key, value]) => {
+                const bar = document.getElementById(key + '-bar');
+                const score = document.getElementById(key + '-score');
+                if (bar && score) {
+                    bar.style.width = Math.min(value, 100) + '%';
+                    score.textContent = Math.min(value, 100) + '%';
+                }
+            });
+        }
+
+        function reviewStandards() {
+            showAlert('📚 Revisando estándares ISO aplicables a la fase actual', 'info');
+        }
+
+        function consultTeam() {
+            showAlert('👥 Consultando con el equipo médico y técnico', 'info');
+        }
+
+        function saveProgress() {
+            localStorage.setItem('medcore_game_state', JSON.stringify(gameState));
+            showAlert('💾 Progreso guardado exitosamente', 'success');
+        }
+
+        function showInfo() {
+            alert(`📋 MedCore Hospital System
+
+🏥 Hospital San Rafael
+📊 Proyecto de Sistema de Gestión Hospitalaria
+
+🎯 Objetivo:
+Desarrollar un sistema integral aplicando estándares ISO
+
+📚 Estándares aplicados:
+• ISO 29148 - Ingeniería de Requisitos
+• ISO 25010 - Características de Calidad
+• ISO 12207 - Procesos del Ciclo de Vida
+
+💰 Presupuesto: €2.5M
+⏱️ Duración: 18 meses
+🔄 Fases: 5
+
+¡Toma decisiones estratégicas y gestiona tu proyecto!`);
+        }
+
+        function showAlert(message, type = 'info') {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = 'alert';
+            alertDiv.textContent = message;
+            
+            if (type === 'success') {
+                alertDiv.style.background = '#d4edda';
+                alertDiv.style.color = '#155724';
+                alertDiv.style.borderColor = '#c3e6cb';
+            } else if (type === 'error') {
+                alertDiv.style.background = '#f8d7da';
+                alertDiv.style.color = '#721c24';
+                alertDiv.style.borderColor = '#f5c6cb';
+            } else {
+                alertDiv.style.background = '#d1ecf1';
+                alertDiv.style.color = '#0c5460';
+                alertDiv.style.borderColor = '#b8daff';
+            }
+            
+            document.body.appendChild(alertDiv);
+            
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 4000);
+        }
+
+        // Cargar progreso guardado al iniciar
+        window.addEventListener('load', () => {
+            const saved = localStorage.getItem('medcore_game_state');
+            if (saved) {
+                try {
+                    gameState = JSON.parse(saved);
+                    console.log('💾 Progreso cargado del almacenamiento local');
+                } catch (error) {
+                    console.warn('⚠️ Error cargando progreso guardado');
+                }
+            }
+        });
+
+        console.log('🏥 MedCore Hospital System cargado correctamente');
+        console.log('📋 Usa startGame() para iniciar o showInfo() para más información');
+    </script>
+</body>
+</html>

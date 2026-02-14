@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏥 MedCore Hospital System - Language Selection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .language-selector {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+        }
+
+        .hospital-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        .language-options {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .language-option {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            padding: 30px 40px;
+            border-radius: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            min-width: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .language-option:hover {
+            background: rgba(255, 255, 255, 1);
+            border-color: #667eea;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .flag {
+            font-size: 60px;
+        }
+
+        .language-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .language-desc {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .info {
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .language-selector {
+                margin: 20px;
+                padding: 30px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .language-options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .language-option {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="language-selector">
+        <div class="hospital-icon">🏥</div>
+        
+        <h1>MedCore Hospital System</h1>
+        <p class="subtitle">
+            Interactive Educational Simulator for Hospital Management Systems<br>
+            Choose your preferred language / Elige tu idioma preferido
+        </p>
+        
+        <div class="language-options">
+            <a href="medcore-enhanced-game.html" class="language-option">
+                <div class="flag">🇪🇸</div>
+                <div class="language-name">Español</div>
+                <div class="language-desc">Versión completa en español</div>
+            </a>
+            
+            <a href="medcore-enhanced-game-en.html" class="language-option">
+                <div class="flag">🇺🇸</div>
+                <div class="language-name">English</div>
+                <div class="language-desc">English version (partial translation)</div>
+            </a>
+        </div>
+        
+        <div class="info">
+            <strong>📚 About this Simulator:</strong><br>
+            This educational tool teaches ISO standards application in hospital management system development. 
+            Students make real software engineering decisions while managing budgets, timelines, and stakeholder satisfaction.
+            <br><br>
+            <strong>🎯 Learning Objectives:</strong> ISO 29148, ISO 25010, ISO 12207, ISO 27001, ISO 13485
+        </div>
+    </div>
+</body>
+</html>
